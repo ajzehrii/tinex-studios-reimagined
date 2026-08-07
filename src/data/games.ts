@@ -1,3 +1,4 @@
+import riftRush from "@/assets/game-rift-rush.jpg";
 import larpCity from "@/assets/game-larp-city.jpg";
 import bubbleRise from "@/assets/game-bubble-rise.jpg";
 import sugarWheel from "@/assets/game-sugar-wheel.jpg";
@@ -35,7 +36,22 @@ export interface Game {
   art: string;
 }
 
+// Newest release first — the homepage features games[0].
 export const games: Game[] = [
+  {
+    slug: "rift-rush",
+    title: "Rift Rush",
+    tagline: "Something came through, and it's pleased with itself.",
+    status: "Released",
+    playUrl: "https://stake.us/casino/games/tinexgames-rift-rush",
+    houseEdge: "5.00%",
+    rtp: "95.00%",
+    type: "Slot",
+    themes: ["New Releases"],
+    description:
+      "A tear in the world and one very cheerful thing standing in front of it. Rift Rush is our newest release — the one to start with if you want to see what the studio is doing right now.",
+    art: riftRush,
+  },
   {
     slug: "larp-city",
     title: "Larp City",
@@ -108,6 +124,11 @@ export const CONTACT_EMAIL = "hello@tinexgames.com";
 
 export const getGame = (slug: string) => games.find((g) => g.slug === slug);
 
+/** "A, B, C and D" — keeps meta descriptions current as titles are added. */
+export const gameTitleList = games
+  .map((g) => g.title)
+  .reduce((acc, t, i, arr) => (i === 0 ? t : i === arr.length - 1 ? `${acc} and ${t}` : `${acc}, ${t}`), "");
+
 export const formatReleaseDate = (iso: string) =>
   new Date(iso + "T00:00:00Z").toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -142,9 +163,15 @@ export interface NewsItem {
 /** Studio news. The homepage section only renders when this has entries. */
 export const news: NewsItem[] = [];
 
+/** Derived so it can't drift out of date as titles are added. */
+const highestRtp = games
+  .map((g) => Number.parseFloat(g.rtp ?? ""))
+  .filter((n) => !Number.isNaN(n))
+  .reduce((a, b) => Math.max(a, b), 0);
+
 export const stats = [
   { value: String(games.length), label: "Titles live on Stake" },
-  { value: "96.5%", label: "Highest RTP in the catalogue" },
+  { value: `${highestRtp}%`, label: "Highest RTP in the catalogue" },
   { value: "100%", label: "Stake exclusive" },
   { value: "HTML5", label: "One build, every device" },
 ];

@@ -15,6 +15,7 @@ import { AgeGate } from "@/components/site/AgeGate";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
+import { gameTitleList } from "@/data/games";
 
 
 function NotFoundComponent() {
@@ -85,8 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Tinex Games — Slot Studio, Only on Stake" },
       {
         name: "description",
-        content:
-          "Tinex Games is an independent slot studio building on Stake Engine. Larp City, Bubble Rise, Sugar Wheel and Floor Is Lava — playable only on Stake.",
+        content: `Tinex Games is an independent slot studio building on Stake Engine. ${gameTitleList} — playable only on Stake.`,
       },
       { name: "author", content: "Tinex Games" },
       { property: "og:title", content: "Tinex Games — Slot Studio, Only on Stake" },

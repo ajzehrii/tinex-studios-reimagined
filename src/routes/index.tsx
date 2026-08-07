@@ -8,6 +8,7 @@ import {
   PLATFORM,
   formatReleaseDate,
   gameSpecs,
+  gameTitleList,
   games,
   news,
   stats,
@@ -19,8 +20,7 @@ export const Route = createFileRoute("/")({
       { title: "Tinex Games — Slot Studio, Only on Stake" },
       {
         name: "description",
-        content:
-          "Tinex Games is an independent slot studio. Larp City, Bubble Rise, Sugar Wheel and Floor Is Lava — built on Stake Engine and playable only on Stake.",
+        content: `Tinex Games is an independent slot studio. ${gameTitleList} — built on Stake Engine and playable only on Stake.`,
       },
       { property: "og:title", content: "Tinex Games — Slot Studio, Only on Stake" },
       {
@@ -127,9 +127,10 @@ function Home() {
             </Reveal>
           </div>
 
-          {/* The catalogue is small enough to show all of it up front. */}
+          {/* Newest four, so the 2-col grid always fills evenly however many
+              titles the catalogue grows to. The full set is one band down. */}
           <div className="grid grid-cols-2 gap-4 sm:gap-5">
-            {games.map((g, i) => (
+            {games.slice(0, 4).map((g, i) => (
               <Reveal key={g.slug} delay={220 + i * 90}>
                 <Link
                   to="/games/$slug"

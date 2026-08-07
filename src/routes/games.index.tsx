@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
-import { type GameStatus, games } from "@/data/games";
+import { type GameStatus, gameTitleList, games } from "@/data/games";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/games/")({
@@ -12,8 +12,7 @@ export const Route = createFileRoute("/games/")({
       { title: "Games — The Tinex Games Catalogue | Only on Stake" },
       {
         name: "description",
-        content:
-          "Every Tinex Games title: Larp City, Bubble Rise, Sugar Wheel and Floor Is Lava. RTP, house edge and themes for each, all playable on Stake.",
+        content: `Every Tinex Games title: ${gameTitleList}. RTP, house edge and themes for each, all playable on Stake.`,
       },
       { property: "og:title", content: "Games — Tinex Games Catalogue" },
       {
