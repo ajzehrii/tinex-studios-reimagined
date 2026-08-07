@@ -82,17 +82,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Tinex Games — Stake Exclusive Slot Studio" },
+      { title: "Tinex Games — Slot Studio, Currently Exclusive to Stake" },
       {
         name: "description",
         content:
-          "Tinex Games builds high-volatility slots and original mechanics exclusively for Stake. Every title, released first and only on Stake.",
+          "Tinex Games builds high-volatility slots and original mechanics. Every title launches on Stake first, with more operators to follow.",
       },
       { name: "author", content: "Tinex Games" },
       { property: "og:title", content: "Tinex Games — Stake Exclusive Slot Studio" },
       {
         property: "og:description",
-        content: "High-volatility slots and original mechanics, built exclusively for Stake.",
+        content: "High-volatility slots and original mechanics, launching on Stake first.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

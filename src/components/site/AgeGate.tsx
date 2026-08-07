@@ -59,7 +59,7 @@ export function AgeGate() {
               Are you <span className="text-gradient">18+</span>?
             </h1>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-              This site presents gambling content produced exclusively for Stake. You must be of
+              This site presents gambling content currently distributed through Stake. You must be of
               legal age in your jurisdiction to continue.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">

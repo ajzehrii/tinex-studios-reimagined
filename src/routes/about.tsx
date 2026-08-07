@@ -7,11 +7,11 @@ import heroArt from "@/assets/hero.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "The Studio — Tinex Games, Stake Exclusive Slot Maker" },
+      { title: "The Studio — Tinex Games, Slot Maker Launching on Stake" },
       {
         name: "description",
         content:
-          "Tinex Games is an independent slot studio in Valletta building every title exclusively for Stake — maths, art, engineering and certification under one roof.",
+          "Tinex Games is an independent slot studio in Valletta. Every title launches on Stake first, with more operators to follow — maths, art, engineering and certification under one roof.",
       },
       { property: "og:title", content: "The Studio — About Tinex Games" },
       {
@@ -27,7 +27,8 @@ const timeline = [
   ["2019", "Four people, one office above a bakery in Valletta, and a single ways engine."],
   ["2021", "First MGA B2B licence granted. Ember Forge becomes our first breakout hit."],
   ["2023", "Tinex Core rewritten from scratch. Release cadence drops from six weeks to two."],
-  ["2026", "48 titles live, an exclusivity deal with Stake through 2028, and 62 people."],
+  ["2026", "48 titles live, a Stake launch-exclusivity deal, and 62 people."],
+  ["2028", "First exclusivity windows expire — the catalogue begins rolling out to more operators."],
 ];
 
 function About() {
@@ -49,8 +50,9 @@ function About() {
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Tinex Games is an independent studio in Valletta. Maths, art, engineering, audio and
-              certification sit on the same floor. Everything we make ships to one place — the Stake
-              lobby — and that focus is why we can hold a two-week cadence.
+              certification sit on the same floor. Right now everything we make launches in one place — the
+              Stake lobby — and that focus is why we can hold a two-week cadence. It is a phase, not
+              a limit: more operators join as our windows expire.
             </p>
           </Reveal>
         </div>

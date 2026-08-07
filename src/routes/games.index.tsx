@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/games/")({
   head: () => ({
     meta: [
-      { title: "Games — Stake Exclusive Slot Catalogue | Tinex" },
+      { title: "Games — Slot Catalogue Live on Stake | Tinex" },
       {
         name: "description",
         content:
@@ -46,7 +46,8 @@ function GamesIndex() {
           The <span className="text-gradient">catalogue</span>
         </h1>
         <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          {games.length} titles, every one of them built and launched exclusively on Stake.
+          {games.length} titles. Every one launches on Stake first — more operators to follow as
+          exclusivity windows expire.
         </p>
       </Reveal>
 

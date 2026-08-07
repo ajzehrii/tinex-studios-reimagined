@@ -15,16 +15,16 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tinex Games — Stake Exclusive Slot Studio" },
+      { title: "Tinex Games — Slot Studio, Currently Exclusive to Stake" },
       {
         name: "description",
         content:
-          "Tinex Games builds high-volatility slots and original mechanics exclusively for Stake. Every title released first and only on Stake.",
+          "Tinex Games builds high-volatility slots and original mechanics. Every title launches on Stake first, with more operators to follow.",
       },
       { property: "og:title", content: "Tinex Games — Stake Exclusive Slot Studio" },
       {
         property: "og:description",
-        content: "High-volatility slots and original mechanics, built exclusively for Stake.",
+        content: "High-volatility slots and original mechanics, launching on Stake first.",
       },
     ],
   }),
@@ -83,13 +83,13 @@ function Home() {
           </Reveal>
           <Reveal delay={90}>
             <h1 className="display mt-7 max-w-[16ch] text-[clamp(3rem,10.5vw,11rem)] text-foreground">
-              Games built <span className="text-gradient">only for Stake</span>
+              Right now, <span className="text-gradient">only on Stake</span>
             </h1>
           </Reveal>
           <Reveal delay={180}>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Tinex is an independent studio with a single distribution partner. Every mechanic,
-              every reel set, every max win — designed, certified and launched exclusively on Stake.
+              Tinex is an independent studio. Every title we ship today launches exclusively on Stake —
+              and as each exclusivity window closes, the catalogue opens to more operators.
             </p>
           </Reveal>
           <Reveal delay={260}>
@@ -137,7 +137,7 @@ function Home() {
                   key={`${dup}-${g.slug}-${i}`}
                   className="display text-2xl uppercase tracking-tight text-muted-foreground/50"
                 >
-                  {g.title} <span className="text-accent">·</span> Stake Exclusive{" "}
+                  {g.title} <span className="text-accent">·</span> Now on Stake{" "}
                   <span className="text-accent">·</span>
                 </span>
               ))}
@@ -333,10 +333,11 @@ function Home() {
           <Reveal>
             <ExclusiveBadge size="lg" />
             <h2 className="display mx-auto mt-8 max-w-5xl text-[clamp(2.6rem,8vw,7rem)] text-foreground">
-              Play every Tinex title on <span className="text-gradient">Stake</span>
+              Today on Stake. <span className="text-gradient">Tomorrow, everywhere</span>
             </h2>
             <p className="mx-auto mt-7 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Press, partnership or a question about a release — the studio inbox is open.
+              Stake is our launch partner today. Operators, aggregators and press — talk to us about
+              what comes next.
             </p>
             <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
               <a

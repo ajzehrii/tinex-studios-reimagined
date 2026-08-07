@@ -14,7 +14,7 @@ export function SiteFooter() {
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
               An independent game studio building high-volatility slots and original mechanics
-              exclusively for Stake.
+              exclusively for Stake today, and for more operators as our windows expire.
             </p>
             <div className="mt-6">
               <ExclusiveBadge />
@@ -61,7 +61,7 @@ export function SiteFooter() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-border pt-8 text-[0.66rem] uppercase tracking-[0.2em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} Tinex Games Ltd.</span>
-          <span>Exclusive content supplier — no real-money play offered on this site</span>
+          <span>B2B content supplier — no real-money play offered on this site</span>
         </div>
       </div>
     </footer>
