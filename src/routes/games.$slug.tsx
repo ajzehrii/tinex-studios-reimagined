@@ -125,7 +125,7 @@ function GameDetail() {
         <Reveal delay={100}>
           <p className="eyebrow">Features</p>
           <ul className="mt-6">
-            {game.features.map((f) => (
+            {game.features.map((f: string) => (
               <li
                 key={f}
                 className="group flex items-center justify-between border-b border-border py-5 transition-colors hover:text-primary"
