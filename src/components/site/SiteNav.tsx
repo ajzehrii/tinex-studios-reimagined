@@ -40,7 +40,7 @@ export function SiteNav() {
     >
       <div className="mx-auto grid max-w-[1600px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-8 md:grid-cols-[1fr_auto_1fr]">
         <Link to="/" className="group flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-indigo text-sm font-bold text-primary-foreground transition-transform duration-500 group-hover:rotate-12">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-brand text-sm font-bold text-primary-foreground transition-transform duration-500 group-hover:rotate-12">
             T
           </span>
           <span className="display truncate text-xl tracking-tight text-foreground sm:text-2xl">
@@ -66,7 +66,7 @@ export function SiteNav() {
             href={EXCLUSIVE_URL}
             target="_blank"
             rel="noreferrer noopener"
-            className="hidden rounded-full bg-gradient-indigo px-6 py-2.5 text-[0.66rem] font-bold uppercase tracking-[0.2em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04] md:inline-flex"
+            className="hidden rounded-full bg-gradient-brand px-6 py-2.5 text-[0.66rem] font-bold uppercase tracking-[0.2em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04] md:inline-flex"
           >
             Play on Stake
           </a>
@@ -107,7 +107,7 @@ export function SiteNav() {
           target="_blank"
           rel="noreferrer noopener"
           onClick={() => setOpen(false)}
-          className="mt-8 rounded-full bg-gradient-indigo px-8 py-4 text-center text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
+          className="mt-8 rounded-full bg-gradient-brand px-8 py-4 text-center text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
         >
           Play on Stake
         </a>

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { Reveal } from "@/components/site/Reveal";
+import { CONTACT_EMAIL, EXCLUSIVE_URL } from "@/data/games";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -10,7 +11,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Talk to Tinex Games about catalogue distribution, exclusive titles, press or careers. We reply within two working days.",
+          "Talk to Tinex Games about catalogue distribution, exclusive titles, press or careers.",
       },
       { property: "og:title", content: "Contact & Partnerships — Tinex Games" },
       {
@@ -27,12 +28,33 @@ const topics = ["Distribution", "Exclusive content", "Press", "Careers"];
 function Contact() {
   const [topic, setTopic] = useState(topics[0]!);
 
+  /*
+   * There is no backend behind this site, so the form composes a message and
+   * hands it to the visitor's mail client rather than reporting a success it
+   * cannot deliver. Swap this for a real POST once an endpoint exists.
+   */
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.success("Message sent", {
-      description: "The Tinex partnerships team will reply within two working days.",
+    const data = new FormData(e.currentTarget);
+    const get = (k: string) => String(data.get(k) ?? "").trim();
+
+    const body = [
+      `Name: ${get("name")}`,
+      `Email: ${get("email")}`,
+      get("company") && `Company: ${get("company")}`,
+      "",
+      get("message"),
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      `${topic} enquiry — ${get("name")}`,
+    )}&body=${encodeURIComponent(body)}`;
+
+    toast("Opening your email app", {
+      description: `If nothing happens, write to ${CONTACT_EMAIL} directly.`,
     });
-    e.currentTarget.reset();
   };
 
   return (
@@ -56,7 +78,7 @@ function Contact() {
                   className={
                     "rounded-full border px-5 py-2.5 text-[0.62rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 " +
                     (topic === t
-                      ? "border-transparent bg-gradient-indigo text-primary-foreground"
+                      ? "border-transparent bg-gradient-brand text-primary-foreground"
                       : "border-border text-muted-foreground hover:border-accent hover:text-accent")
                   }
                 >
@@ -88,28 +110,29 @@ function Contact() {
             </div>
             <button
               type="submit"
-              className="w-full rounded-full bg-gradient-indigo px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02] sm:w-auto"
+              className="w-full rounded-full bg-gradient-brand px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02] sm:w-auto"
             >
-              Send message
+              Compose message
             </button>
+            <p className="text-xs text-muted-foreground">
+              This opens your own email app with the message ready to send.
+            </p>
           </form>
         </Reveal>
 
         <Reveal delay={160} className="space-y-10">
+          <Block title="Email" lines={[CONTACT_EMAIL, "Partnerships, press and everything else."]} />
           <Block
-            title="Distribution"
-            lines={["partners@tinexgames.com", "Stake first today — talk to us about upcoming operator windows."]}
-          />
-          <Block title="Press" lines={["press@tinexgames.com", "Assets and release notes on request."]} />
-          <Block
-            title="Studio"
-            lines={["Level 6, Quay House", "Valletta VLT 1234, Malta", "+356 2100 0000"]}
+            title="Play the games"
+            lines={["All four titles are live on Stake."]}
+            href={EXCLUSIVE_URL}
+            hrefLabel="Tinex Games on Stake"
           />
           <div className="rounded-2xl border border-border bg-surface p-7">
             <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-accent">18+ only</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Tinex Games is a B2B supplier. We do not operate real-money gaming or accept players
-              directly. Play responsibly.
+              Tinex Games is a game studio. We do not operate gaming or accept players directly —
+              our titles are played on Stake. Play responsibly.
             </p>
           </div>
         </Reveal>
@@ -118,7 +141,17 @@ function Contact() {
   );
 }
 
-function Block({ title, lines }: { title: string; lines: string[] }) {
+function Block({
+  title,
+  lines,
+  href,
+  hrefLabel,
+}: {
+  title: string;
+  lines: string[];
+  href?: string;
+  hrefLabel?: string;
+}) {
   return (
     <div className="border-t border-border pt-6">
       <h3 className="eyebrow">{title}</h3>
@@ -127,6 +160,16 @@ function Block({ title, lines }: { title: string; lines: string[] }) {
           <li key={l}>{l}</li>
         ))}
       </ul>
+      {href && (
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="underline-sweep mt-4 inline-flex text-[0.66rem] font-bold uppercase tracking-[0.2em] text-accent"
+        >
+          {hrefLabel}
+        </a>
+      )}
     </div>
   );
 }

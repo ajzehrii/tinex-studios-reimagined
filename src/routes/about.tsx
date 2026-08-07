@@ -1,35 +1,33 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
-import { stats } from "@/data/games";
+import { PLATFORM, games, stats } from "@/data/games";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
-import heroArt from "@/assets/hero.jpg";
+import heroArt from "@/assets/hero-larp-city.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "The Studio — Tinex Games, Slot Maker Launching on Stake" },
+      { title: "The Studio — Tinex Games" },
       {
         name: "description",
         content:
-          "Tinex Games is an independent slot studio in Valletta. Every title launches on Stake first, with more operators to follow — maths, art, engineering and certification under one roof.",
+          "Tinex Games is an independent slot studio building on Stake Engine. Four titles, one HTML5 build each, all playable only on Stake.",
       },
       { property: "og:title", content: "The Studio — About Tinex Games" },
       {
         property: "og:description",
-        content: "Maths, art, engineering and certification under one roof in Valletta, Malta.",
+        content: "An independent slot studio building on Stake Engine.",
       },
     ],
   }),
   component: About,
 });
 
-const timeline = [
-  ["2019", "Four people, one office above a bakery in Valletta, and a single ways engine."],
-  ["2021", "First MGA B2B licence granted. Ember Forge becomes our first breakout hit."],
-  ["2023", "Tinex Core rewritten from scratch. Release cadence drops from six weeks to two."],
-  ["2026", "48 titles live, a Stake launch-exclusivity deal, and 62 people."],
-  ["2028", "First exclusivity windows expire — the catalogue begins rolling out to more operators."],
-];
+/*
+ * NOTE: this page deliberately contains no headcount, founding date, office
+ * location or licence claims — we don't have verified copy for any of that yet.
+ * Add it here once it's confirmed rather than filling the gap with placeholders.
+ */
 
 function About() {
   return (
@@ -39,20 +37,19 @@ function About() {
           src={heroArt}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover opacity-20"
+          className="absolute inset-0 h-full w-full object-cover opacity-15 blur-xl"
         />
         <div className="absolute inset-0 veil" />
         <div className="relative mx-auto max-w-[1600px] px-5 sm:px-8">
           <Reveal>
             <ExclusiveBadge size="lg" />
-            <h1 className="display mt-6 max-w-6xl text-[clamp(3rem,11vw,12rem)] text-foreground">
-              62 people. <span className="text-gradient">One room.</span>
+            <h1 className="display mt-6 max-w-5xl text-[clamp(2.8rem,10vw,10rem)] text-foreground">
+              {games.length} games. <span className="text-gradient">One lobby.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              Tinex Games is an independent studio in Valletta. Maths, art, engineering, audio and
-              certification sit on the same floor. Right now everything we make launches in one place — the
-              Stake lobby — and that focus is why we can hold a two-week cadence. It is a phase, not
-              a limit: more operators join as our windows expire.
+              Tinex Games is an independent slot studio. We build on {PLATFORM}, which means every
+              title ships straight into the Stake lobby as an exclusive — one HTML5 build, the same
+              game on a phone or a desktop, no separate client to maintain.
             </p>
           </Reveal>
         </div>
@@ -73,23 +70,31 @@ function About() {
 
       <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8">
         <Reveal>
-          <p className="eyebrow">How we got here</p>
+          <p className="eyebrow">What we're for</p>
         </Reveal>
-        <ul className="mt-10">
-          {timeline.map(([year, body], i) => (
-            <Reveal
-              as="li"
-              key={year}
-              delay={i * 80}
-              className="group grid gap-3 border-t border-border py-10 transition-colors duration-500 hover:bg-surface md:grid-cols-[12rem_1fr] md:gap-10 md:px-4"
-            >
-              <span className="display text-4xl text-gradient sm:text-5xl">{year}</span>
-              <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground transition-transform duration-500 [transition-timing-function:var(--ease-out-expo)] group-hover:translate-x-2">
-                {body}
-              </p>
-            </Reveal>
-          ))}
-        </ul>
+        <div className="mt-12 grid gap-12 lg:grid-cols-2">
+          <Reveal>
+            <p className="display text-[clamp(1.6rem,3.5vw,2.8rem)] text-foreground">
+              A small catalogue you can actually get through.
+            </p>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+              Most studios measure themselves in titles shipped. We'd rather each game be worth
+              opening twice. That means the maths, the art and the feel of a round all get argued
+              over before anything is called finished — and it's why there are {games.length} games
+              on this site rather than forty.
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="display text-[clamp(1.6rem,3.5vw,2.8rem)] text-foreground">
+              Built where they're played.
+            </p>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+              Building on {PLATFORM} puts us inside the platform our players already use, rather than
+              integrating into it from the outside. Certification, delivery and the lobby itself are
+              part of the same pipeline — so a finished build is a live game.
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       <section className="border-y border-border bg-surface">
@@ -110,7 +115,7 @@ function About() {
           </h2>
           <Link
             to="/contact"
-            className="mt-10 inline-flex rounded-full bg-gradient-indigo px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+            className="mt-10 inline-flex rounded-full bg-gradient-brand px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
           >
             Get in touch
           </Link>

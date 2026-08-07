@@ -65,7 +65,7 @@ export function AgeGate() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <button
                 onClick={accept}
-                className="flex-1 rounded-full bg-gradient-indigo px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02]"
+                className="flex-1 rounded-full bg-gradient-brand px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02]"
               >
                 Yes, I am 18 or over
               </button>

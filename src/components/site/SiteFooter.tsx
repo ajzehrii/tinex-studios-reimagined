@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { EXCLUSIVE_URL } from "@/data/games";
+import { EXCLUSIVE_URL, PLATFORM, games } from "@/data/games";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 
 export function SiteFooter() {
@@ -13,8 +13,8 @@ export function SiteFooter() {
               Tinex<span className="text-gradient">.</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              An independent game studio building high-volatility slots and original mechanics
-              exclusively for Stake today, and for more operators as our windows expire.
+              An independent slot studio building on {PLATFORM}. Every title is playable only on
+              Stake.
             </p>
             <div className="mt-6">
               <ExclusiveBadge />
@@ -31,19 +31,27 @@ export function SiteFooter() {
           />
 
           <div>
-            <h3 className="eyebrow">Contact</h3>
-            <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
-              <li>partners@tinexgames.com</li>
-              <li>press@tinexgames.com</li>
-              <li>Level 6, Quay House, Valletta, Malta</li>
+            <h3 className="eyebrow">Games</h3>
+            <ul className="mt-5 space-y-3 text-sm">
+              {games.map((g) => (
+                <li key={g.slug}>
+                  <Link
+                    to="/games/$slug"
+                    params={{ slug: g.slug }}
+                    className="underline-sweep text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {g.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* Licence and certification claims removed — nothing goes here until
+              we have the real registration details to put in. */}
           <div>
-            <h3 className="eyebrow">Compliance</h3>
+            <h3 className="eyebrow">Play</h3>
             <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
-              <li>MGA B2B licensed</li>
-              <li>GLI &amp; BMM certified</li>
               <li>18+ only. Play responsibly.</li>
               <li>
                 <a
@@ -52,7 +60,7 @@ export function SiteFooter() {
                   rel="noreferrer noopener"
                   className="underline-sweep text-accent"
                 >
-                  Play our games on Stake
+                  Tinex Games on Stake
                 </a>
               </li>
             </ul>
@@ -60,8 +68,8 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-border pt-8 text-[0.66rem] uppercase tracking-[0.2em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} Tinex Games Ltd.</span>
-          <span>B2B content supplier — no real-money play offered on this site</span>
+          <span>© {new Date().getFullYear()} Tinex Games</span>
+          <span>Game studio — no play offered on this site</span>
         </div>
       </div>
     </footer>

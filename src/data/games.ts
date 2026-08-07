@@ -1,136 +1,110 @@
-import voltageTiger from "@/assets/game-voltage-tiger.jpg";
-import abyssCrown from "@/assets/game-abyss-crown.jpg";
-import emberForge from "@/assets/game-ember-forge.jpg";
-import frostHowl from "@/assets/game-frost-howl.jpg";
-import vaultRaiders from "@/assets/game-vault-raiders.jpg";
-import scarabNights from "@/assets/game-scarab-nights.jpg";
+import larpCity from "@/assets/game-larp-city.jpg";
+import bubbleRise from "@/assets/game-bubble-rise.jpg";
+import sugarWheel from "@/assets/game-sugar-wheel.jpg";
+import floorIsLava from "@/assets/game-floor-is-lava.jpg";
 
 export type Volatility = "Low" | "Medium" | "High" | "Extreme";
 export type GameStatus = "Released" | "Coming Soon" | "In Certification";
 
+/**
+ * Fields marked optional are ones we do not publish a verified figure for yet.
+ * The UI omits any spec that is undefined rather than showing a placeholder —
+ * so leave a field out instead of guessing at it.
+ */
 export interface Game {
   slug: string;
   title: string;
   tagline: string;
   status: GameStatus;
-  releaseDate: string; // ISO
-  volatility: Volatility;
-  maxWin: string;
-  rtp: string;
+  /** Live game page on Stake.us. */
+  playUrl?: string;
+  /** House edge as published by Stake, e.g. "3.50%". */
+  houseEdge?: string;
+  /** Derived from houseEdge (100 - edge). */
+  rtp?: string;
   type: string;
-  layout: string;
-  features: string[];
+  /** Stake category tags for this title. */
+  themes: string[];
+  /** ISO date. Omitted until we have a confirmed release date. */
+  releaseDate?: string;
+  volatility?: Volatility;
+  maxWin?: string;
+  layout?: string;
+  features?: string[];
   description: string;
   art: string;
-  playUrl?: string;
 }
 
 export const games: Game[] = [
   {
-    slug: "voltage-tiger",
-    title: "Voltage Tiger",
-    tagline: "Neon streets. Predator multipliers.",
+    slug: "larp-city",
+    title: "Larp City",
+    tagline: "Rooftop season, and the drinks are on the house.",
     status: "Released",
-    releaseDate: "2026-06-18",
-    volatility: "Extreme",
-    maxWin: "25,000x",
-    rtp: "96.42%",
-    type: "Video Slot",
-    layout: "5x4 · 1,024 ways",
-    features: ["Surge Wilds", "Prowl Respins", "Multiplier Chase", "Bonus Buy"],
+    playUrl: "https://stake.us/casino/games/tinexgames-larp-city",
+    houseEdge: "3.50%",
+    rtp: "96.50%",
+    type: "Slot",
+    themes: ["Animals", "Cascading", "New Releases"],
     description:
-      "A rain-soaked megacity where every strike of lightning charges the reels. Voltage Tiger stacks surge wilds into a single escalating multiplier that never resets during the Prowl feature — our most aggressive math model to date.",
-    art: voltageTiger,
-    playUrl: "https://stake.com/casino/games/tinex-voltage-tiger",
+      "A skyline party that never quite ends. Larp City runs on a cascading grid — every winning cluster clears out and drops a fresh set of symbols into the gap, so a single spin can keep paying long after you expect it to stop.",
+    art: larpCity,
   },
   {
-    slug: "abyss-crown",
-    title: "Abyss Crown",
-    tagline: "The deep keeps what it takes.",
+    slug: "bubble-rise",
+    title: "Bubble Rise",
+    tagline: "Light, bright, and always climbing.",
     status: "Released",
-    releaseDate: "2026-04-02",
-    volatility: "High",
-    maxWin: "12,500x",
-    rtp: "96.10%",
-    type: "Video Slot",
-    layout: "6x5 · Cluster Pays",
-    features: ["Tentacle Collect", "Drowned Free Spins", "Crown Jackpots"],
+    playUrl: "https://stake.us/casino/games/tinexgames-bubble-rise",
+    houseEdge: "3.50%",
+    rtp: "96.50%",
+    type: "Slot",
+    themes: ["New Releases"],
     description:
-      "A sunken temple engine built on cascading clusters. Collect symbols feed the Crown meter, and every tier unlocked permanently upgrades the free spin round for the rest of the session.",
-    art: abyssCrown,
-    playUrl: "https://stake.com/casino/games/tinex-abyss-crown",
+      "Our cleanest, most readable build. Bubble Rise strips the grid back to open sky and lets the symbols do the work — an easy title to pick up for a few spins and hard to put down once the round gets going.",
+    art: bubbleRise,
   },
   {
-    slug: "ember-forge",
-    title: "Ember Forge",
-    tagline: "Hammer the reels until they glow.",
+    slug: "sugar-wheel",
+    title: "Sugar Wheel",
+    tagline: "Give it a spin. See where the sugar lands.",
     status: "Released",
-    releaseDate: "2026-01-22",
-    volatility: "High",
-    maxWin: "18,000x",
-    rtp: "96.28%",
-    type: "Video Slot",
-    layout: "5x5 · Ways",
-    features: ["Forge Upgrade", "Phoenix Rebirth", "Molten Wilds"],
+    playUrl: "https://stake.us/casino/games/tinexgames-sugar-wheel",
+    houseEdge: "5.00%",
+    rtp: "95.00%",
+    type: "Slot",
+    themes: ["Candy", "Feature Spins"],
     description:
-      "Every losing spin heats the forge. When the bar breaks, low symbols are melted out of the game entirely for the remainder of the feature — a shrinking reel set that makes the phoenix inevitable.",
-    art: emberForge,
-    playUrl: "https://stake.com/casino/games/tinex-ember-forge",
+      "A confectionery world built around one big, satisfying wheel. Feature spins hand control back to the player at the moment it matters most — the wheel comes up, and the round turns on where it stops.",
+    art: sugarWheel,
   },
   {
-    slug: "frost-howl",
-    title: "Frost Howl",
-    tagline: "Silence, then the pack.",
-    status: "In Certification",
-    releaseDate: "2026-09-10",
-    volatility: "Medium",
-    maxWin: "9,000x",
-    rtp: "96.05%",
-    type: "Video Slot",
-    layout: "5x3 · 243 ways",
-    features: ["Frozen Respins", "Pack Wilds", "Shatter Bonus"],
-    description:
-      "A slower, colder build. Frozen respins lock winning symbols in ice while the pack circles, converting the grid one column at a time into a single roaring payline.",
-    art: frostHowl,
-  },
-  {
-    slug: "vault-raiders",
-    title: "Vault Raiders",
-    tagline: "Crack it before the lasers reset.",
-    status: "Coming Soon",
-    releaseDate: "2026-11-05",
-    volatility: "Extreme",
-    maxWin: "30,000x",
-    rtp: "96.35%",
-    type: "Hold & Win",
-    layout: "6x4 · Hold & Win",
-    features: ["Laser Grid Hold", "Vault Levels", "Instant Prizes"],
-    description:
-      "Our first Hold & Win engine. Bars land, lock and drag neighbouring cells into the grid; clear a full row of the laser grid to blow the vault open and jump an entire prize tier.",
-    art: vaultRaiders,
-  },
-  {
-    slug: "scarab-nights",
-    title: "Scarab Nights",
-    tagline: "Gold moves after dark.",
+    slug: "floor-is-lava",
+    title: "Floor Is Lava",
+    tagline: "Don't touch the ground.",
     status: "Released",
-    releaseDate: "2025-10-14",
-    volatility: "Medium",
-    maxWin: "7,500x",
-    rtp: "96.18%",
-    type: "Video Slot",
-    layout: "5x3 · 20 lines",
-    features: ["Expanding Scarab", "Night Market Picks", "Double Bonus"],
+    playUrl: "https://stake.us/casino/games/tinexgames-floor-is-lava",
+    houseEdge: "3.50%",
+    rtp: "96.50%",
+    type: "Slot",
+    themes: ["Cascading", "New Releases"],
     description:
-      "A desert bazaar classic reworked with a modern pick round. The expanding scarab covers a full reel and holds through every retrigger of the Night Market feature.",
-    art: scarabNights,
-    playUrl: "https://stake.com/casino/games/tinex-scarab-nights",
+      "The childhood game, turned into a cascading engine. Winning symbols burn away and everything above collapses into the space they leave — the grid rearranging itself under you while the lava keeps rising.",
+    art: floorIsLava,
   },
 ];
 
 export const EXCLUSIVE_PARTNER = "Stake";
-export const EXCLUSIVE_LABEL = "Currently Stake Exclusive";
-export const EXCLUSIVE_URL = "https://stake.com";
+export const EXCLUSIVE_LABEL = "Only on Stake";
+export const EXCLUSIVE_URL = "https://stake.us/casino/group/tinex-games";
+/** Every title is built and published on Stake's own game platform. */
+export const PLATFORM = "Stake Engine";
+
+/**
+ * TODO: replace with the studio's real inbox. The contact form composes a
+ * mailto: to this address — a wrong value here means enquiries go nowhere.
+ */
+export const CONTACT_EMAIL = "hello@tinexgames.com";
 
 export const getGame = (slug: string) => games.find((g) => g.slug === slug);
 
@@ -142,6 +116,22 @@ export const formatReleaseDate = (iso: string) =>
     timeZone: "UTC",
   });
 
+/**
+ * Specs rendered on cards and the detail page. Anything without a value is
+ * dropped, so a game with no published max win simply shows fewer cells.
+ */
+export const gameSpecs = (game: Game): { label: string; value: string }[] => {
+  const entries: [string, string | undefined][] = [
+    ["Game type", game.type],
+    ["RTP", game.rtp],
+    ["House edge", game.houseEdge],
+    ["Volatility", game.volatility],
+    ["Max win", game.maxWin],
+    ["Layout", game.layout],
+  ];
+  return entries.flatMap(([label, value]) => (value ? [{ label, value }] : []));
+};
+
 export interface NewsItem {
   date: string;
   tag: string;
@@ -149,37 +139,12 @@ export interface NewsItem {
   body: string;
 }
 
-export const news: NewsItem[] = [
-  {
-    date: "2026-07-28",
-    tag: "Release",
-    title: "Voltage Tiger launches exclusively on Stake",
-    body: "Our most volatile title yet went live as a Stake exclusive with a synchronised tournament week and a record first-day spin count.",
-  },
-  {
-    date: "2026-07-04",
-    tag: "Studio",
-    title: "Tinex opens a second production floor",
-    body: "Twenty-two new seats dedicated to maths, art and certification — capacity for a two-week cadence and for the additional operators joining our roadmap.",
-  },
-  {
-    date: "2026-06-11",
-    tag: "Partnership",
-    title: "Stake exclusivity window set to run through 2027",
-    body: "Every current Tinex title launches on Stake first. From 2028 the catalogue opens to additional operators as each window expires.",
-  },
-  {
-    date: "2026-05-19",
-    tag: "Tech",
-    title: "Tinex Core 3 halves load times on mobile",
-    body: "A rewritten asset pipeline streams reel art progressively, cutting time-to-first-spin to under 1.4 seconds on 4G.",
-  },
-];
+/** Studio news. The homepage section only renders when this has entries. */
+export const news: NewsItem[] = [];
 
 export const stats = [
-  { value: "100%", label: "Live on Stake today" },
-  { value: "48", label: "Games shipped" },
-  { value: "1.2B", label: "Spins per month" },
-  { value: "31", label: "Regulated markets" },
+  { value: String(games.length), label: "Titles live on Stake" },
+  { value: "96.5%", label: "Highest RTP in the catalogue" },
+  { value: "100%", label: "Stake exclusive" },
+  { value: "HTML5", label: "One build, every device" },
 ];
-

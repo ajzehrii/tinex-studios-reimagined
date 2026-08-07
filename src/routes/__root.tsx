@@ -82,17 +82,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Tinex Games — Slot Studio, Currently Exclusive to Stake" },
+      { title: "Tinex Games — Slot Studio, Only on Stake" },
       {
         name: "description",
         content:
-          "Tinex Games builds high-volatility slots and original mechanics. Every title launches on Stake first, with more operators to follow.",
+          "Tinex Games is an independent slot studio building on Stake Engine. Larp City, Bubble Rise, Sugar Wheel and Floor Is Lava — playable only on Stake.",
       },
       { name: "author", content: "Tinex Games" },
-      { property: "og:title", content: "Tinex Games — Stake Exclusive Slot Studio" },
+      { property: "og:title", content: "Tinex Games — Slot Studio, Only on Stake" },
       {
         property: "og:description",
-        content: "High-volatility slots and original mechanics, launching on Stake first.",
+        content: "Bright, fast slots built on Stake Engine. Play them on Stake.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
