@@ -41,7 +41,7 @@ export const games: Game[] = [
     description:
       "A rain-soaked megacity where every strike of lightning charges the reels. Voltage Tiger stacks surge wilds into a single escalating multiplier that never resets during the Prowl feature — our most aggressive math model to date.",
     art: voltageTiger,
-    playUrl: "https://demo.tinexgames.com/voltage-tiger",
+    playUrl: "https://stake.com/casino/games/tinex-voltage-tiger",
   },
   {
     slug: "abyss-crown",
@@ -58,7 +58,7 @@ export const games: Game[] = [
     description:
       "A sunken temple engine built on cascading clusters. Collect symbols feed the Crown meter, and every tier unlocked permanently upgrades the free spin round for the rest of the session.",
     art: abyssCrown,
-    playUrl: "https://demo.tinexgames.com/abyss-crown",
+    playUrl: "https://stake.com/casino/games/tinex-abyss-crown",
   },
   {
     slug: "ember-forge",
@@ -75,7 +75,7 @@ export const games: Game[] = [
     description:
       "Every losing spin heats the forge. When the bar breaks, low symbols are melted out of the game entirely for the remainder of the feature — a shrinking reel set that makes the phoenix inevitable.",
     art: emberForge,
-    playUrl: "https://demo.tinexgames.com/ember-forge",
+    playUrl: "https://stake.com/casino/games/tinex-ember-forge",
   },
   {
     slug: "frost-howl",
@@ -124,7 +124,7 @@ export const games: Game[] = [
     description:
       "A desert bazaar classic reworked with a modern pick round. The expanding scarab covers a full reel and holds through every retrigger of the Night Market feature.",
     art: scarabNights,
-    playUrl: "https://demo.tinexgames.com/scarab-nights",
+    playUrl: "https://stake.com/casino/games/tinex-scarab-nights",
   },
 ];
 
