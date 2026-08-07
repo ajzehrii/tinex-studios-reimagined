@@ -2,13 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
+import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { games } from "@/data/games";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/games/")({
   head: () => ({
     meta: [
-      { title: "Games — Tinex Games Slot Catalogue" },
+      { title: "Games — Stake Exclusive Slot Catalogue | Tinex" },
       {
         name: "description",
         content:
