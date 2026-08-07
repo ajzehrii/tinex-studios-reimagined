@@ -40,7 +40,7 @@ function Contact() {
       <Reveal>
         <p className="eyebrow">Partnerships</p>
         <h1 className="display mt-5 text-[clamp(3.2rem,12vw,12rem)] text-foreground">
-          Let's <span className="text-molten">talk</span>
+          Let's <span className="text-gradient">talk</span>
         </h1>
       </Reveal>
 
@@ -54,10 +54,10 @@ function Contact() {
                   type="button"
                   onClick={() => setTopic(t)}
                   className={
-                    "border px-5 py-2.5 text-[0.62rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 " +
+                    "rounded-full border px-5 py-2.5 text-[0.62rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 " +
                     (topic === t
-                      ? "border-primary bg-molten text-primary-foreground"
-                      : "border-border text-muted-foreground hover:border-foreground hover:text-foreground")
+                      ? "border-transparent bg-gradient-indigo text-primary-foreground"
+                      : "border-border text-muted-foreground hover:border-accent hover:text-accent")
                   }
                 >
                   {t}
@@ -83,12 +83,12 @@ function Contact() {
                 rows={6}
                 required
                 placeholder={`Tell us about your ${topic.toLowerCase()} enquiry…`}
-                className="mt-3 w-full border border-border bg-surface px-5 py-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-primary"
+                className="mt-3 w-full rounded-xl border border-border bg-surface px-5 py-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-molten px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02] sm:w-auto"
+              className="w-full rounded-full bg-gradient-indigo px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02] sm:w-auto"
             >
               Send message
             </button>
@@ -98,15 +98,15 @@ function Contact() {
         <Reveal delay={160} className="space-y-10">
           <Block
             title="Distribution"
-            lines={["partners@tinexgames.com", "One integration, full catalogue, 31 markets."]}
+            lines={["partners@tinexgames.com", "Exclusive supply — every Tinex title launches on Stake."]}
           />
           <Block title="Press" lines={["press@tinexgames.com", "Assets and release notes on request."]} />
           <Block
             title="Studio"
             lines={["Level 6, Quay House", "Valletta VLT 1234, Malta", "+356 2100 0000"]}
           />
-          <div className="border border-border bg-surface p-7">
-            <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-primary">18+ only</h3>
+          <div className="rounded-2xl border border-border bg-surface p-7">
+            <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-accent">18+ only</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Tinex Games is a B2B supplier. We do not operate real-money gaming or accept players
               directly. Play responsibly.
@@ -152,7 +152,7 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className="mt-3 w-full border border-border bg-surface px-5 py-4 text-foreground outline-none transition-colors focus:border-primary"
+        className="mt-3 w-full rounded-xl border border-border bg-surface px-5 py-4 text-foreground outline-none transition-colors focus:border-accent"
       />
     </div>
   );

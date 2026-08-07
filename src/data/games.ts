@@ -41,7 +41,7 @@ export const games: Game[] = [
     description:
       "A rain-soaked megacity where every strike of lightning charges the reels. Voltage Tiger stacks surge wilds into a single escalating multiplier that never resets during the Prowl feature — our most aggressive math model to date.",
     art: voltageTiger,
-    playUrl: "https://demo.tinexgames.com/voltage-tiger",
+    playUrl: "https://stake.com/casino/games/tinex-voltage-tiger",
   },
   {
     slug: "abyss-crown",
@@ -58,7 +58,7 @@ export const games: Game[] = [
     description:
       "A sunken temple engine built on cascading clusters. Collect symbols feed the Crown meter, and every tier unlocked permanently upgrades the free spin round for the rest of the session.",
     art: abyssCrown,
-    playUrl: "https://demo.tinexgames.com/abyss-crown",
+    playUrl: "https://stake.com/casino/games/tinex-abyss-crown",
   },
   {
     slug: "ember-forge",
@@ -75,7 +75,7 @@ export const games: Game[] = [
     description:
       "Every losing spin heats the forge. When the bar breaks, low symbols are melted out of the game entirely for the remainder of the feature — a shrinking reel set that makes the phoenix inevitable.",
     art: emberForge,
-    playUrl: "https://demo.tinexgames.com/ember-forge",
+    playUrl: "https://stake.com/casino/games/tinex-ember-forge",
   },
   {
     slug: "frost-howl",
@@ -124,9 +124,13 @@ export const games: Game[] = [
     description:
       "A desert bazaar classic reworked with a modern pick round. The expanding scarab covers a full reel and holds through every retrigger of the Night Market feature.",
     art: scarabNights,
-    playUrl: "https://demo.tinexgames.com/scarab-nights",
+    playUrl: "https://stake.com/casino/games/tinex-scarab-nights",
   },
 ];
+
+export const EXCLUSIVE_PARTNER = "Stake";
+export const EXCLUSIVE_LABEL = "Stake Exclusive";
+export const EXCLUSIVE_URL = "https://stake.com";
 
 export const getGame = (slug: string) => games.find((g) => g.slug === slug);
 
@@ -149,20 +153,20 @@ export const news: NewsItem[] = [
   {
     date: "2026-07-28",
     tag: "Release",
-    title: "Voltage Tiger goes live across 40+ operators",
-    body: "Our most volatile title yet launched network-wide with a synchronised tournament week and a record first-day spin count.",
+    title: "Voltage Tiger launches exclusively on Stake",
+    body: "Our most volatile title yet went live as a Stake exclusive with a synchronised tournament week and a record first-day spin count.",
   },
   {
     date: "2026-07-04",
     tag: "Studio",
-    title: "Tinex opens a second production floor in Valletta",
-    body: "Twenty-two new seats dedicated to maths, art and certification so we can hold a two-week release cadence through 2027.",
+    title: "Tinex opens a second production floor",
+    body: "Twenty-two new seats dedicated to maths, art and certification so we can hold a two-week exclusive release cadence through 2027.",
   },
   {
     date: "2026-06-11",
     tag: "Partnership",
-    title: "Full catalogue certified for the Ontario market",
-    body: "Every Tinex title is now compliant and live-ready in Ontario, joining Malta, Sweden, Denmark, Romania and the UK.",
+    title: "Exclusivity agreement extended through 2028",
+    body: "Every Tinex title — released, in certification or in production — ships first and only on Stake for the next two years.",
   },
   {
     date: "2026-05-19",
@@ -173,8 +177,9 @@ export const news: NewsItem[] = [
 ];
 
 export const stats = [
+  { value: "100%", label: "Stake exclusive titles" },
   { value: "48", label: "Games shipped" },
-  { value: "180+", label: "Operator partners" },
-  { value: "31", label: "Regulated markets" },
   { value: "1.2B", label: "Spins per month" },
+  { value: "31", label: "Regulated markets" },
 ];
+

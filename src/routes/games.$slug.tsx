@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Play } from "lucide-react";
 import { GameCard, StatusBadge } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
+import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { formatReleaseDate, games, getGame } from "@/data/games";
 
 export const Route = createFileRoute("/games/$slug")({
@@ -40,7 +41,7 @@ function GameNotFound() {
       </p>
       <Link
         to="/games"
-        className="mt-10 inline-flex bg-molten px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
+        className="mt-10 inline-flex rounded-full bg-gradient-indigo px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
       >
         Back to games
       </Link>
@@ -72,26 +73,28 @@ function GameDetail() {
             >
               <ArrowLeft className="h-3.5 w-3.5" /> Catalogue
             </Link>
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-4">
               <StatusBadge status={game.status} />
-              <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              <ExclusiveBadge />
+              <span className="text-[0.66rem] uppercase tracking-[0.22em] text-muted-foreground">
                 {formatReleaseDate(game.releaseDate)}
               </span>
             </div>
-            <h1 className="display mt-5 text-[clamp(3.4rem,14vw,14rem)] text-foreground">
+            <h1 className="display mt-6 text-[clamp(3.2rem,13vw,13rem)] text-foreground">
               {game.title}
             </h1>
-            <p className="mt-3 text-lg text-primary sm:text-2xl">{game.tagline}</p>
+            <p className="mt-4 text-lg text-accent sm:text-2xl">{game.tagline}</p>
             {game.playUrl && (
               <a
                 href={game.playUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="mt-10 inline-flex items-center gap-3 bg-molten px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+                className="mt-10 inline-flex items-center gap-3 rounded-full bg-gradient-indigo px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
               >
-                <Play className="h-4 w-4" /> Play demo
+                <Play className="h-4 w-4" /> Play on Stake
               </a>
             )}
+
           </Reveal>
         </div>
       </section>

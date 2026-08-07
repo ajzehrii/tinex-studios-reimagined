@@ -1,24 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Play } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Play, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import heroArt from "@/assets/hero.jpg";
 import { GameCard, StatusBadge } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
-import { formatReleaseDate, games, news, stats } from "@/data/games";
+import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
+import {
+  EXCLUSIVE_URL,
+  formatReleaseDate,
+  games,
+  news,
+  stats,
+} from "@/data/games";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tinex Games — Original Slot Studio for Regulated Markets" },
+      { title: "Tinex Games — Stake Exclusive Slot Studio" },
       {
         name: "description",
         content:
-          "Tinex Games builds high-volatility slots and original mechanics for licensed operators in 31 regulated markets. Explore the catalogue.",
+          "Tinex Games builds high-volatility slots and original mechanics exclusively for Stake. Every title released first and only on Stake.",
       },
-      { property: "og:title", content: "Tinex Games — Original Slot Studio" },
+      { property: "og:title", content: "Tinex Games — Stake Exclusive Slot Studio" },
       {
         property: "og:description",
-        content:
-          "High-volatility slots and original mechanics, built in-house for licensed operators worldwide.",
+        content: "High-volatility slots and original mechanics, built exclusively for Stake.",
       },
     ],
   }),
@@ -28,23 +34,27 @@ export const Route = createFileRoute("/")({
 const pillars = [
   {
     n: "01",
+    icon: Zap,
     title: "Video Slots",
     body: "Ways, cluster and lines engines with hand-tuned volatility curves and bonus rounds that escalate rather than repeat.",
   },
   {
     n: "02",
+    icon: Sparkles,
     title: "Hold & Win",
     body: "Grid-locking mechanics with prize tiers, level jumps and instant symbols designed for long, readable sessions.",
   },
   {
     n: "03",
+    icon: ShieldCheck,
     title: "Feature Engines",
     body: "Reusable, certifiable feature frameworks — collect meters, upgrade paths, persistent state — shared across the catalogue.",
   },
   {
     n: "04",
+    icon: Play,
     title: "Tinex Core",
-    body: "Our own runtime: sub-1.4s time-to-first-spin on 4G, one build for every device, one integration for every operator.",
+    body: "Our own runtime: sub-1.4s time-to-first-spin on 4G, one build for every device, tuned for the Stake client.",
   },
 ];
 
@@ -54,80 +64,62 @@ function Home() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative flex min-h-svh items-end overflow-hidden">
+      {/* BAND 1 — HERO */}
+      <section className="relative flex min-h-svh items-end overflow-hidden bg-ink">
         <img
           src={heroArt}
-          alt="Tinex Games cinematic vault key artwork"
+          alt="Tinex Games cinematic key art"
           width={1920}
-          height={1088}
-          className="hero-pan absolute inset-0 h-full w-full object-cover"
+          height={1080}
+          loading="eager"
+          className="hero-pan absolute inset-0 h-full w-full object-cover opacity-70"
         />
         <div className="absolute inset-0 veil" />
-        <div className="absolute inset-0 bg-background/40" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[70vh] aura" />
 
-        <div className="relative mx-auto w-full max-w-[1600px] px-5 pb-16 pt-36 sm:px-8 sm:pb-24">
+        <div className="relative mx-auto w-full max-w-[1600px] px-5 pb-20 pt-36 sm:px-8 sm:pb-28">
           <Reveal>
-            <p className="eyebrow">Independent game studio · Est. 2019</p>
+            <ExclusiveBadge size="lg" />
           </Reveal>
           <Reveal delay={90}>
-            <h1 className="display mt-6 text-[clamp(3.6rem,15vw,15rem)] text-foreground">
-              Tinex
-              <br />
-              <span className="text-molten">Games</span>
+            <h1 className="display mt-7 max-w-[16ch] text-[clamp(3rem,10.5vw,11rem)] text-foreground">
+              Games built <span className="text-gradient">only for Stake</span>
             </h1>
           </Reveal>
           <Reveal delay={180}>
-            <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,34rem)_auto] md:items-end md:justify-between">
-              <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-                We build loud, high-volatility slots with original mechanics — from first sketch to
-                certified release — for licensed operators across 31 regulated markets.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  to="/games"
-                  className="group inline-flex items-center gap-3 bg-molten px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.03]"
-                >
-                  View all games
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-3 border border-border px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-                >
-                  Become a partner
-                </Link>
-              </div>
+            <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Tinex is an independent studio with a single distribution partner. Every mechanic,
+              every reel set, every max win — designed, certified and launched exclusively on Stake.
+            </p>
+          </Reveal>
+          <Reveal delay={260}>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Link
+                to="/games"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-indigo px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+              >
+                Explore the catalogue <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a
+                href={EXCLUSIVE_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-border bg-background/40 px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-foreground backdrop-blur-md transition-colors hover:border-accent hover:text-accent"
+              >
+                <Play className="h-4 w-4" /> Play on Stake
+              </a>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* MARQUEE */}
-      <div className="overflow-hidden border-y border-border bg-surface py-4">
-        <div className="marquee-track flex w-max gap-10 whitespace-nowrap">
-          {Array.from({ length: 2 }).map((_, dup) => (
-            <div key={dup} className="flex gap-10">
-              {games.concat(games).map((g, i) => (
-                <span
-                  key={`${dup}-${g.slug}-${i}`}
-                  className="display text-xl text-muted-foreground"
-                >
-                  {g.title} <span className="text-primary">✦</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* STATS */}
-      <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8">
-        <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+      {/* BAND 2 — STATS */}
+      <section className="border-y border-border bg-surface">
+        <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-px bg-border sm:px-0 lg:grid-cols-4">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 80} className="bg-background p-8">
-              <div className="display text-6xl text-molten sm:text-7xl">{s.value}</div>
-              <div className="mt-3 text-[0.68rem] uppercase tracking-[0.26em] text-muted-foreground">
+            <Reveal key={s.label} delay={i * 80} className="bg-surface px-6 py-12 sm:px-10 sm:py-16">
+              <div className="display text-gradient text-5xl sm:text-6xl">{s.value}</div>
+              <div className="mt-3 text-[0.64rem] uppercase tracking-[0.24em] text-muted-foreground">
                 {s.label}
               </div>
             </Reveal>
@@ -135,24 +127,43 @@ function Home() {
         </div>
       </section>
 
-      {/* LATEST GAMES */}
-      <section className="mx-auto max-w-[1600px] px-5 pb-24 sm:px-8">
-        <Reveal className="mb-12 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-6">
-          <div className="min-w-0">
-            <p className="eyebrow">Catalogue</p>
-            <h2 className="display mt-4 text-[clamp(2.6rem,7vw,6rem)] text-foreground">
-              Latest games
+      {/* BAND 3 — MARQUEE */}
+      <section className="overflow-hidden border-b border-border bg-ink py-6">
+        <div className="marquee-track flex w-max gap-10 whitespace-nowrap">
+          {Array.from({ length: 2 }).map((_, dup) => (
+            <div key={dup} className="flex gap-10">
+              {games.concat(games).map((g, i) => (
+                <span
+                  key={`${dup}-${g.slug}-${i}`}
+                  className="display text-2xl uppercase tracking-tight text-muted-foreground/50"
+                >
+                  {g.title} <span className="text-accent">·</span> Stake Exclusive{" "}
+                  <span className="text-accent">·</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* BAND 4 — LATEST GAMES */}
+      <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8 sm:py-32">
+        <Reveal className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow">Latest games</p>
+            <h2 className="display mt-4 text-[clamp(2.4rem,7vw,6rem)] text-foreground">
+              Fresh on Stake
             </h2>
           </div>
           <Link
             to="/games"
-            className="underline-sweep hidden shrink-0 items-center gap-2 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary sm:inline-flex"
+            className="underline-sweep inline-flex items-center gap-2 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-accent"
           >
-            All titles <ArrowUpRight className="h-4 w-4" />
+            All games <ArrowUpRight className="h-4 w-4" />
           </Link>
         </Reveal>
 
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {latest.map((g, i) => (
             <Reveal key={g.slug} delay={i * 90}>
               <GameCard game={g} priority={i < 2} />
@@ -161,199 +172,191 @@ function Home() {
         </div>
       </section>
 
-      {/* FEATURED GAME */}
-      <section className="relative overflow-hidden border-y border-border">
+      {/* BAND 5 — FEATURED GAME */}
+      <section className="relative overflow-hidden border-y border-border bg-ink">
         <img
           src={featured.art}
-          alt=""
-          aria-hidden="true"
+          alt={`${featured.title} key artwork`}
+          width={1024}
+          height={1280}
           loading="lazy"
-          className="absolute inset-0 h-full w-full scale-110 object-cover opacity-25 blur-[2px]"
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-background/70" />
-        <div className="relative mx-auto grid max-w-[1600px] gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="absolute inset-0 bg-ink/60" />
+        <div className="relative mx-auto grid max-w-[1600px] gap-14 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <Reveal>
-            <div className="overflow-hidden border border-border">
-              <img
-                src={featured.art}
-                alt={`${featured.title} key artwork`}
-                width={1024}
-                height={1280}
-                loading="lazy"
-                className="aspect-4/5 w-full object-cover transition-transform duration-[1200ms] hover:scale-105"
-              />
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <p className="eyebrow">Featured release</p>
-            <h2 className="display mt-4 text-[clamp(3rem,9vw,8rem)] text-foreground">
+            <p className="eyebrow">Featured game</p>
+            <h2 className="display mt-4 text-[clamp(2.8rem,9vw,8rem)] text-foreground">
               {featured.title}
             </h2>
-            <p className="mt-3 text-lg text-primary">{featured.tagline}</p>
-            <p className="mt-6 max-w-xl leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-lg text-accent">{featured.tagline}</p>
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
               {featured.description}
             </p>
-            <dl className="mt-10 grid grid-cols-2 gap-px bg-border sm:grid-cols-4">
-              {[
-                ["Volatility", featured.volatility],
-                ["Max win", featured.maxWin],
-                ["RTP", featured.rtp],
-                ["Layout", featured.layout],
-              ].map(([k, v]) => (
-                <div key={k} className="bg-background p-5">
-                  <dt className="text-[0.58rem] uppercase tracking-[0.22em] text-muted-foreground">
-                    {k}
-                  </dt>
-                  <dd className="mt-2 font-semibold text-foreground">{v}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <StatusBadge status={featured.status} />
+              <ExclusiveBadge />
+            </div>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/games/$slug"
                 params={{ slug: featured.slug }}
-                className="inline-flex items-center gap-2 border border-border px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-indigo px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
               >
-                Game details <ArrowUpRight className="h-4 w-4" />
+                Game details <ArrowRight className="h-4 w-4" />
               </Link>
               {featured.playUrl && (
                 <a
                   href={featured.playUrl}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-2 bg-molten px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.03]"
+                  className="inline-flex items-center justify-center gap-3 rounded-full border border-border bg-background/40 px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-foreground backdrop-blur-md transition-colors hover:border-accent hover:text-accent"
                 >
-                  <Play className="h-4 w-4" /> Play demo
+                  <Play className="h-4 w-4" /> Play on Stake
                 </a>
               )}
             </div>
           </Reveal>
+
+          <Reveal delay={140} className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border">
+            {[
+              ["Volatility", featured.volatility],
+              ["Max win", featured.maxWin],
+              ["RTP", featured.rtp],
+              ["Layout", featured.layout],
+            ].map(([k, v]) => (
+              <div key={k} className="bg-surface/90 px-6 py-8 backdrop-blur-md">
+                <div className="text-[0.6rem] uppercase tracking-[0.24em] text-muted-foreground">
+                  {k}
+                </div>
+                <div className="display mt-3 text-2xl text-foreground sm:text-3xl">{v}</div>
+              </div>
+            ))}
+          </Reveal>
         </div>
       </section>
 
-      {/* WHAT WE BUILD */}
-      <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8">
+      {/* BAND 6 — WHAT WE BUILD */}
+      <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8 sm:py-32">
         <Reveal>
           <p className="eyebrow">What we build</p>
-          <h2 className="display mt-4 max-w-4xl text-[clamp(2.6rem,7vw,6rem)] text-foreground">
-            Four things, <span className="text-molten">done properly</span>
+          <h2 className="display mt-4 max-w-4xl text-[clamp(2.4rem,7vw,6rem)] text-foreground">
+            Four engines, one partner
           </h2>
         </Reveal>
-        <div className="mt-14 grid gap-px bg-border md:grid-cols-2">
+        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {pillars.map((p, i) => (
             <Reveal
               key={p.n}
-              delay={i * 80}
-              className="group bg-background p-8 transition-colors duration-500 hover:bg-surface sm:p-12"
+              delay={i * 90}
+              className="group rounded-2xl border border-border bg-surface p-8 transition-all duration-500 [transition-timing-function:var(--ease-out-expo)] hover:-translate-y-2 hover:border-accent/50 hover:shadow-[var(--shadow-glow)]"
             >
-              <span className="display text-sm tracking-[0.3em] text-primary">{p.n}</span>
-              <h3 className="display mt-6 text-4xl text-foreground transition-transform duration-500 [transition-timing-function:var(--ease-out-expo)] group-hover:translate-x-2 sm:text-5xl">
-                {p.title}
-              </h3>
-              <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">{p.body}</p>
+              <div className="flex items-center justify-between">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-indigo text-primary-foreground">
+                  <p.icon className="h-5 w-5" />
+                </span>
+                <span className="display text-3xl text-muted-foreground/40">{p.n}</span>
+              </div>
+              <h3 className="display mt-8 text-2xl text-foreground">{p.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* PHILOSOPHY */}
-      <section className="border-y border-border bg-surface">
-        <div className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8">
+      {/* BAND 7 — PHILOSOPHY */}
+      <section className="relative overflow-hidden border-y border-border bg-surface">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-80 aura" />
+        <div className="relative mx-auto max-w-[1600px] px-5 py-28 sm:px-8 sm:py-40">
           <Reveal>
             <p className="eyebrow">Studio philosophy</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <p className="display mt-8 max-w-6xl text-[clamp(2rem,5.4vw,4.6rem)] leading-[0.95] text-foreground">
-              A slot should feel like something is{" "}
-              <span className="text-molten">about to happen</span> — even on a dead spin.
+            <p className="display mt-8 max-w-6xl text-[clamp(1.8rem,5vw,4.4rem)] text-foreground">
+              One partner means we never design for the lowest common denominator. We build for a
+              single audience, tune for a single client, and{" "}
+              <span className="text-gradient">ship it sharper than anyone else can</span>.
             </p>
           </Reveal>
-          <Reveal delay={160}>
-            <div className="mt-14 grid max-w-5xl gap-10 md:grid-cols-3">
-              {[
-                [
-                  "Tension over noise",
-                  "We design the moment before the win. Sound, motion and pacing serve anticipation, never decoration.",
-                ],
-                [
-                  "One idea per game",
-                  "Every title ships with a single mechanic strong enough to name it. If it needs three, it isn't ready.",
-                ],
-                [
-                  "Certified from day one",
-                  "Compliance sits in the maths room, not at the end of the pipeline. Nothing gets built we can't license.",
-                ],
-              ].map(([t, b]) => (
-                <div key={t}>
-                  <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-primary">{t}</h3>
-                  <p className="mt-4 leading-relaxed text-muted-foreground">{b}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+          <div className="mt-16 grid gap-10 md:grid-cols-3">
+            {[
+              ["Math first", "Every title starts as a spreadsheet and a simulation of ten million spins before a single frame is drawn."],
+              ["Art that reads", "Key art must communicate volatility in one glance — at thumbnail size, in a lobby, on a phone."],
+              ["Certified fast", "In-house compliance means a finished build reaches the Stake lobby in weeks, not quarters."],
+            ].map(([t, b], i) => (
+              <Reveal key={t} delay={i * 100}>
+                <h3 className="display text-2xl text-foreground">{t}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{b}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* NEWS */}
-      <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8">
+      {/* BAND 8 — NEWS */}
+      <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8 sm:py-32">
         <Reveal>
-          <p className="eyebrow">Newsroom</p>
-          <h2 className="display mt-4 text-[clamp(2.6rem,7vw,6rem)] text-foreground">
-            Latest releases
+          <p className="eyebrow">Latest releases &amp; news</p>
+          <h2 className="display mt-4 text-[clamp(2.4rem,7vw,6rem)] text-foreground">
+            From the studio
           </h2>
         </Reveal>
-        <ul className="mt-12">
+        <ul className="mt-14 divide-y divide-border border-y border-border">
           {news.map((n, i) => (
             <Reveal
               as="li"
               key={n.title}
               delay={i * 70}
-              className="group grid gap-4 border-t border-border py-8 transition-colors duration-500 hover:bg-surface md:grid-cols-[9rem_7rem_1fr] md:items-baseline md:gap-8 md:px-4"
+              className="group grid gap-4 py-8 transition-colors hover:bg-surface/60 md:grid-cols-[180px_180px_1fr] md:items-baseline md:gap-8 md:px-4"
             >
-              <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              <span className="text-[0.66rem] uppercase tracking-[0.24em] text-muted-foreground">
                 {formatReleaseDate(n.date)}
               </span>
-              <span className="text-[0.6rem] font-bold uppercase tracking-[0.22em] text-primary">
+              <span className="w-fit rounded-full border border-accent/40 px-3 py-1 text-[0.58rem] font-bold uppercase tracking-[0.2em] text-accent">
                 {n.tag}
               </span>
-              <div className="min-w-0">
-                <h3 className="text-xl font-semibold text-foreground transition-transform duration-500 [transition-timing-function:var(--ease-out-expo)] group-hover:translate-x-2 sm:text-2xl">
+              <div>
+                <h3 className="display text-2xl text-foreground transition-colors group-hover:text-accent sm:text-3xl">
                   {n.title}
                 </h3>
-                <p className="mt-2 max-w-3xl leading-relaxed text-muted-foreground">{n.body}</p>
+                <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                  {n.body}
+                </p>
               </div>
             </Reveal>
           ))}
         </ul>
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden border-t border-border">
-        <div className="pointer-events-none absolute inset-0 bg-molten opacity-[0.12]" />
-        <div className="relative mx-auto max-w-[1600px] px-5 py-28 text-center sm:px-8">
+      {/* BAND 9 — CTA */}
+      <section className="relative overflow-hidden border-t border-border bg-ink">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-full aura rotate-180" />
+        <div className="relative mx-auto max-w-[1600px] px-5 py-28 text-center sm:px-8 sm:py-40">
           <Reveal>
-            <p className="eyebrow">Distribution</p>
-            <h2 className="display mx-auto mt-6 max-w-5xl text-[clamp(2.8rem,9vw,8rem)] text-foreground">
-              Put Tinex on your <span className="text-molten">lobby</span>
+            <ExclusiveBadge size="lg" />
+            <h2 className="display mx-auto mt-8 max-w-5xl text-[clamp(2.6rem,8vw,7rem)] text-foreground">
+              Play every Tinex title on <span className="text-gradient">Stake</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-xl leading-relaxed text-muted-foreground">
-              One integration, the full catalogue, certified for your markets. Tell us where you
-              operate and we'll come back within two working days.
+            <p className="mx-auto mt-7 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Press, partnership or a question about a release — the studio inbox is open.
             </p>
-            <Link
-              to="/contact"
-              className="group mt-10 inline-flex items-center gap-3 bg-molten px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
-            >
-              Start a conversation
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+              <a
+                href={EXCLUSIVE_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-indigo px-10 py-5 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+              >
+                <Play className="h-4 w-4" /> Play on Stake
+              </a>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-border px-10 py-5 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-accent hover:text-accent"
+              >
+                Contact the studio
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>
-
-      <div className="sr-only">
-        <StatusBadge status="Released" />
-      </div>
     </>
   );
 }

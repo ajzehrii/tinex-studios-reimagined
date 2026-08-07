@@ -2,13 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
+import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { games } from "@/data/games";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/games/")({
   head: () => ({
     meta: [
-      { title: "Games — Tinex Games Slot Catalogue" },
+      { title: "Games — Stake Exclusive Slot Catalogue | Tinex" },
       {
         name: "description",
         content:
@@ -40,10 +41,13 @@ function GamesIndex() {
   return (
     <div className="mx-auto max-w-[1600px] px-5 pb-28 pt-36 sm:px-8 sm:pt-44">
       <Reveal>
-        <p className="eyebrow">{games.length} titles</p>
-        <h1 className="display mt-5 text-[clamp(3.4rem,13vw,13rem)] text-foreground">
-          The <span className="text-molten">catalogue</span>
+        <ExclusiveBadge size="lg" />
+        <h1 className="display mt-6 text-[clamp(3.2rem,12vw,12rem)] text-foreground">
+          The <span className="text-gradient">catalogue</span>
         </h1>
+        <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          {games.length} titles, every one of them built and launched exclusively on Stake.
+        </p>
       </Reveal>
 
       <Reveal delay={100} className="mt-12 flex flex-wrap gap-2">
@@ -52,16 +56,17 @@ function GamesIndex() {
             key={f}
             onClick={() => setFilter(f)}
             className={cn(
-              "border px-6 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] transition-all duration-300",
+              "rounded-full border px-6 py-3 text-[0.64rem] font-bold uppercase tracking-[0.2em] transition-all duration-300",
               filter === f
-                ? "border-primary bg-molten text-primary-foreground"
-                : "border-border text-muted-foreground hover:border-foreground hover:text-foreground",
+                ? "border-transparent bg-gradient-indigo text-primary-foreground"
+                : "border-border text-muted-foreground hover:border-accent hover:text-accent",
             )}
           >
             {f}
           </button>
         ))}
       </Reveal>
+
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
         {visible.map((g, i) => (

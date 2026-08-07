@@ -1,16 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { stats } from "@/data/games";
+import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import heroArt from "@/assets/hero.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "The Studio — About Tinex Games" },
+      { title: "The Studio — Tinex Games, Stake Exclusive Slot Maker" },
       {
         name: "description",
         content:
-          "Tinex Games is an independent slot studio in Valletta: maths, art, engineering and certification under one roof, shipping every two weeks.",
+          "Tinex Games is an independent slot studio in Valletta building every title exclusively for Stake — maths, art, engineering and certification under one roof.",
       },
       { property: "og:title", content: "The Studio — About Tinex Games" },
       {
@@ -24,9 +25,9 @@ export const Route = createFileRoute("/about")({
 
 const timeline = [
   ["2019", "Four people, one office above a bakery in Valletta, and a single ways engine."],
-  ["2021", "First MGA B2B licence granted. Ember Forge becomes our first network-wide hit."],
+  ["2021", "First MGA B2B licence granted. Ember Forge becomes our first breakout hit."],
   ["2023", "Tinex Core rewritten from scratch. Release cadence drops from six weeks to two."],
-  ["2026", "48 titles live, 180+ operator partners, a second production floor and 62 people."],
+  ["2026", "48 titles live, an exclusivity deal with Stake through 2028, and 62 people."],
 ];
 
 function About() {
@@ -42,14 +43,14 @@ function About() {
         <div className="absolute inset-0 veil" />
         <div className="relative mx-auto max-w-[1600px] px-5 sm:px-8">
           <Reveal>
-            <p className="eyebrow">The studio</p>
-            <h1 className="display mt-5 max-w-6xl text-[clamp(3rem,11vw,12rem)] text-foreground">
-              62 people. <span className="text-molten">One room.</span>
+            <ExclusiveBadge size="lg" />
+            <h1 className="display mt-6 max-w-6xl text-[clamp(3rem,11vw,12rem)] text-foreground">
+              62 people. <span className="text-gradient">One room.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Tinex Games is an independent studio in Valletta. Maths, art, engineering, audio and
-              certification sit on the same floor, which is the only reason we can ship a title
-              every two weeks without it feeling like it.
+              certification sit on the same floor. Everything we make ships to one place — the Stake
+              lobby — and that focus is why we can hold a two-week cadence.
             </p>
           </Reveal>
         </div>
@@ -59,7 +60,7 @@ function About() {
         <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-px bg-border lg:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="bg-background p-8">
-              <div className="display text-5xl text-molten sm:text-6xl">{s.value}</div>
+              <div className="display text-5xl text-gradient sm:text-6xl">{s.value}</div>
               <div className="mt-3 text-[0.65rem] uppercase tracking-[0.24em] text-muted-foreground">
                 {s.label}
               </div>
@@ -80,7 +81,7 @@ function About() {
               delay={i * 80}
               className="group grid gap-3 border-t border-border py-10 transition-colors duration-500 hover:bg-surface md:grid-cols-[12rem_1fr] md:gap-10 md:px-4"
             >
-              <span className="display text-4xl text-primary sm:text-5xl">{year}</span>
+              <span className="display text-4xl text-gradient sm:text-5xl">{year}</span>
               <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground transition-transform duration-500 [transition-timing-function:var(--ease-out-expo)] group-hover:translate-x-2">
                 {body}
               </p>
@@ -94,7 +95,7 @@ function About() {
           <Reveal>
             <p className="display max-w-6xl text-[clamp(1.9rem,5vw,4.4rem)] leading-[0.98] text-foreground">
               We would rather ship one game people argue about than{" "}
-              <span className="text-molten">five nobody mentions</span>.
+              <span className="text-gradient">five nobody mentions</span>.
             </p>
           </Reveal>
         </div>
@@ -107,7 +108,7 @@ function About() {
           </h2>
           <Link
             to="/contact"
-            className="mt-10 inline-flex bg-molten px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+            className="mt-10 inline-flex rounded-full bg-gradient-indigo px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
           >
             Get in touch
           </Link>
