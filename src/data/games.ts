@@ -130,8 +130,6 @@ export const games: Game[] = [
 
 export const EXCLUSIVE_PARTNER = "Stake";
 export const EXCLUSIVE_LABEL = "Currently Stake Exclusive";
-export const EXCLUSIVE_NOTE =
-  "Stake is our launch partner today. More operators follow as exclusivity windows expire.";
 export const EXCLUSIVE_URL = "https://stake.com";
 
 export const getGame = (slug: string) => games.find((g) => g.slug === slug);
