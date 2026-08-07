@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Play } from "lucide-react";
 import { GameCard, StatusBadge } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
+import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { formatReleaseDate, games, getGame } from "@/data/games";
 
 export const Route = createFileRoute("/games/$slug")({
@@ -40,7 +41,7 @@ function GameNotFound() {
       </p>
       <Link
         to="/games"
-        className="mt-10 inline-flex bg-gradient-indigo px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
+        className="mt-10 inline-flex rounded-full bg-gradient-indigo px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
       >
         Back to games
       </Link>
