@@ -49,7 +49,7 @@ const pillars = [
 ];
 
 function Home() {
-  const featured = games[0];
+  const featured = games[0]!;
   const latest = games.slice(0, 4);
 
   return (

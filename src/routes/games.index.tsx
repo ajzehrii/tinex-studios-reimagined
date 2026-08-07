@@ -5,7 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { games } from "@/data/games";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/games")({
+export const Route = createFileRoute("/games/")({
   head: () => ({
     meta: [
       { title: "Games — Tinex Games Slot Catalogue" },

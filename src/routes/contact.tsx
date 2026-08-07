@@ -25,7 +25,7 @@ export const Route = createFileRoute("/contact")({
 const topics = ["Distribution", "Exclusive content", "Press", "Careers"];
 
 function Contact() {
-  const [topic, setTopic] = useState(topics[0]);
+  const [topic, setTopic] = useState(topics[0]!);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
