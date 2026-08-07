@@ -42,7 +42,7 @@ function GamesIndex() {
       <Reveal>
         <p className="eyebrow">{games.length} titles</p>
         <h1 className="display mt-5 text-[clamp(3.4rem,13vw,13rem)] text-foreground">
-          The <span className="text-molten">catalogue</span>
+          The <span className="text-gradient">catalogue</span>
         </h1>
       </Reveal>
 
@@ -54,7 +54,7 @@ function GamesIndex() {
             className={cn(
               "border px-6 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] transition-all duration-300",
               filter === f
-                ? "border-primary bg-molten text-primary-foreground"
+                ? "border-primary bg-gradient-indigo text-primary-foreground"
                 : "border-border text-muted-foreground hover:border-foreground hover:text-foreground",
             )}
           >

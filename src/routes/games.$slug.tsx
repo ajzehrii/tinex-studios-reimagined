@@ -40,7 +40,7 @@ function GameNotFound() {
       </p>
       <Link
         to="/games"
-        className="mt-10 inline-flex bg-molten px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
+        className="mt-10 inline-flex bg-gradient-indigo px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
       >
         Back to games
       </Link>
@@ -87,7 +87,7 @@ function GameDetail() {
                 href={game.playUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="mt-10 inline-flex items-center gap-3 bg-molten px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+                className="mt-10 inline-flex items-center gap-3 bg-gradient-indigo px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
               >
                 <Play className="h-4 w-4" /> Play demo
               </a>

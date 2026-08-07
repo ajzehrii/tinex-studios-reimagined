@@ -40,7 +40,7 @@ function Contact() {
       <Reveal>
         <p className="eyebrow">Partnerships</p>
         <h1 className="display mt-5 text-[clamp(3.2rem,12vw,12rem)] text-foreground">
-          Let's <span className="text-molten">talk</span>
+          Let's <span className="text-gradient">talk</span>
         </h1>
       </Reveal>
 
@@ -56,7 +56,7 @@ function Contact() {
                   className={
                     "border px-5 py-2.5 text-[0.62rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 " +
                     (topic === t
-                      ? "border-primary bg-molten text-primary-foreground"
+                      ? "border-primary bg-gradient-indigo text-primary-foreground"
                       : "border-border text-muted-foreground hover:border-foreground hover:text-foreground")
                   }
                 >
@@ -88,7 +88,7 @@ function Contact() {
             </div>
             <button
               type="submit"
-              className="w-full bg-molten px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02] sm:w-auto"
+              className="w-full bg-gradient-indigo px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02] sm:w-auto"
             >
               Send message
             </button>

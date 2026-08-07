@@ -44,7 +44,7 @@ function About() {
           <Reveal>
             <p className="eyebrow">The studio</p>
             <h1 className="display mt-5 max-w-6xl text-[clamp(3rem,11vw,12rem)] text-foreground">
-              62 people. <span className="text-molten">One room.</span>
+              62 people. <span className="text-gradient">One room.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Tinex Games is an independent studio in Valletta. Maths, art, engineering, audio and
@@ -59,7 +59,7 @@ function About() {
         <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-px bg-border lg:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="bg-background p-8">
-              <div className="display text-5xl text-molten sm:text-6xl">{s.value}</div>
+              <div className="display text-5xl text-gradient sm:text-6xl">{s.value}</div>
               <div className="mt-3 text-[0.65rem] uppercase tracking-[0.24em] text-muted-foreground">
                 {s.label}
               </div>
@@ -94,7 +94,7 @@ function About() {
           <Reveal>
             <p className="display max-w-6xl text-[clamp(1.9rem,5vw,4.4rem)] leading-[0.98] text-foreground">
               We would rather ship one game people argue about than{" "}
-              <span className="text-molten">five nobody mentions</span>.
+              <span className="text-gradient">five nobody mentions</span>.
             </p>
           </Reveal>
         </div>
@@ -107,7 +107,7 @@ function About() {
           </h2>
           <Link
             to="/contact"
-            className="mt-10 inline-flex bg-molten px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+            className="mt-10 inline-flex bg-gradient-indigo px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
           >
             Get in touch
           </Link>
