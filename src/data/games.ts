@@ -129,7 +129,9 @@ export const games: Game[] = [
 ];
 
 export const EXCLUSIVE_PARTNER = "Stake";
-export const EXCLUSIVE_LABEL = "Stake Exclusive";
+export const EXCLUSIVE_LABEL = "Currently Stake Exclusive";
+export const EXCLUSIVE_NOTE =
+  "Stake is our launch partner today. More operators follow as exclusivity windows expire.";
 export const EXCLUSIVE_URL = "https://stake.com";
 
 export const getGame = (slug: string) => games.find((g) => g.slug === slug);
@@ -160,13 +162,13 @@ export const news: NewsItem[] = [
     date: "2026-07-04",
     tag: "Studio",
     title: "Tinex opens a second production floor",
-    body: "Twenty-two new seats dedicated to maths, art and certification so we can hold a two-week exclusive release cadence through 2027.",
+    body: "Twenty-two new seats dedicated to maths, art and certification — capacity for a two-week cadence and for the additional operators joining our roadmap.",
   },
   {
     date: "2026-06-11",
     tag: "Partnership",
-    title: "Exclusivity agreement extended through 2028",
-    body: "Every Tinex title — released, in certification or in production — ships first and only on Stake for the next two years.",
+    title: "Stake exclusivity window set to run through 2027",
+    body: "Every current Tinex title launches on Stake first. From 2028 the catalogue opens to additional operators as each window expires.",
   },
   {
     date: "2026-05-19",
@@ -177,7 +179,7 @@ export const news: NewsItem[] = [
 ];
 
 export const stats = [
-  { value: "100%", label: "Stake exclusive titles" },
+  { value: "100%", label: "Live on Stake today" },
   { value: "48", label: "Games shipped" },
   { value: "1.2B", label: "Spins per month" },
   { value: "31", label: "Regulated markets" },

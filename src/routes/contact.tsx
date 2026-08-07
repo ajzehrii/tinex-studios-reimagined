@@ -98,7 +98,7 @@ function Contact() {
         <Reveal delay={160} className="space-y-10">
           <Block
             title="Distribution"
-            lines={["partners@tinexgames.com", "Exclusive supply — every Tinex title launches on Stake."]}
+            lines={["partners@tinexgames.com", "Stake first today — talk to us about upcoming operator windows."]}
           />
           <Block title="Press" lines={["press@tinexgames.com", "Assets and release notes on request."]} />
           <Block
