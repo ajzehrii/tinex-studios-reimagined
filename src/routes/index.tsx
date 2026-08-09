@@ -3,6 +3,9 @@ import { ArrowRight, ArrowUpRight, Layers, Play, Smartphone, Sparkles } from "lu
 import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
+import { JsonLd } from "@/components/site/JsonLd";
+import { seo } from "@/data/site";
+import { faqSchema, faqs } from "@/data/schema";
 import {
   EXCLUSIVE_URL,
   PLATFORM,
@@ -15,20 +18,12 @@ import {
 } from "@/data/games";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Tinex Games — Slot Studio, Only on Stake" },
-      {
-        name: "description",
-        content: `Tinex Games is an independent slot studio. ${gameTitleList} — built on Stake Engine and playable only on Stake.`,
-      },
-      { property: "og:title", content: "Tinex Games — Slot Studio, Only on Stake" },
-      {
-        property: "og:description",
-        content: "Bright, fast slots built on Stake Engine. Play them on Stake.",
-      },
-    ],
-  }),
+  head: () =>
+    seo({
+      path: "/",
+      title: "Stake Slots by Tinex Games | Stake Engine Slot Studio",
+      description: `Tinex Games builds Stake slots on Stake Engine. Play ${gameTitleList} — ${games.length} Stake exclusive slot games, RTP up to ${stats[1]!.value}, only on Stake.`,
+    }),
   component: Home,
 });
 
@@ -98,13 +93,13 @@ function Home() {
             </Reveal>
             <Reveal delay={90}>
               <h1 className="display mt-7 max-w-[14ch] text-[clamp(2.9rem,8.5vw,8rem)] text-foreground">
-                Small studio. <span className="text-gradient">Loud games.</span>
+                Loud slots. <span className="text-gradient">Only on Stake.</span>
               </h1>
             </Reveal>
             <Reveal delay={180}>
               <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Tinex Games builds bright, fast slots on {PLATFORM} — {games.length} of them so far,
-                and every one is playable only on Stake.
+                Tinex Games is an independent slot studio building on {PLATFORM}.{" "}
+                {games.length} Stake slots so far — bright, fast, and every one a Stake exclusive.
               </p>
             </Reveal>
             <Reveal delay={260}>
@@ -139,7 +134,7 @@ function Home() {
                 >
                   <img
                     src={g.art}
-                    alt={`${g.title} key artwork`}
+                    alt={`${g.title} — ${g.type.toLowerCase()} by Tinex Games, only on Stake`}
                     width={1024}
                     height={1280}
                     loading={i < 2 ? "eager" : "lazy"}
@@ -354,7 +349,27 @@ function Home() {
         </section>
       )}
 
-      {/* BAND 9 — CTA */}
+      {/* BAND 9 — FAQ. Copy here is mirrored verbatim into FAQPage schema in
+          data/schema.ts; change one and change the other. */}
+      <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8 sm:py-32">
+        <JsonLd data={faqSchema} />
+        <Reveal>
+          <p className="eyebrow">Common questions</p>
+          <h2 className="display mt-4 max-w-4xl text-[clamp(2.4rem,7vw,6rem)] text-foreground">
+            Stake slots, explained
+          </h2>
+        </Reveal>
+        <dl className="mt-14 grid gap-x-14 gap-y-10 md:grid-cols-2">
+          {faqs.map((f, i) => (
+            <Reveal key={f.q} delay={(i % 2) * 90}>
+              <dt className="display text-xl text-foreground sm:text-2xl">{f.q}</dt>
+              <dd className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</dd>
+            </Reveal>
+          ))}
+        </dl>
+      </section>
+
+      {/* BAND 10 — CTA */}
       <section className="relative overflow-hidden border-t border-border bg-ink">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-full aura rotate-180" />
         <div className="relative mx-auto max-w-[1600px] px-5 py-28 text-center sm:px-8 sm:py-40">

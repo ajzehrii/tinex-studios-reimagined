@@ -38,7 +38,7 @@ export function GameCard({ game, priority = false }: { game: Game; priority?: bo
         <div className="relative aspect-4/5 overflow-hidden">
           <img
             src={game.art}
-            alt={`${game.title} key artwork`}
+            alt={`${game.title} — ${game.type.toLowerCase()} by Tinex Games, only on Stake`}
             width={1024}
             height={1280}
             loading={priority ? "eager" : "lazy"}

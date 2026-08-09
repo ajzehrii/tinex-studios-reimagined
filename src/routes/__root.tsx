@@ -15,7 +15,9 @@ import { AgeGate } from "@/components/site/AgeGate";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
-import { gameTitleList } from "@/data/games";
+import { JsonLd } from "@/components/site/JsonLd";
+import { SITE_NAME } from "@/data/site";
+import { organizationSchema, websiteSchema } from "@/data/schema";
 
 
 function NotFoundComponent() {
@@ -83,19 +85,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Tinex Games — Slot Studio, Only on Stake" },
+      // Per-page title/description/og/twitter/canonical come from seo() in
+      // each route. These are the document-wide defaults only.
+      { title: `${SITE_NAME} — Stake Engine Slot Studio` },
+      { name: "author", content: SITE_NAME },
       {
-        name: "description",
-        content: `Tinex Games is an independent slot studio building on Stake Engine. ${gameTitleList} — playable only on Stake.`,
+        name: "robots",
+        content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
       },
-      { name: "author", content: "Tinex Games" },
-      { property: "og:title", content: "Tinex Games — Slot Studio, Only on Stake" },
-      {
-        property: "og:description",
-        content: "Bright, fast slots built on Stake Engine. Play them on Stake.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "theme-color", content: "#0d1017" },
     ],
     links: [
       {
@@ -110,6 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
 
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
     ],
   }),
 
@@ -138,6 +137,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* Site-wide entities every page's schema references by @id. */}
+      <JsonLd data={organizationSchema} />
+      <JsonLd data={websiteSchema} />
       <AgeGate />
       <SiteNav />
       <main className="min-h-svh">

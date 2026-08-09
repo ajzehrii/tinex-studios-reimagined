@@ -3,7 +3,10 @@ import { ArrowLeft, Play } from "lucide-react";
 import { GameCard, StatusBadge } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
+import { JsonLd } from "@/components/site/JsonLd";
 import { PLATFORM, formatReleaseDate, gameSpecs, games, getGame } from "@/data/games";
+import { seo } from "@/data/site";
+import { breadcrumbSchema, gameSchema } from "@/data/schema";
 
 export const Route = createFileRoute("/games/$slug")({
   loader: ({ params }) => {
@@ -21,17 +24,16 @@ export const Route = createFileRoute("/games/$slug")({
     // Only mention specs we actually publish, so the description never reads
     // "undefined volatility" for a title we have no figure for.
     const facts = gameSpecs(game)
+      .filter((s) => s.label !== "Game type")
       .map((s) => `${s.label} ${s.value}`)
       .join(", ");
-    const description = `${game.title} by Tinex Games — ${game.tagline} ${facts}. Play it on Stake.`;
-    return {
-      meta: [
-        { title: `${game.title} — Tinex Games` },
-        { name: "description", content: description },
-        { property: "og:title", content: `${game.title} — Tinex Games` },
-        { property: "og:description", content: description },
-      ],
-    };
+    return seo({
+      path: `/games/${game.slug}`,
+      type: "article",
+      image: game.ogImage,
+      title: `${game.title} Slot — Play on Stake | Tinex Games`,
+      description: `${game.title} is a Stake exclusive slot by Tinex Games, built on Stake Engine. ${facts}. ${game.tagline}`,
+    });
   },
   notFoundComponent: GameNotFound,
   component: GameDetail,
@@ -61,6 +63,14 @@ function GameDetail() {
 
   return (
     <article>
+      <JsonLd data={gameSchema(game)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Stake slots", path: "/games" },
+          { name: game.title, path: `/games/${game.slug}` },
+        ])}
+      />
       <section className="relative overflow-hidden border-b border-border">
         {/* Blurred fill behind the poster so the 4:5 key art can sit uncropped. */}
         <img
@@ -121,7 +131,7 @@ function GameDetail() {
           <Reveal delay={140} className="order-first lg:order-none">
             <img
               src={game.art}
-              alt={`${game.title} key artwork`}
+              alt={`${game.title} — ${game.type.toLowerCase()} by Tinex Games, only on Stake`}
               width={1024}
               height={1280}
               className="mx-auto w-full max-w-md rounded-3xl border border-border shadow-[var(--shadow-lift)]"

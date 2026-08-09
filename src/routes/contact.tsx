@@ -3,23 +3,16 @@ import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { Reveal } from "@/components/site/Reveal";
 import { CONTACT_EMAIL, EXCLUSIVE_URL } from "@/data/games";
+import { seo } from "@/data/site";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact & Partnerships — Tinex Games" },
-      {
-        name: "description",
-        content:
-          "Talk to Tinex Games about catalogue distribution, exclusive titles, press or careers.",
-      },
-      { property: "og:title", content: "Contact & Partnerships — Tinex Games" },
-      {
-        property: "og:description",
-        content: "Distribution, exclusives, press and careers — reach the Tinex studio directly.",
-      },
-    ],
-  }),
+  head: () =>
+    seo({
+      path: "/contact",
+      title: "Contact Tinex Games — Stake Engine Slot Studio",
+      description:
+        "Talk to Tinex Games about Stake slot distribution, exclusive titles, press or careers. An independent studio building on Stake Engine.",
+    }),
   component: Contact,
 });
 

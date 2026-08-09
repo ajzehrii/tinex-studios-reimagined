@@ -3,24 +3,19 @@ import { useMemo, useState } from "react";
 import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
+import { JsonLd } from "@/components/site/JsonLd";
 import { type GameStatus, gameTitleList, games } from "@/data/games";
+import { seo } from "@/data/site";
+import { breadcrumbSchema, catalogueSchema } from "@/data/schema";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/games/")({
-  head: () => ({
-    meta: [
-      { title: "Games — The Tinex Games Catalogue | Only on Stake" },
-      {
-        name: "description",
-        content: `Every Tinex Games title: ${gameTitleList}. RTP, house edge and themes for each, all playable on Stake.`,
-      },
-      { property: "og:title", content: "Games — Tinex Games Catalogue" },
-      {
-        property: "og:description",
-        content: "Every Tinex slot with RTP, house edge and theme. Playable on Stake.",
-      },
-    ],
-  }),
+  head: () =>
+    seo({
+      path: "/games",
+      title: "Stake Slots — Every Tinex Game on Stake | Stake Engine",
+      description: `All ${games.length} Tinex Stake slots with RTP and house edge: ${gameTitleList}. Built on Stake Engine, playable only on Stake.`,
+    }),
   component: GamesIndex,
 });
 
@@ -48,10 +43,17 @@ function GamesIndex() {
 
   return (
     <div className="mx-auto max-w-[1600px] px-5 pb-28 pt-36 sm:px-8 sm:pt-44">
+      <JsonLd data={catalogueSchema} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Stake slots", path: "/games" },
+        ])}
+      />
       <Reveal>
         <ExclusiveBadge size="lg" />
-        <h1 className="display mt-6 text-[clamp(3.2rem,12vw,12rem)] text-foreground">
-          The <span className="text-gradient">catalogue</span>
+        <h1 className="display mt-6 text-[clamp(3rem,11vw,11rem)] text-foreground">
+          Our <span className="text-gradient">Stake slots</span>
         </h1>
         <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
           {games.length} titles, every one built on Stake Engine and playable only on Stake.

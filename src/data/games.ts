@@ -3,6 +3,12 @@ import larpCity from "@/assets/game-larp-city.jpg";
 import bubbleRise from "@/assets/game-bubble-rise.jpg";
 import sugarWheel from "@/assets/game-sugar-wheel.jpg";
 import floorIsLava from "@/assets/game-floor-is-lava.jpg";
+// 1200x630 social cards — the 4:5 key art crops badly in link previews.
+import ogRiftRush from "@/assets/og-rift-rush.jpg";
+import ogLarpCity from "@/assets/og-larp-city.jpg";
+import ogBubbleRise from "@/assets/og-bubble-rise.jpg";
+import ogSugarWheel from "@/assets/og-sugar-wheel.jpg";
+import ogFloorIsLava from "@/assets/og-floor-is-lava.jpg";
 
 export type Volatility = "Low" | "Medium" | "High" | "Extreme";
 export type GameStatus = "Released" | "Coming Soon" | "In Certification";
@@ -34,6 +40,8 @@ export interface Game {
   features?: string[];
   description: string;
   art: string;
+  /** 1200x630 Open Graph card for this title. */
+  ogImage: string;
 }
 
 // Newest release first — the homepage features games[0].
@@ -51,6 +59,7 @@ export const games: Game[] = [
     description:
       "A tear in the world and one very cheerful thing standing in front of it. Rift Rush is our newest release — the one to start with if you want to see what the studio is doing right now.",
     art: riftRush,
+    ogImage: ogRiftRush,
   },
   {
     slug: "larp-city",
@@ -65,6 +74,7 @@ export const games: Game[] = [
     description:
       "A skyline party that never quite ends. Larp City runs on a cascading grid — every winning cluster clears out and drops a fresh set of symbols into the gap, so a single spin can keep paying long after you expect it to stop.",
     art: larpCity,
+    ogImage: ogLarpCity,
   },
   {
     slug: "bubble-rise",
@@ -79,6 +89,7 @@ export const games: Game[] = [
     description:
       "Our cleanest, most readable build. Bubble Rise strips the grid back to open sky and lets the symbols do the work — an easy title to pick up for a few spins and hard to put down once the round gets going.",
     art: bubbleRise,
+    ogImage: ogBubbleRise,
   },
   {
     slug: "sugar-wheel",
@@ -93,6 +104,7 @@ export const games: Game[] = [
     description:
       "A confectionery world built around one big, satisfying wheel. Feature spins hand control back to the player at the moment it matters most — the wheel comes up, and the round turns on where it stops.",
     art: sugarWheel,
+    ogImage: ogSugarWheel,
   },
   {
     slug: "floor-is-lava",
@@ -107,6 +119,7 @@ export const games: Game[] = [
     description:
       "The childhood game, turned into a cascading engine. Winning symbols burn away and everything above collapses into the space they leave — the grid rearranging itself under you while the lava keeps rising.",
     art: floorIsLava,
+    ogImage: ogFloorIsLava,
   },
 ];
 

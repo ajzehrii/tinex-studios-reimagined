@@ -2,24 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PLATFORM, games, stats } from "@/data/games";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
+import { seo } from "@/data/site";
 import heroArt from "@/assets/hero-larp-city.jpg";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "The Studio — Tinex Games" },
-      {
-        name: "description",
-        content:
-          "Tinex Games is an independent slot studio building on Stake Engine. Four titles, one HTML5 build each, all playable only on Stake.",
-      },
-      { property: "og:title", content: "The Studio — About Tinex Games" },
-      {
-        property: "og:description",
-        content: "An independent slot studio building on Stake Engine.",
-      },
-    ],
-  }),
+  head: () =>
+    seo({
+      path: "/about",
+      title: "Stake Engine Slot Studio — About Tinex Games",
+      description: `Tinex Games is an independent slot studio building on Stake Engine. ${games.length} Stake exclusive slots, one HTML5 build each, playable only on Stake.`,
+    }),
   component: About,
 });
 
@@ -44,7 +36,7 @@ function About() {
           <Reveal>
             <ExclusiveBadge size="lg" />
             <h1 className="display mt-6 max-w-5xl text-[clamp(2.8rem,10vw,10rem)] text-foreground">
-              {games.length} games. <span className="text-gradient">One lobby.</span>
+              {games.length} Stake slots. <span className="text-gradient">One lobby.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Tinex Games is an independent slot studio. We build on {PLATFORM}, which means every
