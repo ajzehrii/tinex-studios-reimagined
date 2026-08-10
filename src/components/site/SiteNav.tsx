@@ -40,7 +40,7 @@ export function SiteNav() {
     >
       <div className="mx-auto grid max-w-[1600px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-8 md:grid-cols-[1fr_auto_1fr]">
         <Link to="/" className="group flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-brand text-sm font-bold text-primary-foreground transition-transform duration-500 group-hover:rotate-12">
+          <span className="grid h-9 w-9 shrink-0 place-items-center bg-foreground font-mono text-sm text-ink">
             T
           </span>
           <span className="display truncate text-xl tracking-tight text-foreground sm:text-2xl">
@@ -54,7 +54,7 @@ export function SiteNav() {
               key={l.to}
               to={l.to}
               activeOptions={{ exact: l.to === "/" }}
-              className="underline-sweep text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground transition-colors hover:text-foreground data-[status=active]:text-foreground"
+              className="underline-sweep font-mono text-[0.7rem] uppercase tracking-[0.08em] text-muted-foreground transition-colors hover:text-foreground data-[status=active]:text-foreground"
             >
               {l.label}
             </Link>
@@ -66,7 +66,7 @@ export function SiteNav() {
             href={EXCLUSIVE_URL}
             target="_blank"
             rel="noreferrer noopener"
-            className="hidden rounded-full bg-gradient-brand px-6 py-2.5 text-[0.66rem] font-bold uppercase tracking-[0.2em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04] md:inline-flex"
+            className="hidden bg-foreground px-5 py-2.5 font-mono text-[0.66rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85 md:inline-flex"
           >
             Play on Stake
           </a>
@@ -74,7 +74,7 @@ export function SiteNav() {
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border bg-surface text-foreground transition-colors hover:border-accent hover:text-accent md:hidden"
+            className="grid h-11 w-11 shrink-0 place-items-center border border-border bg-surface text-foreground transition-colors hover:border-foreground md:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -107,7 +107,7 @@ export function SiteNav() {
           target="_blank"
           rel="noreferrer noopener"
           onClick={() => setOpen(false)}
-          className="mt-8 rounded-full bg-gradient-brand px-8 py-4 text-center text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
+          className="mt-8 bg-foreground px-8 py-4 text-center font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink"
         >
           Play on Stake
         </a>

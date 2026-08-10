@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Layers, Play, Smartphone, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Play } from "lucide-react";
 import { GameCard } from "@/components/site/GameCard";
+import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { JsonLd } from "@/components/site/JsonLd";
@@ -30,25 +31,21 @@ export const Route = createFileRoute("/")({
 const pillars = [
   {
     n: "01",
-    icon: Layers,
     title: "Cascading grids",
     body: "Winning symbols clear out and everything above drops into the gap. Larp City and Floor Is Lava both run on it — one spin that keeps resolving.",
   },
   {
     n: "02",
-    icon: Sparkles,
     title: "Feature spins",
     body: "Rounds that hand control back to the player at the moment it counts. Sugar Wheel is built entirely around the pause before the wheel stops.",
   },
   {
     n: "03",
-    icon: Play,
     title: PLATFORM,
     body: "Every title is built and certified on Stake's own game platform, which is what puts them in the lobby as Stake exclusives.",
   },
   {
     n: "04",
-    icon: Smartphone,
     title: "One HTML5 build",
     body: "The same build runs on desktop and mobile — no separate client, no second version of the maths to keep in sync.",
   },
@@ -84,16 +81,15 @@ function Home() {
           className="hero-pan absolute inset-0 h-full w-full object-cover opacity-20 blur-2xl"
         />
         <div className="absolute inset-0 veil" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[70vh] aura" />
 
-        <div className="relative mx-auto grid w-full max-w-[1600px] items-center gap-16 px-5 pb-20 pt-36 sm:px-8 lg:grid-cols-[1.05fr_1fr]">
+        <div className="relative mx-auto grid w-full max-w-[1600px] items-end gap-14 px-5 pb-16 pt-36 sm:px-8 lg:grid-cols-[1.05fr_1fr]">
           <div>
             <Reveal>
               <ExclusiveBadge size="lg" />
             </Reveal>
             <Reveal delay={90}>
-              <h1 className="display mt-7 max-w-[14ch] text-[clamp(2.9rem,8.5vw,8rem)] text-foreground">
-                Loud slots. <span className="text-gradient">Only on Stake.</span>
+              <h1 className="display mt-7 max-w-[13ch] text-[clamp(2.9rem,8.5vw,8rem)] leading-[0.86] text-foreground">
+                Loud slots. <span className="text-mark">Only on Stake.</span>
               </h1>
             </Reveal>
             <Reveal delay={180}>
@@ -106,7 +102,7 @@ function Home() {
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link
                   to="/games"
-                  className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-brand px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+                  className="inline-flex items-center justify-center gap-3 bg-foreground px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
                 >
                   See the games <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -114,7 +110,7 @@ function Home() {
                   href={EXCLUSIVE_URL}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center justify-center gap-3 rounded-full border border-border bg-background/40 px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-foreground backdrop-blur-md transition-colors hover:border-accent hover:text-accent"
+                  className="inline-flex items-center justify-center gap-3 border border-foreground/30 px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground transition-colors hover:border-[var(--game-accent)] hover:text-[var(--game-accent)]"
                 >
                   <Play className="h-4 w-4" /> Play on Stake
                 </a>
@@ -122,15 +118,21 @@ function Home() {
             </Reveal>
           </div>
 
-          {/* Newest four, so the 2-col grid always fills evenly however many
-              titles the catalogue grows to. The full set is one band down. */}
-          <div className="grid grid-cols-2 gap-4 sm:gap-5">
+          {/* Staggered rather than a tidy 2x2 — a symmetrical grid of posters
+              is the stock hero for this kind of site. Newest four; the full
+              set is one band down. */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {games.slice(0, 4).map((g, i) => (
-              <Reveal key={g.slug} delay={220 + i * 90}>
+              <Reveal
+                key={g.slug}
+                delay={220 + i * 90}
+                className={cn(i % 2 === 1 && "translate-y-6 sm:translate-y-10")}
+              >
                 <Link
                   to="/games/$slug"
                   params={{ slug: g.slug }}
-                  className="group block overflow-hidden rounded-2xl border border-border transition-all duration-500 [transition-timing-function:var(--ease-out-expo)] hover:-translate-y-2 hover:border-accent/60 hover:shadow-[var(--shadow-glow)]"
+                  style={{ "--game-accent": `oklch(${g.accent})` } as React.CSSProperties}
+                  className="group block border border-border transition-[transform,box-shadow] duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[var(--shadow-hard)]"
                 >
                   <img
                     src={g.art}
@@ -138,8 +140,14 @@ function Home() {
                     width={1024}
                     height={1280}
                     loading={i < 2 ? "eager" : "lazy"}
-                    className="aspect-4/5 w-full object-cover transition-transform duration-[900ms] [transition-timing-function:var(--ease-out-expo)] group-hover:scale-105"
+                    className="aspect-4/5 w-full object-cover"
                   />
+                  <span className="flex items-center justify-between border-t border-border bg-surface px-3 py-2">
+                    <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em] text-foreground">
+                      {g.title}
+                    </span>
+                    <span aria-hidden="true" className="h-2 w-2 bg-[var(--game-accent)]" />
+                  </span>
                 </Link>
               </Reveal>
             ))}
@@ -147,89 +155,77 @@ function Home() {
         </div>
       </section>
 
-      {/* BAND 2 — STATS */}
+      {/* BAND 2 — STATS. A plain data strip: label first, figure second, no
+          oversized gradient numerals. */}
       <section className="border-y border-border bg-surface">
-        <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-px bg-border sm:px-0 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-px bg-border lg:grid-cols-4">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 80} className="bg-surface px-6 py-12 sm:px-10 sm:py-16">
-              <div className="display text-gradient text-5xl sm:text-6xl">{s.value}</div>
-              <div className="mt-3 text-[0.64rem] uppercase tracking-[0.24em] text-muted-foreground">
-                {s.label}
-              </div>
+            <Reveal key={s.label} delay={i * 80} className="bg-surface px-6 py-10 sm:px-10 sm:py-12">
+              <div className="eyebrow">{s.label}</div>
+              <div className="numeral mt-3 text-4xl text-foreground sm:text-5xl">{s.value}</div>
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* BAND 3 — MARQUEE */}
-      <section className="overflow-hidden border-b border-border bg-ink py-6">
-        <div className="marquee-track flex w-max gap-10 whitespace-nowrap">
-          {Array.from({ length: 2 }).map((_, dup) => (
-            <div key={dup} className="flex gap-10">
-              {games.concat(games).map((g, i) => (
-                <span
-                  key={`${dup}-${g.slug}-${i}`}
-                  className="display text-2xl uppercase tracking-tight text-muted-foreground/50"
-                >
-                  {g.title} <span className="text-accent">·</span> Only on Stake{" "}
-                  <span className="text-accent">·</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* BAND 4 — THE CATALOGUE */}
+      {/* BAND 3 — THE CATALOGUE. The scrolling marquee that used to sit here
+          was pure filler and read as template furniture. */}
       <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8 sm:py-32">
-        <Reveal className="flex flex-wrap items-end justify-between gap-6">
+        <Reveal className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
           <div>
-            <p className="eyebrow">The catalogue</p>
-            <h2 className="display mt-4 text-[clamp(2.4rem,7vw,6rem)] text-foreground">
+            <p className="eyebrow">The catalogue / {String(games.length).padStart(2, "0")} titles</p>
+            <h2 className="display mt-4 text-[clamp(2.4rem,7vw,6rem)] leading-[0.9] text-foreground">
               Every game we've shipped
             </h2>
           </div>
           <Link
             to="/games"
-            className="underline-sweep inline-flex items-center gap-2 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-accent"
+            className="underline-sweep inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground"
           >
             All games <ArrowUpRight className="h-4 w-4" />
           </Link>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {games.map((g, i) => (
             <Reveal key={g.slug} delay={i * 90}>
-              <GameCard game={g} priority={i < 2} />
+              <GameCard game={g} priority={i < 2} index={i} />
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* BAND 5 — FEATURED GAME */}
-      <section className="relative overflow-hidden border-y border-border bg-ink">
-        <img
-          src={featured.art}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover opacity-20 blur-2xl"
-        />
-        <div className="absolute inset-0 bg-ink/60" />
-        <div className="relative mx-auto grid max-w-[1600px] gap-14 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+      {/* BAND 4 — FEATURED GAME, tinted by its own art colour. */}
+      <section
+        style={{ "--game-accent": `oklch(${featured.accent})` } as React.CSSProperties}
+        className="relative overflow-hidden border-y border-border bg-ink"
+      >
+        <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[var(--game-accent)]" />
+        <div className="relative mx-auto grid max-w-[1600px] gap-14 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1fr_0.85fr] lg:items-center">
           <Reveal>
-            <p className="eyebrow">Featured game</p>
-            <h2 className="display mt-4 text-[clamp(2.8rem,9vw,8rem)] text-foreground">
+            <p className="eyebrow">Featured / {String(1).padStart(2, "0")}</p>
+            <h2 className="display mt-4 text-[clamp(2.8rem,9vw,8rem)] leading-[0.86] text-foreground">
               {featured.title}
             </h2>
-            <p className="mt-4 text-lg text-accent">{featured.tagline}</p>
+            <p className="mt-4 text-lg text-[var(--game-accent)]">{featured.tagline}</p>
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
               {featured.description}
             </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+
+            <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4 border-y border-border py-5">
+              {featuredSpecs.map((s) => (
+                <div key={s.label}>
+                  <dt className="eyebrow">{s.label}</dt>
+                  <dd className="numeral mt-1 text-xl text-foreground">{s.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/games/$slug"
                 params={{ slug: featured.slug }}
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-brand px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+                className="inline-flex items-center justify-center gap-3 bg-[var(--game-accent)] px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
               >
                 Game details <ArrowRight className="h-4 w-4" />
               </Link>
@@ -238,7 +234,7 @@ function Home() {
                   href={featured.playUrl}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center justify-center gap-3 rounded-full border border-border bg-background/40 px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-foreground backdrop-blur-md transition-colors hover:border-accent hover:text-accent"
+                  className="inline-flex items-center justify-center gap-3 border border-foreground/30 px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground transition-colors hover:border-[var(--game-accent)] hover:text-[var(--game-accent)]"
                 >
                   <Play className="h-4 w-4" /> Play on Stake
                 </a>
@@ -246,18 +242,14 @@ function Home() {
             </div>
           </Reveal>
 
-          <Reveal
-            delay={140}
-            className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border"
-          >
-            {featuredSpecs.map((s) => (
-              <div key={s.label} className="bg-surface/90 px-6 py-8 backdrop-blur-md">
-                <div className="text-[0.6rem] uppercase tracking-[0.24em] text-muted-foreground">
-                  {s.label}
-                </div>
-                <div className="display mt-3 text-2xl text-foreground sm:text-3xl">{s.value}</div>
-              </div>
-            ))}
+          <Reveal delay={140}>
+            <img
+              src={featured.art}
+              alt={`${featured.title} — ${featured.type.toLowerCase()} by Tinex Games, only on Stake`}
+              width={1024}
+              height={1280}
+              className="w-full border border-border"
+            />
           </Reveal>
         </div>
       </section>
@@ -270,35 +262,35 @@ function Home() {
             How the games are made
           </h2>
         </Reveal>
-        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {/* A numbered rule-separated list rather than four icon-chip cards —
+            the icon-in-a-rounded-square grid is the most templated block on
+            the modern web. */}
+        <ul className="mt-12 border-t border-border">
           {pillars.map((p, i) => (
             <Reveal
+              as="li"
               key={p.n}
-              delay={i * 90}
-              className="group rounded-2xl border border-border bg-surface p-8 transition-all duration-500 [transition-timing-function:var(--ease-out-expo)] hover:-translate-y-2 hover:border-accent/50 hover:shadow-[var(--shadow-glow)]"
+              delay={i * 70}
+              className="group grid gap-3 border-b border-border py-8 md:grid-cols-[5rem_16rem_1fr] md:items-baseline md:gap-8"
             >
-              <div className="flex items-center justify-between">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-brand text-primary-foreground">
-                  <p.icon className="h-5 w-5" />
-                </span>
-                <span className="display text-3xl text-muted-foreground/40">{p.n}</span>
-              </div>
-              <h3 className="display mt-8 text-2xl text-foreground">{p.title}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+              <span className="numeral text-sm text-muted-foreground">{p.n}</span>
+              <h3 className="display text-2xl text-foreground transition-colors group-hover:text-[var(--game-accent)]">
+                {p.title}
+              </h3>
+              <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">{p.body}</p>
             </Reveal>
           ))}
-        </div>
+        </ul>
       </section>
 
-      {/* BAND 7 — PHILOSOPHY */}
-      <section className="relative overflow-hidden border-y border-border bg-surface">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-80 aura" />
-        <div className="relative mx-auto max-w-[1600px] px-5 py-28 sm:px-8 sm:py-40">
+      {/* BAND 6 — PHILOSOPHY */}
+      <section className="border-y border-border bg-surface">
+        <div className="mx-auto max-w-[1600px] px-5 py-28 sm:px-8 sm:py-40">
           <Reveal>
             <p className="eyebrow">How we work</p>
-            <p className="display mt-8 max-w-6xl text-[clamp(1.8rem,5vw,4.4rem)] text-foreground">
-              A short catalogue is a choice. We would rather ship four games people finish{" "}
-              <span className="text-gradient">than forty they scroll past</span>.
+            <p className="display mt-8 max-w-6xl text-[clamp(1.8rem,5vw,4.4rem)] leading-[0.95] text-foreground">
+              A short catalogue is a choice. We would rather ship {games.length} games people finish{" "}
+              <span className="text-mark">than forty they scroll past</span>.
             </p>
           </Reveal>
           <div className="mt-16 grid gap-10 md:grid-cols-3">
@@ -359,45 +351,49 @@ function Home() {
             Stake slots, explained
           </h2>
         </Reveal>
-        <dl className="mt-14 grid gap-x-14 gap-y-10 md:grid-cols-2">
+        <dl className="mt-12 border-t border-border">
           {faqs.map((f, i) => (
-            <Reveal key={f.q} delay={(i % 2) * 90}>
+            <Reveal
+              key={f.q}
+              delay={i * 60}
+              className="grid gap-2 border-b border-border py-7 md:grid-cols-[1fr_1.4fr] md:gap-10"
+            >
               <dt className="display text-xl text-foreground sm:text-2xl">{f.q}</dt>
-              <dd className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</dd>
+              <dd className="text-sm leading-relaxed text-muted-foreground">{f.a}</dd>
             </Reveal>
           ))}
         </dl>
       </section>
 
-      {/* BAND 10 — CTA */}
-      <section className="relative overflow-hidden border-t border-border bg-ink">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-full aura rotate-180" />
-        <div className="relative mx-auto max-w-[1600px] px-5 py-28 text-center sm:px-8 sm:py-40">
+      {/* BAND 8 — CTA. Left-aligned; the centred full-bleed closer with a
+          radial glow behind it is the stock ending for this kind of page. */}
+      <section className="border-t border-border bg-ink">
+        <div className="mx-auto grid max-w-[1600px] gap-10 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1fr_auto] lg:items-end">
           <Reveal>
             <ExclusiveBadge size="lg" />
-            <h2 className="display mx-auto mt-8 max-w-5xl text-[clamp(2.6rem,8vw,7rem)] text-foreground">
-              Go and <span className="text-gradient">play them</span>
+            <h2 className="display mt-7 max-w-4xl text-[clamp(2.6rem,8vw,7rem)] leading-[0.86] text-foreground">
+              Go and <span className="text-mark">play them</span>
             </h2>
-            <p className="mx-auto mt-7 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
               All {games.length} titles are live on Stake right now. Operators and press — get in
               touch about what we're building next.
             </p>
-            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-              <a
-                href={EXCLUSIVE_URL}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-gradient-brand px-10 py-5 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
-              >
-                <Play className="h-4 w-4" /> Play on Stake
-              </a>
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-3 rounded-full border border-border px-10 py-5 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-accent hover:text-accent"
-              >
-                Contact the studio
-              </Link>
-            </div>
+          </Reveal>
+          <Reveal delay={120} className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <a
+              href={EXCLUSIVE_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center justify-center gap-3 bg-foreground px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
+            >
+              <Play className="h-4 w-4" /> Play on Stake
+            </a>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-3 border border-foreground/30 px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground transition-colors hover:border-[var(--game-accent)] hover:text-[var(--game-accent)]"
+            >
+              Contact the studio
+            </Link>
           </Reveal>
         </div>
       </section>

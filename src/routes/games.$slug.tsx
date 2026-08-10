@@ -48,7 +48,7 @@ function GameNotFound() {
       </p>
       <Link
         to="/games"
-        className="mt-10 inline-flex rounded-full bg-gradient-brand px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground"
+        className="mt-10 inline-flex bg-foreground px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink"
       >
         Back to games
       </Link>
@@ -62,7 +62,8 @@ function GameDetail() {
   const specs = gameSpecs(game);
 
   return (
-    <article>
+    // The whole page inherits this title's art colour.
+    <article style={{ "--game-accent": `oklch(${game.accent})` } as React.CSSProperties}>
       <JsonLd data={gameSchema(game)} />
       <JsonLd
         data={breadcrumbSchema([
@@ -71,21 +72,14 @@ function GameDetail() {
           { name: game.title, path: `/games/${game.slug}` },
         ])}
       />
-      <section className="relative overflow-hidden border-b border-border">
-        {/* Blurred fill behind the poster so the 4:5 key art can sit uncropped. */}
-        <img
-          src={game.art}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full scale-125 object-cover opacity-25 blur-3xl"
-        />
-        <div className="absolute inset-0 bg-ink/70" />
+      <section className="relative overflow-hidden border-b border-border bg-ink">
+        <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[var(--game-accent)]" />
 
         <div className="relative mx-auto grid max-w-[1600px] items-center gap-12 px-5 pb-20 pt-36 sm:px-8 sm:pt-44 lg:grid-cols-[1fr_0.8fr]">
           <Reveal>
             <Link
               to="/games"
-              className="inline-flex items-center gap-2 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-muted-foreground transition-colors hover:text-accent"
+              className="inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-muted-foreground transition-colors hover:text-[var(--game-accent)]"
             >
               <ArrowLeft className="h-3.5 w-3.5" /> Catalogue
             </Link>
@@ -101,14 +95,14 @@ function GameDetail() {
             <h1 className="display mt-6 text-[clamp(2.8rem,10vw,9rem)] text-foreground">
               {game.title}
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-accent sm:text-2xl">{game.tagline}</p>
+            <p className="mt-5 max-w-xl text-lg text-[var(--game-accent)] sm:text-2xl">{game.tagline}</p>
 
             {game.themes.length > 0 && (
               <ul className="mt-7 flex flex-wrap gap-2">
                 {game.themes.map((t: string) => (
                   <li
                     key={t}
-                    className="rounded-full border border-border bg-surface px-4 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground"
+                    className="border border-border bg-surface px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.08em] text-muted-foreground"
                   >
                     {t}
                   </li>
@@ -121,7 +115,7 @@ function GameDetail() {
                 href={game.playUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="mt-10 inline-flex items-center gap-3 rounded-full bg-gradient-brand px-9 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+                className="mt-10 inline-flex items-center gap-3 bg-[var(--game-accent)] px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
               >
                 <Play className="h-4 w-4" /> Play on Stake
               </a>
@@ -134,7 +128,7 @@ function GameDetail() {
               alt={`${game.title} — ${game.type.toLowerCase()} by Tinex Games, only on Stake`}
               width={1024}
               height={1280}
-              className="mx-auto w-full max-w-md rounded-3xl border border-border shadow-[var(--shadow-lift)]"
+              className="mx-auto w-full max-w-md border border-border shadow-[var(--shadow-hard)]"
             />
           </Reveal>
         </div>
@@ -145,10 +139,10 @@ function GameDetail() {
           <dl className="mx-auto grid max-w-[1600px] grid-cols-2 gap-px bg-border lg:grid-cols-4">
             {specs.map((s) => (
               <div key={s.label} className="bg-background p-7">
-                <dt className="text-[0.58rem] uppercase tracking-[0.24em] text-muted-foreground">
+                <dt className="eyebrow">
                   {s.label}
                 </dt>
-                <dd className="display mt-3 text-3xl text-foreground">{s.value}</dd>
+                <dd className="numeral mt-3 text-3xl text-foreground">{s.value}</dd>
               </div>
             ))}
           </dl>
@@ -179,7 +173,7 @@ function GameDetail() {
               ))}
             </ul>
           ) : (
-            <div className="mt-6 rounded-2xl border border-border bg-surface p-8">
+            <div className="mt-6 border border-border bg-surface p-8">
               <p className="display text-3xl text-foreground">{PLATFORM}</p>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 {game.title} is built and certified on {PLATFORM} and runs as a single HTML5 build —
@@ -190,7 +184,7 @@ function GameDetail() {
                   href={game.playUrl}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="underline-sweep mt-6 inline-flex text-[0.66rem] font-bold uppercase tracking-[0.2em] text-accent"
+                  className="underline-sweep mt-6 inline-flex font-mono text-[0.66rem] uppercase tracking-[0.08em] text-[var(--game-accent)]"
                 >
                   View on Stake
                 </a>

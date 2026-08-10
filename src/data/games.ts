@@ -44,6 +44,13 @@ export interface Game {
   art: string;
   /** 1200x630 Open Graph card for this title. */
   ogImage: string;
+  /**
+   * Accent pulled from this title's key art, as a bare oklch triple so it can
+   * be dropped into a CSS custom property. The site takes its colour from the
+   * games rather than one house gradient — each card and game page is tinted
+   * by its own artwork.
+   */
+  accent: string;
 }
 
 // Newest release first — the homepage features games[0].
@@ -62,6 +69,7 @@ export const games: Game[] = [
       "A stick figure with a grudge, drawn in the margins of somebody's notebook. Doodle Days drops the studio's usual saturation for ink on lined paper — it is the newest thing we've shipped and the one that looks least like anything else in the lobby.",
     art: doodleDays,
     ogImage: ogDoodleDays,
+    accent: "0.82 0.11 82",
   },
   {
     slug: "rift-rush",
@@ -77,6 +85,7 @@ export const games: Game[] = [
       "A tear in the world and one very cheerful thing standing in front of it. Rift Rush is our newest release — the one to start with if you want to see what the studio is doing right now.",
     art: riftRush,
     ogImage: ogRiftRush,
+    accent: "0.70 0.23 338",
   },
   {
     slug: "larp-city",
@@ -92,6 +101,7 @@ export const games: Game[] = [
       "A skyline party that never quite ends. Larp City runs on a cascading grid — every winning cluster clears out and drops a fresh set of symbols into the gap, so a single spin can keep paying long after you expect it to stop.",
     art: larpCity,
     ogImage: ogLarpCity,
+    accent: "0.81 0.15 88",
   },
   {
     slug: "bubble-rise",
@@ -107,6 +117,7 @@ export const games: Game[] = [
       "Our cleanest, most readable build. Bubble Rise strips the grid back to open sky and lets the symbols do the work — an easy title to pick up for a few spins and hard to put down once the round gets going.",
     art: bubbleRise,
     ogImage: ogBubbleRise,
+    accent: "0.76 0.14 232",
   },
   {
     slug: "sugar-wheel",
@@ -122,6 +133,7 @@ export const games: Game[] = [
       "A confectionery world built around one big, satisfying wheel. Feature spins hand control back to the player at the moment it matters most — the wheel comes up, and the round turns on where it stops.",
     art: sugarWheel,
     ogImage: ogSugarWheel,
+    accent: "0.73 0.20 356",
   },
   {
     slug: "floor-is-lava",
@@ -137,6 +149,7 @@ export const games: Game[] = [
       "The childhood game, turned into a cascading engine. Winning symbols burn away and everything above collapses into the space they leave — the grid rearranging itself under you while the lava keeps rising.",
     art: floorIsLava,
     ogImage: ogFloorIsLava,
+    accent: "0.71 0.19 42",
   },
 ];
 

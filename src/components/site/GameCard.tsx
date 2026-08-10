@@ -1,19 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Play } from "lucide-react";
 import { formatReleaseDate, gameSpecs, type Game } from "@/data/games";
-import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { cn } from "@/lib/utils";
 
 export function StatusBadge({ status }: { status: Game["status"] }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-3 py-1.5 text-[0.58rem] font-bold uppercase tracking-[0.2em] backdrop-blur-md",
+        "inline-flex items-center border px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-[0.08em] backdrop-blur-sm",
         status === "Released"
-          ? "border-accent/50 bg-background/70 text-accent"
-          : status === "Coming Soon"
-            ? "border-primary/60 bg-background/70 text-foreground"
-            : "border-border bg-background/70 text-muted-foreground",
+          ? "border-foreground/30 bg-ink/80 text-foreground"
+          : "border-border bg-ink/80 text-muted-foreground",
       )}
     >
       {status}
@@ -21,14 +18,33 @@ export function StatusBadge({ status }: { status: Game["status"] }) {
   );
 }
 
-export function GameCard({ game, priority = false }: { game: Game; priority?: boolean }) {
+/**
+ * Cards are tinted by the title's own art colour and lift onto a flat offset
+ * shadow rather than a coloured blur. `index` prints the catalogue number,
+ * which is the main structural device on the games pages.
+ */
+export function GameCard({
+  game,
+  priority = false,
+  index,
+}: {
+  game: Game;
+  priority?: boolean;
+  index?: number;
+}) {
   const specs = gameSpecs(game).slice(0, 2);
   const meta = [game.type, game.releaseDate && formatReleaseDate(game.releaseDate)]
     .filter(Boolean)
-    .join(" · ");
+    .join(" / ");
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-all duration-500 [transition-timing-function:var(--ease-out-expo)] hover:-translate-y-2 hover:border-accent/50 hover:shadow-[var(--shadow-glow)]">
+    <article
+      style={{ "--game-accent": `oklch(${game.accent})` } as React.CSSProperties}
+      className="group relative flex h-full flex-col border border-border bg-surface transition-[transform,box-shadow] duration-300 hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[var(--shadow-hard)]"
+    >
+      {/* Art colour as a hard rule along the top edge. */}
+      <span aria-hidden="true" className="h-1 w-full bg-[var(--game-accent)]" />
+
       <Link
         to="/games/$slug"
         params={{ slug: game.slug }}
@@ -42,42 +58,44 @@ export function GameCard({ game, priority = false }: { game: Game; priority?: bo
             width={1024}
             height={1280}
             loading={priority ? "eager" : "lazy"}
-            className="h-full w-full object-cover transition-transform duration-[900ms] [transition-timing-function:var(--ease-out-expo)] group-hover:scale-110"
+            className="h-full w-full object-cover"
           />
-          {/* The key art already carries its own title lock-up, so this fades
-              into the card body instead of overprinting the artwork. */}
-          <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-surface to-transparent" />
-          <div className="absolute inset-x-4 top-4 flex flex-wrap items-start justify-between gap-2">
+          <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
             <StatusBadge status={game.status} />
-            <ExclusiveBadge />
+            {index !== undefined && (
+              <span className="numeral bg-ink/80 px-2 py-1 text-[0.65rem] text-foreground backdrop-blur-sm">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            )}
           </div>
         </div>
       </Link>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col border-t border-border p-5">
         <Link to="/games/$slug" params={{ slug: game.slug }}>
-          <h3 className="display text-2xl text-foreground transition-colors group-hover:text-accent sm:text-3xl">
+          <h3 className="display text-2xl leading-none text-foreground transition-colors group-hover:text-[var(--game-accent)] sm:text-3xl">
             {game.title}
           </h3>
         </Link>
-        <p className="mt-2 text-[0.66rem] uppercase tracking-[0.2em] text-muted-foreground">
-          {meta}
-        </p>
+        <p className="eyebrow mt-2">{meta}</p>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{game.tagline}</p>
 
         {specs.length > 0 && (
-          <div className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border">
+          <dl className="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-4">
             {specs.map((s) => (
-              <Spec key={s.label} label={s.label} value={s.value} />
+              <div key={s.label} className="flex items-baseline gap-2">
+                <dt className="eyebrow">{s.label}</dt>
+                <dd className="numeral text-sm text-foreground">{s.value}</dd>
+              </div>
             ))}
-          </div>
+          </dl>
         )}
 
         <div className="mt-auto flex gap-2 pt-5">
           <Link
             to="/games/$slug"
             params={{ slug: game.slug }}
-            className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border px-4 py-3 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-foreground transition-colors hover:border-accent hover:text-accent"
+            className="flex flex-1 items-center justify-center gap-2 border border-border px-4 py-3 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-foreground transition-colors hover:border-[var(--game-accent)] hover:text-[var(--game-accent)]"
           >
             Details <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
@@ -86,7 +104,7 @@ export function GameCard({ game, priority = false }: { game: Game; priority?: bo
               href={game.playUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-brand px-4 py-3 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-primary-foreground transition-transform duration-300 hover:scale-[1.03]"
+              className="flex flex-1 items-center justify-center gap-2 bg-[var(--game-accent)] px-4 py-3 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
             >
               <Play className="h-3.5 w-3.5" /> Play
             </a>
@@ -94,14 +112,5 @@ export function GameCard({ game, priority = false }: { game: Game; priority?: bo
         </div>
       </div>
     </article>
-  );
-}
-
-function Spec({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="bg-surface-2 px-4 py-3">
-      <div className="text-[0.56rem] uppercase tracking-[0.22em] text-muted-foreground">{label}</div>
-      <div className="mt-1 text-sm font-semibold text-foreground">{value}</div>
-    </div>
   );
 }

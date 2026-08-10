@@ -1,6 +1,10 @@
 import { EXCLUSIVE_LABEL } from "@/data/games";
 import { cn } from "@/lib/utils";
 
+/**
+ * Flat, square, monospaced — the old pill-with-a-pulsing-dot treatment is
+ * stock-UI shorthand and it appeared on every card and page header.
+ */
 export function ExclusiveBadge({
   className,
   size = "sm",
@@ -11,12 +15,12 @@ export function ExclusiveBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-accent/40 bg-background/70 font-bold uppercase tracking-[0.22em] text-accent backdrop-blur-md",
-        size === "lg" ? "px-5 py-2 text-[0.7rem]" : "px-3 py-1.5 text-[0.58rem]",
+        "inline-flex items-center gap-2 border border-foreground/25 font-mono uppercase tracking-[0.08em] text-foreground",
+        size === "lg" ? "px-3 py-1.5 text-[0.7rem]" : "px-2 py-1 text-[0.6rem]",
         className,
       )}
     >
-      <span className="pulse-glow h-1.5 w-1.5 rounded-full bg-accent" />
+      <span aria-hidden="true" className="h-1.5 w-1.5 bg-[var(--game-accent)]" />
       {EXCLUSIVE_LABEL}
     </span>
   );

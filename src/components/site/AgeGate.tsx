@@ -47,8 +47,8 @@ export function AgeGate() {
         "animate-in fade-in duration-500",
       )}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[60vh] aura" />
-      <div className="relative w-full max-w-lg rounded-3xl border border-border bg-surface/90 p-8 shadow-[var(--shadow-lift)] sm:p-12">
+      
+      <div className="relative w-full max-w-lg border border-border bg-surface p-8 shadow-[var(--shadow-lift)] sm:p-12">
         <div className="flex items-center justify-between gap-3">
           <p className="eyebrow">Tinex Games</p>
           <ExclusiveBadge />
@@ -60,7 +60,7 @@ export function AgeGate() {
                 heading crawlers see site-wide. The dialog is named via
                 aria-label instead, so screen readers still announce it. */}
             <p className="display mt-6 text-5xl text-foreground sm:text-6xl">
-              Are you <span className="text-gradient">18+</span>?
+              Are you <span className="text-mark">18+</span>?
             </p>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               This site presents gambling content currently distributed through Stake. You must be of
@@ -69,13 +69,13 @@ export function AgeGate() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <button
                 onClick={accept}
-                className="flex-1 rounded-full bg-gradient-brand px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02]"
+                className="flex-1 bg-foreground px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
               >
                 Yes, I am 18 or over
               </button>
               <button
                 onClick={() => setState("denied")}
-                className="flex-1 rounded-full border border-border px-8 py-4 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                className="flex-1 border border-border px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
               >
                 No
               </button>
@@ -90,7 +90,7 @@ export function AgeGate() {
             </p>
             <button
               onClick={() => setState("open")}
-              className="underline-sweep mt-9 text-[0.7rem] font-bold uppercase tracking-[0.22em] text-accent"
+              className="underline-sweep mt-9 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground"
             >
               Go back
             </button>

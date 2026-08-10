@@ -1,10 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { GameCard } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { JsonLd } from "@/components/site/JsonLd";
-import { type GameStatus, gameTitleList, games } from "@/data/games";
+import { type GameStatus, gameSpecs, gameTitleList, games } from "@/data/games";
 import { seo } from "@/data/site";
 import { breadcrumbSchema, catalogueSchema } from "@/data/schema";
 import { cn } from "@/lib/utils";
@@ -52,8 +51,8 @@ function GamesIndex() {
       />
       <Reveal>
         <ExclusiveBadge size="lg" />
-        <h1 className="display mt-6 text-[clamp(3rem,11vw,11rem)] text-foreground">
-          Our <span className="text-gradient">Stake slots</span>
+        <h1 className="display mt-6 text-[clamp(3rem,11vw,11rem)] leading-[0.85] text-foreground">
+          Our <span className="text-mark">Stake slots</span>
         </h1>
         <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
           {games.length} titles, every one built on Stake Engine and playable only on Stake.
@@ -67,10 +66,10 @@ function GamesIndex() {
               key={f}
               onClick={() => setFilter(f)}
               className={cn(
-                "rounded-full border px-6 py-3 text-[0.64rem] font-bold uppercase tracking-[0.2em] transition-all duration-300",
+                "border px-5 py-2.5 font-mono text-[0.65rem] uppercase tracking-[0.08em] transition-colors",
                 filter === f
-                  ? "border-transparent bg-gradient-brand text-primary-foreground"
-                  : "border-border text-muted-foreground hover:border-accent hover:text-accent",
+                  ? "border-foreground bg-foreground text-ink"
+                  : "border-border text-muted-foreground hover:border-foreground hover:text-foreground",
               )}
             >
               {f}
@@ -79,13 +78,59 @@ function GamesIndex() {
         </Reveal>
       )}
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+      {/* An index, not a card wall: number, title, specs and art on one row,
+          alternating side. Reads like a studio's catalogue rather than a
+          storefront grid. */}
+      <ol className="mt-16 border-t border-border">
         {visible.map((g, i) => (
-          <Reveal key={g.slug} delay={(i % 4) * 80}>
-            <GameCard game={g} priority={i < 4} />
+          <Reveal
+            as="li"
+            key={g.slug}
+            delay={(i % 3) * 70}
+            style={{ "--game-accent": `oklch(${g.accent})` } as React.CSSProperties}
+            className="group border-b border-border"
+          >
+            <Link
+              to="/games/$slug"
+              params={{ slug: g.slug }}
+              className={cn(
+                "grid items-center gap-6 py-8 md:grid-cols-[4rem_1fr_14rem] md:gap-10",
+                i % 2 === 1 && "md:[direction:rtl] md:[&>*]:[direction:ltr]",
+              )}
+            >
+              <span className="numeral text-sm text-muted-foreground">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              <div className="min-w-0">
+                <h2 className="display text-[clamp(2rem,5vw,3.6rem)] leading-none text-foreground transition-colors group-hover:text-[var(--game-accent)]">
+                  {g.title}
+                </h2>
+                <p className="mt-3 text-sm text-muted-foreground">{g.tagline}</p>
+                <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-2">
+                  {gameSpecs(g)
+                    .slice(0, 3)
+                    .map((s) => (
+                      <div key={s.label} className="flex items-baseline gap-2">
+                        <dt className="eyebrow">{s.label}</dt>
+                        <dd className="numeral text-sm text-foreground">{s.value}</dd>
+                      </div>
+                    ))}
+                </dl>
+              </div>
+
+              <img
+                src={g.art}
+                alt={`${g.title} — ${g.type.toLowerCase()} by Tinex Games, only on Stake`}
+                width={1024}
+                height={1280}
+                loading={i < 3 ? "eager" : "lazy"}
+                className="w-full max-w-[14rem] border border-border transition-[transform,box-shadow] duration-300 group-hover:-translate-y-1 group-hover:shadow-[var(--shadow-hard)]"
+              />
+            </Link>
           </Reveal>
         ))}
-      </div>
+      </ol>
 
       {visible.length === 0 && (
         <p className="mt-16 text-muted-foreground">No titles in this status right now.</p>

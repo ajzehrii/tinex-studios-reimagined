@@ -55,7 +55,7 @@ function Contact() {
       <Reveal>
         <p className="eyebrow">Partnerships</p>
         <h1 className="display mt-5 text-[clamp(3.2rem,12vw,12rem)] text-foreground">
-          Let's <span className="text-gradient">talk</span>
+          Let's <span className="text-mark">talk</span>
         </h1>
       </Reveal>
 
@@ -69,10 +69,10 @@ function Contact() {
                   type="button"
                   onClick={() => setTopic(t)}
                   className={
-                    "rounded-full border px-5 py-2.5 text-[0.62rem] font-bold uppercase tracking-[0.2em] transition-all duration-300 " +
+                    "border px-5 py-2.5 font-mono text-[0.65rem] uppercase tracking-[0.08em] transition-colors " +
                     (topic === t
-                      ? "border-transparent bg-gradient-brand text-primary-foreground"
-                      : "border-border text-muted-foreground hover:border-accent hover:text-accent")
+                      ? "border-foreground bg-foreground text-ink"
+                      : "border-border text-muted-foreground hover:border-foreground hover:text-foreground")
                   }
                 >
                   {t}
@@ -98,12 +98,12 @@ function Contact() {
                 rows={6}
                 required
                 placeholder={`Tell us about your ${topic.toLowerCase()} enquiry…`}
-                className="mt-3 w-full rounded-xl border border-border bg-surface px-5 py-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent"
+                className="mt-3 w-full border border-border bg-surface px-5 py-4 text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-foreground"
               />
             </div>
             <button
               type="submit"
-              className="w-full rounded-full bg-gradient-brand px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.02] sm:w-auto"
+              className="w-full bg-foreground px-8 py-4 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85 sm:w-auto"
             >
               Compose message
             </button>
@@ -121,8 +121,8 @@ function Contact() {
             href={EXCLUSIVE_URL}
             hrefLabel="Tinex Games on Stake"
           />
-          <div className="rounded-2xl border border-border bg-surface p-7">
-            <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-accent">18+ only</h3>
+          <div className="border border-border bg-surface p-7">
+            <h3 className="font-mono text-sm uppercase tracking-[0.08em] text-foreground">18+ only</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Tinex Games is a game studio. We do not operate gaming or accept players directly —
               our titles are played on Stake. Play responsibly.
@@ -158,7 +158,7 @@ function Block({
           href={href}
           target="_blank"
           rel="noreferrer noopener"
-          className="underline-sweep mt-4 inline-flex text-[0.66rem] font-bold uppercase tracking-[0.2em] text-accent"
+          className="underline-sweep mt-4 inline-flex font-mono text-[0.66rem] uppercase tracking-[0.08em] text-foreground"
         >
           {hrefLabel}
         </a>
@@ -188,7 +188,7 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className="mt-3 w-full rounded-xl border border-border bg-surface px-5 py-4 text-foreground outline-none transition-colors focus:border-accent"
+        className="mt-3 w-full border border-border bg-surface px-5 py-4 text-foreground outline-none transition-colors focus:border-foreground"
       />
     </div>
   );

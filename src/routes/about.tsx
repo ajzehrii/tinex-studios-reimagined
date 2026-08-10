@@ -36,7 +36,7 @@ function About() {
           <Reveal>
             <ExclusiveBadge size="lg" />
             <h1 className="display mt-6 max-w-5xl text-[clamp(2.8rem,10vw,10rem)] text-foreground">
-              {games.length} Stake slots. <span className="text-gradient">One lobby.</span>
+              {games.length} Stake slots. <span className="text-mark">One lobby.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Tinex Games is an independent slot studio. We build on {PLATFORM}, which means every
@@ -51,8 +51,8 @@ function About() {
         <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-px bg-border lg:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="bg-background p-8">
-              <div className="display text-5xl text-gradient sm:text-6xl">{s.value}</div>
-              <div className="mt-3 text-[0.65rem] uppercase tracking-[0.24em] text-muted-foreground">
+              <div className="numeral text-4xl text-foreground sm:text-5xl">{s.value}</div>
+              <div className="eyebrow mt-3">
                 {s.label}
               </div>
             </div>
@@ -94,7 +94,7 @@ function About() {
           <Reveal>
             <p className="display max-w-6xl text-[clamp(1.9rem,5vw,4.4rem)] leading-[0.98] text-foreground">
               We would rather ship one game people argue about than{" "}
-              <span className="text-gradient">five nobody mentions</span>.
+              <span className="text-mark">five nobody mentions</span>.
             </p>
           </Reveal>
         </div>
@@ -107,7 +107,7 @@ function About() {
           </h2>
           <Link
             to="/contact"
-            className="mt-10 inline-flex rounded-full bg-gradient-brand px-10 py-5 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-primary-foreground transition-transform duration-300 hover:scale-[1.04]"
+            className="mt-10 inline-flex bg-foreground px-8 py-4 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
           >
             Get in touch
           </Link>

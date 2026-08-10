@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface RevealProps {
@@ -6,10 +6,12 @@ interface RevealProps {
   className?: string;
   delay?: number;
   as?: "div" | "section" | "li" | "article" | "header";
+  /** Merged with the transition delay — used to pass per-game accent vars. */
+  style?: CSSProperties;
 }
 
 /** Lightweight IntersectionObserver scroll reveal (CSS-driven, no JS animation loop). */
-export function Reveal({ children, className, delay = 0, as = "div" }: RevealProps) {
+export function Reveal({ children, className, delay = 0, as = "div", style }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
 
@@ -40,7 +42,7 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
   return (
     <Tag
       ref={ref as never}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ ...style, transitionDelay: `${delay}ms` }}
       className={cn("reveal", shown && "reveal-in", className)}
     >
       {children}
