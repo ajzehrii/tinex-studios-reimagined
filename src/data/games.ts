@@ -1,9 +1,11 @@
+import doodleDays from "@/assets/game-doodle-days.jpg";
 import riftRush from "@/assets/game-rift-rush.jpg";
 import larpCity from "@/assets/game-larp-city.jpg";
 import bubbleRise from "@/assets/game-bubble-rise.jpg";
 import sugarWheel from "@/assets/game-sugar-wheel.jpg";
 import floorIsLava from "@/assets/game-floor-is-lava.jpg";
 // 1200x630 social cards — the 4:5 key art crops badly in link previews.
+import ogDoodleDays from "@/assets/og-doodle-days.jpg";
 import ogRiftRush from "@/assets/og-rift-rush.jpg";
 import ogLarpCity from "@/assets/og-larp-city.jpg";
 import ogBubbleRise from "@/assets/og-bubble-rise.jpg";
@@ -46,6 +48,21 @@ export interface Game {
 
 // Newest release first — the homepage features games[0].
 export const games: Game[] = [
+  {
+    slug: "doodle-days",
+    title: "Doodle Days",
+    tagline: "Biro on lined paper, and a serious attitude problem.",
+    status: "Released",
+    playUrl: "https://stake.us/casino/games/tinexgames-doodle-days",
+    houseEdge: "4.70%",
+    rtp: "95.30%",
+    type: "Slot",
+    themes: ["New Releases"],
+    description:
+      "A stick figure with a grudge, drawn in the margins of somebody's notebook. Doodle Days drops the studio's usual saturation for ink on lined paper — it is the newest thing we've shipped and the one that looks least like anything else in the lobby.",
+    art: doodleDays,
+    ogImage: ogDoodleDays,
+  },
   {
     slug: "rift-rush",
     title: "Rift Rush",

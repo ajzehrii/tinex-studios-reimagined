@@ -1,4 +1,12 @@
-import defaultOg from "@/assets/og-rift-rush.jpg";
+import { games, getGame } from "@/data/games";
+
+/**
+ * The site-wide share card (home, catalogue, about, contact). Chosen
+ * deliberately rather than tracking the newest release — a muted key art
+ * shipping next would silently weaken every share link on the site.
+ * Game pages override this with their own card.
+ */
+const defaultOg = (getGame("rift-rush") ?? games[0]!).ogImage;
 
 /**
  * Production origin. Canonical tags, og:image, JSON-LD @id values and the
@@ -40,6 +48,7 @@ export function seo({ title, description, path, image, type = "website" }: SeoIn
       { property: "og:image", content: img },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: title },
       { property: "og:url", content: url },
       { property: "og:type", content: type },
       { property: "og:site_name", content: SITE_NAME },
