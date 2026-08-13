@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
+import logoMark from "@/assets/logo-mark.png";
 
 const KEY = "tinex-age-verified";
 
@@ -50,7 +51,7 @@ export function AgeGate() {
       
       <div className="relative w-full max-w-lg border border-border bg-surface p-8 shadow-[var(--shadow-lift)] sm:p-12">
         <div className="flex items-center justify-between gap-3">
-          <p className="eyebrow">Tinex Games</p>
+          <img src={logoMark} alt="Tinex Games" className="h-7 w-auto" />
           <ExclusiveBadge />
         </div>
         {state === "open" ? (

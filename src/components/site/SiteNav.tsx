@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { EXCLUSIVE_URL } from "@/data/games";
+import logoMark from "@/assets/logo-mark.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -39,12 +40,16 @@ export function SiteNav() {
       )}
     >
       <div className="mx-auto grid max-w-[1600px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-8 md:grid-cols-[1fr_auto_1fr]">
-        <Link to="/" className="group flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="grid h-9 w-9 shrink-0 place-items-center bg-foreground font-mono text-sm text-ink">
-            T
-          </span>
+        <Link
+          to="/"
+          aria-label="Tinex Games — home"
+          className="group flex min-w-0 items-center gap-3"
+          onClick={() => setOpen(false)}
+        >
+          {/* Decorative: the wordmark beside it already names the studio. */}
+          <img src={logoMark} alt="" aria-hidden="true" className="h-7 w-auto shrink-0 sm:h-8" />
           <span className="display truncate text-xl tracking-tight text-foreground sm:text-2xl">
-            Tinex<span className="text-accent"> Games</span>
+            Tinex Games
           </span>
         </Link>
 

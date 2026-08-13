@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { EXCLUSIVE_URL, PLATFORM, games } from "@/data/games";
+import logoLockup from "@/assets/logo-lockup.png";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 
 export function SiteFooter() {
@@ -9,9 +10,13 @@ export function SiteFooter() {
       <div className="relative mx-auto max-w-[1600px] px-5 py-20 sm:px-8">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="min-w-0">
-            <div className="display text-5xl leading-none text-foreground sm:text-6xl">
-              Tinex<span className="text-mark">.</span>
-            </div>
+            <img
+              src={logoLockup}
+              alt="Tinex Games"
+              width={1024}
+              height={710}
+              className="h-auto w-full max-w-[15rem]"
+            />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
               An independent slot studio building on {PLATFORM}. Every title is playable only on
               Stake.

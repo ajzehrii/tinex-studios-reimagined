@@ -107,7 +107,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap",
       },
 
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      // TG monogram on the brand plate. It keeps a solid dark background on
+      // purpose — a transparent white mark disappears on light tab bars.
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "icon", href: "/icon-512.png", type: "image/png", sizes: "512x512" },
       { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
     ],
   }),
