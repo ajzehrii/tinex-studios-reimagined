@@ -1,3 +1,5 @@
+import crystalCrush from "@/assets/game-crystal-crush.jpg";
+import sugarSpirits from "@/assets/game-sugar-spirits.jpg";
 import doodleDays from "@/assets/game-doodle-days.jpg";
 import riftRush from "@/assets/game-rift-rush.jpg";
 import larpCity from "@/assets/game-larp-city.jpg";
@@ -5,6 +7,8 @@ import bubbleRise from "@/assets/game-bubble-rise.jpg";
 import sugarWheel from "@/assets/game-sugar-wheel.jpg";
 import floorIsLava from "@/assets/game-floor-is-lava.jpg";
 // 1200x630 social cards — the 4:5 key art crops badly in link previews.
+import ogCrystalCrush from "@/assets/og-crystal-crush.jpg";
+import ogSugarSpirits from "@/assets/og-sugar-spirits.jpg";
 import ogDoodleDays from "@/assets/og-doodle-days.jpg";
 import ogRiftRush from "@/assets/og-rift-rush.jpg";
 import ogLarpCity from "@/assets/og-larp-city.jpg";
@@ -55,6 +59,38 @@ export interface Game {
 
 // Newest release first — the homepage features games[0].
 export const games: Game[] = [
+  {
+    slug: "crystal-crush",
+    title: "Crystal Crush",
+    tagline: "Swing first, ask what it was worth later.",
+    status: "Released",
+    playUrl: "https://stake.us/casino/games/tinexgames-crystal-crush",
+    houseEdge: "4.60%",
+    rtp: "95.40%",
+    type: "Slot",
+    themes: ["New Releases"],
+    description:
+      "A crystal pick, a cavern full of things worth breaking, and no particular reason to stop. Crystal Crush is the busiest game we've launched — it went out and stayed near the top of the lobby.",
+    art: crystalCrush,
+    ogImage: ogCrystalCrush,
+    accent: "0.74 0.15 246",
+  },
+  {
+    slug: "sugar-spirits",
+    title: "Sugar Spirits",
+    tagline: "Something sweet died here and it got over it.",
+    status: "Released",
+    playUrl: "https://stake.us/casino/games/tinexgames-sugar-spirits",
+    houseEdge: "5.00%",
+    rtp: "95.00%",
+    type: "Slot",
+    themes: ["New Releases"],
+    description:
+      "A candy skull with peppermint eyes and cotton-candy hair, floating around a confectionery works that nobody has run in a while. The sugar world from Sugar Wheel, several shades stranger.",
+    art: sugarSpirits,
+    ogImage: ogSugarSpirits,
+    accent: "0.71 0.25 344",
+  },
   {
     slug: "doodle-days",
     title: "Doodle Days",

@@ -243,6 +243,20 @@
   animation: float-slow 24s ease-in-out infinite;
 }
 
+/*
+ * Hides the "Edit with Lovable" badge that the Lovable platform injects into
+ * the deployed page at runtime. It is not part of this repo, so this is the
+ * only place it can be suppressed from code.
+ *
+ * The supported way to turn it off is Lovable's own Project Settings; if that
+ * toggle is available on the current plan, prefer it and delete this rule.
+ * Because the badge is injected rather than authored here, a change to its
+ * markup on Lovable's side will make this stop working without warning.
+ */
+#lovable-badge {
+  display: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
