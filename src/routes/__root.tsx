@@ -109,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
       // TG monogram on the brand plate. It keeps a solid dark background on
       // purpose — a transparent white mark disappears on light tab bars.
-      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", type: "image/png", href: "/favicon.png", sizes: "64x64" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
       { rel: "icon", href: "/icon-512.png", type: "image/png", sizes: "512x512" },
       { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
