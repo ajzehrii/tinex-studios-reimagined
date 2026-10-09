@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { EXCLUSIVE_URL, PLATFORM, games } from "@/data/games";
+import { EXCLUSIVE_URL, EXCLUSIVE_URL_COM, PLATFORM, games } from "@/data/games";
 import logoLockup from "@/assets/logo-lockup.png";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 
@@ -36,9 +36,9 @@ export function SiteFooter() {
           />
 
           <div>
-            <h3 className="eyebrow">Games</h3>
+            <h3 className="eyebrow">Latest games</h3>
             <ul className="mt-5 space-y-3 text-sm">
-              {games.map((g) => (
+              {games.slice(0, 6).map((g) => (
                 <li key={g.slug}>
                   <Link
                     to="/games/$slug"
@@ -49,6 +49,11 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link to="/games" className="underline-sweep text-foreground">
+                  All {games.length} games
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -65,7 +70,17 @@ export function SiteFooter() {
                   rel="noreferrer noopener"
                   className="underline-sweep text-accent"
                 >
-                  Tinex Games on Stake
+                  Tinex Games on Stake.us
+                </a>
+              </li>
+              <li>
+                <a
+                  href={EXCLUSIVE_URL_COM}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="underline-sweep text-accent"
+                >
+                  Tinex Games on Stake.com
                 </a>
               </li>
             </ul>

@@ -1,197 +1,159 @@
-import crystalCrush from "@/assets/game-crystal-crush.jpg";
-import sugarSpirits from "@/assets/game-sugar-spirits.jpg";
-import doodleDays from "@/assets/game-doodle-days.jpg";
-import riftRush from "@/assets/game-rift-rush.jpg";
-import larpCity from "@/assets/game-larp-city.jpg";
-import bubbleRise from "@/assets/game-bubble-rise.jpg";
-import sugarWheel from "@/assets/game-sugar-wheel.jpg";
-import floorIsLava from "@/assets/game-floor-is-lava.jpg";
-// 1200x630 social cards — the 4:5 key art crops badly in link previews.
-import ogCrystalCrush from "@/assets/og-crystal-crush.jpg";
-import ogSugarSpirits from "@/assets/og-sugar-spirits.jpg";
-import ogDoodleDays from "@/assets/og-doodle-days.jpg";
-import ogRiftRush from "@/assets/og-rift-rush.jpg";
-import ogLarpCity from "@/assets/og-larp-city.jpg";
-import ogBubbleRise from "@/assets/og-bubble-rise.jpg";
-import ogSugarWheel from "@/assets/og-sugar-wheel.jpg";
-import ogFloorIsLava from "@/assets/og-floor-is-lava.jpg";
+import stakeData from "./stake-games.json";
 
 export type Volatility = "Low" | "Medium" | "High" | "Extreme";
 export type GameStatus = "Released" | "Coming Soon" | "In Certification";
 
 /**
- * Fields marked optional are ones we do not publish a verified figure for yet.
- * The UI omits any spec that is undefined rather than showing a placeholder —
- * so leave a field out instead of guessing at it.
+ * Game data comes from two places:
+ *   - stake-games.json — titles, edge/RTP, release times, Stake theme tags and
+ *     accents. Generated; refresh with `npm run sync-games`, never edit by hand.
+ *   - `copy` below — hand-written taglines and descriptions, plus any accent
+ *     we've chosen by eye. Keyed by slug; titles without an entry still show,
+ *     using factual copy built from their data.
+ *
+ * Optional fields are ones we don't have a verified value for. The UI omits
+ * anything undefined rather than showing a placeholder.
  */
 export interface Game {
   slug: string;
+  /**
+   * Catalogue number in release order — the first game is 1. Stable: unlike a
+   * list position, it doesn't shift every time a new title ships.
+   */
+  no: number;
   title: string;
-  tagline: string;
+  /** Stake's own category: "Slot", or e.g. "Burst game". */
+  type: string;
   status: GameStatus;
   /** Live game page on Stake.us. */
-  playUrl?: string;
-  /** House edge as published by Stake, e.g. "3.50%". */
+  playUrl: string;
+  /**
+   * Same title on Stake.com. Built from the Stake.us slug: Stake Engine games
+   * publish to both under one slug, but Stake.com geo-blocks the network this
+   * was built on, so these links have not been checked directly.
+   */
+  stakeComUrl: string;
   houseEdge?: string;
-  /** Derived from houseEdge (100 - edge). */
   rtp?: string;
-  type: string;
-  /** Stake category tags for this title. */
   themes: string[];
-  /** ISO date. Omitted until we have a confirmed release date. */
+  /** ISO timestamp the title went live on Stake. */
   releaseDate?: string;
+  tagline?: string;
+  description?: string;
   volatility?: Volatility;
   maxWin?: string;
   layout?: string;
   features?: string[];
-  description: string;
   art: string;
   /** 1200x630 Open Graph card for this title. */
   ogImage: string;
-  /**
-   * Accent pulled from this title's key art, as a bare oklch triple so it can
-   * be dropped into a CSS custom property. The site takes its colour from the
-   * games rather than one house gradient — each card and game page is tinted
-   * by its own artwork.
-   */
+  /** Bare oklch triple ("L C H"), dropped into --game-accent. */
   accent: string;
 }
 
-// Newest release first — the homepage features games[0].
-export const games: Game[] = [
-  {
-    slug: "crystal-crush",
-    title: "Crystal Crush",
+type Copy = Partial<Pick<Game, "tagline" | "description" | "accent" | "features">>;
+
+const copy: Record<string, Copy> = {
+  "crystal-crush": {
     tagline: "Swing first, ask what it was worth later.",
-    status: "Released",
-    playUrl: "https://stake.us/casino/games/tinexgames-crystal-crush",
-    houseEdge: "4.60%",
-    rtp: "95.40%",
-    type: "Slot",
-    themes: ["New Releases"],
     description:
-      "A crystal pick, a cavern full of things worth breaking, and no particular reason to stop. Crystal Crush is the busiest game we've launched — it went out and stayed near the top of the lobby.",
-    art: crystalCrush,
-    ogImage: ogCrystalCrush,
+      "A crystal pick, a cavern full of things worth breaking, and no particular reason to stop.",
     accent: "0.74 0.15 246",
   },
-  {
-    slug: "sugar-spirits",
-    title: "Sugar Spirits",
+  "sugar-spirits": {
     tagline: "Something sweet died here and it got over it.",
-    status: "Released",
-    playUrl: "https://stake.us/casino/games/tinexgames-sugar-spirits",
-    houseEdge: "5.00%",
-    rtp: "95.00%",
-    type: "Slot",
-    themes: ["New Releases"],
     description:
       "A candy skull with peppermint eyes and cotton-candy hair, floating around a confectionery works that nobody has run in a while. The sugar world from Sugar Wheel, several shades stranger.",
-    art: sugarSpirits,
-    ogImage: ogSugarSpirits,
     accent: "0.71 0.25 344",
   },
-  {
-    slug: "doodle-days",
-    title: "Doodle Days",
+  "doodle-days": {
     tagline: "Biro on lined paper, and a serious attitude problem.",
-    status: "Released",
-    playUrl: "https://stake.us/casino/games/tinexgames-doodle-days",
-    houseEdge: "4.70%",
-    rtp: "95.30%",
-    type: "Slot",
-    themes: ["New Releases"],
     description:
-      "A stick figure with a grudge, drawn in the margins of somebody's notebook. Doodle Days drops the studio's usual saturation for ink on lined paper — it is the newest thing we've shipped and the one that looks least like anything else in the lobby.",
-    art: doodleDays,
-    ogImage: ogDoodleDays,
+      "A stick figure with a grudge, drawn in the margins of somebody's notebook. Doodle Days drops the studio's usual saturation for ink on lined paper.",
     accent: "0.82 0.11 82",
   },
-  {
-    slug: "rift-rush",
-    title: "Rift Rush",
+  "rift-rush": {
     tagline: "Something came through, and it's pleased with itself.",
-    status: "Released",
-    playUrl: "https://stake.us/casino/games/tinexgames-rift-rush",
-    houseEdge: "5.00%",
-    rtp: "95.00%",
-    type: "Slot",
-    themes: ["New Releases"],
-    description:
-      "A tear in the world and one very cheerful thing standing in front of it. Rift Rush is our newest release — the one to start with if you want to see what the studio is doing right now.",
-    art: riftRush,
-    ogImage: ogRiftRush,
+    description: "A tear in the world and one very cheerful thing standing in front of it.",
     accent: "0.70 0.23 338",
   },
-  {
-    slug: "larp-city",
-    title: "Larp City",
+  "larp-city": {
     tagline: "Rooftop season, and the drinks are on the house.",
-    status: "Released",
-    playUrl: "https://stake.us/casino/games/tinexgames-larp-city",
-    houseEdge: "3.50%",
-    rtp: "96.50%",
-    type: "Slot",
-    themes: ["Animals", "Cascading", "New Releases"],
     description:
       "A skyline party that never quite ends. Larp City runs on a cascading grid — every winning cluster clears out and drops a fresh set of symbols into the gap, so a single spin can keep paying long after you expect it to stop.",
-    art: larpCity,
-    ogImage: ogLarpCity,
     accent: "0.81 0.15 88",
   },
-  {
-    slug: "bubble-rise",
-    title: "Bubble Rise",
+  "bubble-rise": {
     tagline: "Light, bright, and always climbing.",
-    status: "Released",
-    playUrl: "https://stake.us/casino/games/tinexgames-bubble-rise",
-    houseEdge: "3.50%",
-    rtp: "96.50%",
-    type: "Slot",
-    themes: ["New Releases"],
     description:
       "Our cleanest, most readable build. Bubble Rise strips the grid back to open sky and lets the symbols do the work — an easy title to pick up for a few spins and hard to put down once the round gets going.",
-    art: bubbleRise,
-    ogImage: ogBubbleRise,
     accent: "0.76 0.14 232",
   },
-  {
-    slug: "sugar-wheel",
-    title: "Sugar Wheel",
+  "sugar-wheel": {
     tagline: "Give it a spin. See where the sugar lands.",
-    status: "Released",
-    playUrl: "https://stake.us/casino/games/tinexgames-sugar-wheel",
-    houseEdge: "5.00%",
-    rtp: "95.00%",
-    type: "Slot",
-    themes: ["Candy", "Feature Spins"],
     description:
       "A confectionery world built around one big, satisfying wheel. Feature spins hand control back to the player at the moment it matters most — the wheel comes up, and the round turns on where it stops.",
-    art: sugarWheel,
-    ogImage: ogSugarWheel,
     accent: "0.73 0.20 356",
   },
-  {
-    slug: "floor-is-lava",
-    title: "Floor Is Lava",
+  "floor-is-lava": {
     tagline: "Don't touch the ground.",
-    status: "Released",
-    playUrl: "https://stake.us/casino/games/tinexgames-floor-is-lava",
-    houseEdge: "3.50%",
-    rtp: "96.50%",
-    type: "Slot",
-    themes: ["Cascading", "New Releases"],
     description:
       "The childhood game, turned into a cascading engine. Winning symbols burn away and everything above collapses into the space they leave — the grid rearranging itself under you while the lava keeps rising.",
-    art: floorIsLava,
-    ogImage: ogFloorIsLava,
     accent: "0.71 0.19 42",
   },
-];
+};
+
+// Artwork is discovered by slug, so a synced game needs no import here.
+const artFiles = import.meta.glob<string>("../assets/games/*.jpg", {
+  eager: true,
+  import: "default",
+});
+const ogFiles = import.meta.glob<string>("../assets/og/*.jpg", { eager: true, import: "default" });
+
+const FALLBACK_ACCENT = "0.805 0.142 196";
+
+export const games: Game[] = stakeData.games
+  .flatMap((s): Game[] => {
+    const art = artFiles[`../assets/games/${s.slug}.jpg`];
+    const ogImage = ogFiles[`../assets/og/${s.slug}.jpg`];
+    if (!art || !ogImage) {
+      // Skip rather than ship a broken card; the sync script downloads both.
+      console.warn(`[games] no artwork for "${s.slug}" — run npm run sync-games`);
+      return [];
+    }
+    const c = copy[s.slug] ?? {};
+    return [
+      {
+        slug: s.slug,
+        no: 0, // assigned below, once the list is in release order
+        title: s.title,
+        type: s.type,
+        status: "Released",
+        playUrl: `https://stake.us/casino/games/${s.stakeSlug}`,
+        stakeComUrl: `https://stake.com/casino/games/${s.stakeSlug}`,
+        houseEdge: s.houseEdge,
+        rtp: s.rtp,
+        themes: s.themes,
+        releaseDate: s.releasedAt,
+        art,
+        ogImage,
+        ...c,
+        accent: c.accent ?? s.accent ?? FALLBACK_ACCENT,
+      },
+    ];
+  })
+  .sort((a, b) => (b.releaseDate ?? "").localeCompare(a.releaseDate ?? ""));
+
+games.forEach((g, i) => (g.no = games.length - i));
+
+/** "No. 07" */
+export const catalogueNo = (game: Game) => `No. ${String(game.no).padStart(2, "0")}`;
 
 export const EXCLUSIVE_PARTNER = "Stake";
 export const EXCLUSIVE_LABEL = "Only on Stake";
 export const EXCLUSIVE_URL = "https://stake.us/casino/group/tinex-games";
+/** Publisher page on Stake.com — same caveat as Game.stakeComUrl. */
+export const EXCLUSIVE_URL_COM = "https://stake.com/casino/group/tinex-games";
 /** Every title is built and published on Stake's own game platform. */
 export const PLATFORM = "Stake Engine";
 
@@ -203,18 +165,35 @@ export const CONTACT_EMAIL = "hello@tinexgames.com";
 
 export const getGame = (slug: string) => games.find((g) => g.slug === slug);
 
-/** "A, B, C and D" — keeps meta descriptions current as titles are added. */
-export const gameTitleList = games
-  .map((g) => g.title)
-  .reduce((acc, t, i, arr) => (i === 0 ? t : i === arr.length - 1 ? `${acc} and ${t}` : `${acc}, ${t}`), "");
-
 export const formatReleaseDate = (iso: string) =>
-  new Date(iso + "T00:00:00Z").toLocaleDateString("en-GB", {
+  new Date(iso.length === 10 ? `${iso}T00:00:00Z` : iso).toLocaleDateString("en-GB", {
     day: "2-digit",
     month: "short",
     year: "numeric",
     timeZone: "UTC",
   });
+
+const joinTitles = (titles: string[]) =>
+  titles.length < 2
+    ? (titles[0] ?? "")
+    : `${titles.slice(0, -1).join(", ")} and ${titles[titles.length - 1]}`;
+
+/**
+ * "A, B and C" for the newest `n` titles. Meta descriptions use this rather
+ * than every title, which stopped fitting once the catalogue passed a handful.
+ */
+export const latestTitleList = (n: number) => joinTitles(games.slice(0, n).map((g) => g.title));
+
+/**
+ * Copy for a game page, card or schema. Titles without hand-written copy get
+ * a plain factual line from their data instead of invented marketing.
+ */
+export const describe = (game: Game) => {
+  if (game.description) return game.description;
+  const when = game.releaseDate ? `, released ${formatReleaseDate(game.releaseDate)}` : "";
+  const tags = game.themes.length ? ` Stake tags it ${joinTitles(game.themes)}.` : "";
+  return `${game.title} is a Stake exclusive ${game.type.toLowerCase()} from Tinex Games${when}, built on ${PLATFORM}.${tags}`;
+};
 
 /**
  * Specs rendered on cards and the detail page. Anything without a value is
@@ -242,15 +221,26 @@ export interface NewsItem {
 /** Studio news. The homepage section only renders when this has entries. */
 export const news: NewsItem[] = [];
 
-/** Derived so it can't drift out of date as titles are added. */
-const highestRtp = games
-  .map((g) => Number.parseFloat(g.rtp ?? ""))
-  .filter((n) => !Number.isNaN(n))
-  .reduce((a, b) => Math.max(a, b), 0);
+// Everything below is derived, so none of it drifts as titles are added.
+const rtps = games.map((g) => Number.parseFloat(g.rtp ?? "")).filter(Number.isFinite);
+export const rtpRange = { min: Math.min(...rtps), max: Math.max(...rtps) };
+
+const dated = games.filter((g) => g.releaseDate);
+const firstRelease = dated[dated.length - 1]?.releaseDate ?? "";
+const latestRelease = dated[0]?.releaseDate ?? "";
+const spanDays = (Date.parse(latestRelease) - Date.parse(firstRelease)) / 86_400_000;
+
+export const cadence = {
+  firstRelease,
+  latestRelease,
+  weeks: Math.max(1, Math.round(spanDays / 7)),
+  /** Average gap between consecutive releases, to one decimal place. */
+  daysPerRelease: dated.length > 1 ? Math.round((spanDays / (dated.length - 1)) * 10) / 10 : 0,
+};
 
 export const stats = [
   { value: String(games.length), label: "Titles live on Stake" },
-  { value: `${highestRtp}%`, label: "Highest RTP in the catalogue" },
+  { value: `${rtpRange.max}%`, label: "Highest RTP in the catalogue" },
+  { value: String(cadence.daysPerRelease), label: "Days between releases, on average" },
   { value: "100%", label: "Stake exclusive" },
-  { value: "HTML5", label: "One build, every device" },
 ];

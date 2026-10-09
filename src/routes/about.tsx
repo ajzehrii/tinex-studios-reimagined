@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
-import { PLATFORM, games, stats } from "@/data/games";
+import { PLATFORM, cadence, formatReleaseDate, games, stats } from "@/data/games";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { seo } from "@/data/site";
 import heroArt from "@/assets/hero-larp-city.jpg";
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/about")({
     seo({
       path: "/about",
       title: "Stake Engine Slot Studio — About Tinex Games",
-      description: `Tinex Games is an independent slot studio building on Stake Engine. ${games.length} Stake exclusive slots, one HTML5 build each, playable only on Stake.`,
+      description: `Tinex Games is an independent slot studio building on Stake Engine — ${games.length} Stake exclusives since ${formatReleaseDate(cadence.firstRelease)}, a new one roughly every ${cadence.daysPerRelease} days.`,
     }),
   component: About,
 });
@@ -36,7 +36,7 @@ function About() {
           <Reveal>
             <ExclusiveBadge size="lg" />
             <h1 className="display mt-6 max-w-5xl text-[clamp(2.8rem,10vw,10rem)] text-foreground">
-              {games.length} Stake slots. <span className="text-mark">One lobby.</span>
+              {games.length} Stake slots. <span className="text-mark">One engine.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Tinex Games is an independent slot studio. We build on {PLATFORM}, which means every
@@ -66,14 +66,15 @@ function About() {
         </Reveal>
         <div className="mt-12 grid gap-12 lg:grid-cols-2">
           <Reveal>
+            {/* This column used to argue for a small catalogue. That stopped being
+                true; it's written from the release data now. */}
             <p className="display text-[clamp(1.6rem,3.5vw,2.8rem)] text-foreground">
-              A small catalogue you can actually get through.
+              Fast, on purpose.
             </p>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Most studios measure themselves in titles shipped. We'd rather each game be worth
-              opening twice. That means the maths, the art and the feel of a round all get argued
-              over before anything is called finished — and it's why there are {games.length} games
-              on this site rather than forty.
+              The first Tinex game went live on {formatReleaseDate(cadence.firstRelease)}. There are{" "}
+              {games.length} now — a new release roughly every {cadence.daysPerRelease} days. Small,
+              sharp games, shipped often, and the next one is never far behind.
             </p>
           </Reveal>
           <Reveal delay={120}>
@@ -93,8 +94,7 @@ function About() {
         <div className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8">
           <Reveal>
             <p className="display max-w-6xl text-[clamp(1.9rem,5vw,4.4rem)] leading-[0.98] text-foreground">
-              We would rather ship one game people argue about than{" "}
-              <span className="text-mark">five nobody mentions</span>.
+              Ship often. <span className="text-mark">Make every one worth a second spin.</span>
             </p>
           </Reveal>
         </div>

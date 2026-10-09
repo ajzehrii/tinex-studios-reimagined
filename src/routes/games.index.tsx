@@ -3,7 +3,14 @@ import { useMemo, useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { JsonLd } from "@/components/site/JsonLd";
-import { type GameStatus, gameSpecs, gameTitleList, games } from "@/data/games";
+import {
+  type GameStatus,
+  catalogueNo,
+  formatReleaseDate,
+  gameSpecs,
+  games,
+  latestTitleList,
+} from "@/data/games";
 import { seo } from "@/data/site";
 import { breadcrumbSchema, catalogueSchema } from "@/data/schema";
 import { cn } from "@/lib/utils";
@@ -13,7 +20,7 @@ export const Route = createFileRoute("/games/")({
     seo({
       path: "/games",
       title: "Stake Slots — Every Tinex Game on Stake | Stake Engine",
-      description: `All ${games.length} Tinex Stake slots with RTP and house edge: ${gameTitleList}. Built on Stake Engine, playable only on Stake.`,
+      description: `All ${games.length} Tinex Games titles on Stake with RTP, house edge and release date, newest first — ${latestTitleList(3)} and more. Built on Stake Engine.`,
     }),
   component: GamesIndex,
 });
@@ -94,20 +101,26 @@ function GamesIndex() {
               to="/games/$slug"
               params={{ slug: g.slug }}
               className={cn(
-                "grid items-center gap-6 py-8 md:grid-cols-[4rem_1fr_14rem] md:gap-10",
+                "grid items-center gap-5 py-6 md:grid-cols-[5rem_1fr_9rem] md:gap-10",
                 i % 2 === 1 && "md:[direction:rtl] md:[&>*]:[direction:ltr]",
               )}
             >
-              <span className="numeral text-sm text-muted-foreground">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              <span className="numeral text-sm text-muted-foreground">{catalogueNo(g)}</span>
 
               <div className="min-w-0">
-                <h2 className="display text-[clamp(2rem,5vw,3.6rem)] leading-none text-foreground transition-colors group-hover:text-[var(--game-accent)]">
+                <h2 className="display text-[clamp(1.8rem,4.5vw,3rem)] leading-none text-foreground transition-colors group-hover:text-[var(--game-accent)]">
                   {g.title}
                 </h2>
-                <p className="mt-3 text-sm text-muted-foreground">{g.tagline}</p>
-                <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-2">
+                {g.tagline && <p className="mt-3 text-sm text-muted-foreground">{g.tagline}</p>}
+                <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-2">
+                  {g.releaseDate && (
+                    <div className="flex items-baseline gap-2">
+                      <dt className="eyebrow">Released</dt>
+                      <dd className="numeral text-sm text-foreground">
+                        {formatReleaseDate(g.releaseDate)}
+                      </dd>
+                    </div>
+                  )}
                   {gameSpecs(g)
                     .slice(0, 3)
                     .map((s) => (
@@ -125,7 +138,7 @@ function GamesIndex() {
                 width={1024}
                 height={1280}
                 loading={i < 3 ? "eager" : "lazy"}
-                className="w-full max-w-[14rem] border border-border transition-[transform,box-shadow] duration-300 group-hover:-translate-y-1 group-hover:shadow-[var(--shadow-hard)]"
+                className="w-full max-w-[9rem] border border-border transition-[transform,box-shadow] duration-300 group-hover:-translate-y-1 group-hover:shadow-[var(--shadow-hard)]"
               />
             </Link>
           </Reveal>

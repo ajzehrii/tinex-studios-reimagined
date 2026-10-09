@@ -1,20 +1,25 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Play } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { GameCard } from "@/components/site/GameCard";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { JsonLd } from "@/components/site/JsonLd";
+import { PlayLinks } from "@/components/site/PlayLinks";
 import { seo } from "@/data/site";
 import { faqSchema, faqs } from "@/data/schema";
 import {
   EXCLUSIVE_URL,
+  EXCLUSIVE_URL_COM,
   PLATFORM,
+  cadence,
+  describe,
   formatReleaseDate,
   gameSpecs,
-  gameTitleList,
   games,
+  latestTitleList,
   news,
+  rtpRange,
   stats,
 } from "@/data/games";
 
@@ -23,7 +28,7 @@ export const Route = createFileRoute("/")({
     seo({
       path: "/",
       title: "Stake Slots by Tinex Games | Stake Engine Slot Studio",
-      description: `Tinex Games builds Stake slots on Stake Engine. Play ${gameTitleList} — ${games.length} Stake exclusive slot games, RTP up to ${stats[1]!.value}, only on Stake.`,
+      description: `Tinex Games builds Stake slots on Stake Engine — ${games.length} Stake exclusives and counting, including ${latestTitleList(3)}. RTP up to ${rtpRange.max}%.`,
     }),
   component: Home,
 });
@@ -106,14 +111,12 @@ function Home() {
                 >
                   See the games <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a
-                  href={EXCLUSIVE_URL}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center justify-center gap-3 border border-foreground/30 px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground transition-colors hover:border-[var(--game-accent)] hover:text-[var(--game-accent)]"
-                >
-                  <Play className="h-4 w-4" /> Play on Stake
-                </a>
+                <PlayLinks
+                  us={EXCLUSIVE_URL}
+                  com={EXCLUSIVE_URL_COM}
+                  variant="outline"
+                  prefix={false}
+                />
               </div>
             </Reveal>
           </div>
@@ -173,23 +176,24 @@ function Home() {
       <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8 sm:py-32">
         <Reveal className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
           <div>
-            <p className="eyebrow">The catalogue / {String(games.length).padStart(2, "0")} titles</p>
+            <p className="eyebrow">Latest releases / {games.length} titles in total</p>
             <h2 className="display mt-4 text-[clamp(2.4rem,7vw,6rem)] leading-[0.9] text-foreground">
-              Every game we've shipped
+              Fresh off the line
             </h2>
           </div>
           <Link
             to="/games"
             className="underline-sweep inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground"
           >
-            All games <ArrowUpRight className="h-4 w-4" />
+            All {games.length} games <ArrowUpRight className="h-4 w-4" />
           </Link>
         </Reveal>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {games.map((g, i) => (
+          {/* Newest six; the full catalogue lives on /games. */}
+          {games.slice(0, 6).map((g, i) => (
             <Reveal key={g.slug} delay={i * 90}>
-              <GameCard game={g} priority={i < 2} index={i} />
+              <GameCard game={g} priority={i < 2} numbered />
             </Reveal>
           ))}
         </div>
@@ -203,13 +207,18 @@ function Home() {
         <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[var(--game-accent)]" />
         <div className="relative mx-auto grid max-w-[1600px] gap-14 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1fr_0.85fr] lg:items-center">
           <Reveal>
-            <p className="eyebrow">Featured / {String(1).padStart(2, "0")}</p>
+            <p className="eyebrow">
+              Newest release
+              {featured.releaseDate && ` / ${formatReleaseDate(featured.releaseDate)}`}
+            </p>
             <h2 className="display mt-4 text-[clamp(2.8rem,9vw,8rem)] leading-[0.86] text-foreground">
               {featured.title}
             </h2>
-            <p className="mt-4 text-lg text-[var(--game-accent)]">{featured.tagline}</p>
+            {featured.tagline && (
+              <p className="mt-4 text-lg text-[var(--game-accent)]">{featured.tagline}</p>
+            )}
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              {featured.description}
+              {describe(featured)}
             </p>
 
             <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4 border-y border-border py-5">
@@ -229,16 +238,12 @@ function Home() {
               >
                 Game details <ArrowRight className="h-4 w-4" />
               </Link>
-              {featured.playUrl && (
-                <a
-                  href={featured.playUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center justify-center gap-3 border border-foreground/30 px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground transition-colors hover:border-[var(--game-accent)] hover:text-[var(--game-accent)]"
-                >
-                  <Play className="h-4 w-4" /> Play on Stake
-                </a>
-              )}
+              <PlayLinks
+                us={featured.playUrl}
+                com={featured.stakeComUrl}
+                variant="outline"
+                prefix={false}
+              />
             </div>
           </Reveal>
 
@@ -289,8 +294,11 @@ function Home() {
           <Reveal>
             <p className="eyebrow">How we work</p>
             <p className="display mt-8 max-w-6xl text-[clamp(1.8rem,5vw,4.4rem)] leading-[0.95] text-foreground">
-              A short catalogue is a choice. We would rather ship {games.length} games people finish{" "}
-              <span className="text-mark">than forty they scroll past</span>.
+              {games.length} games in {cadence.weeks} weeks.{" "}
+              <span className="text-mark">
+                A new one roughly every {cadence.daysPerRelease} days
+              </span>
+              , and every one of them only on Stake.
             </p>
           </Reveal>
           <div className="mt-16 grid gap-10 md:grid-cols-3">
@@ -375,19 +383,12 @@ function Home() {
               Go and <span className="text-mark">play them</span>
             </h2>
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              All {games.length} titles are live on Stake right now. Operators and press — get in
-              touch about what we're building next.
+              All {games.length} titles are live on Stake.us and Stake.com right now. Operators and
+              press — get in touch about what we're building next.
             </p>
           </Reveal>
           <Reveal delay={120} className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-            <a
-              href={EXCLUSIVE_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="inline-flex items-center justify-center gap-3 bg-foreground px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
-            >
-              <Play className="h-4 w-4" /> Play on Stake
-            </a>
+            <PlayLinks us={EXCLUSIVE_URL} com={EXCLUSIVE_URL_COM} className="flex-col sm:flex-row" />
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-3 border border-foreground/30 px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground transition-colors hover:border-[var(--game-accent)] hover:text-[var(--game-accent)]"

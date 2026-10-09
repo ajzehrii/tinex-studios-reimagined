@@ -1,0 +1,376 @@
+{
+  "syncedAt": "2026-10-09T20:04:03.234Z",
+  "games": [
+    {
+      "slug": "cosmic-crush-100k",
+      "stakeSlug": "tinexgames-cosmic-crush-100k",
+      "title": "Cosmic Crush 100k",
+      "type": "Slot",
+      "houseEdge": "4.70%",
+      "rtp": "95.30%",
+      "releasedAt": "2026-10-09T16:04:09.000Z",
+      "themes": [],
+      "artHash": "05db54a01f24d1223b9d58f8094030f31cdfcc1e8a78ae083946e5d7977aec84",
+      "accent": "0.78 0.14 219"
+    },
+    {
+      "slug": "rhino-royal",
+      "stakeSlug": "tinexgames-rhino-royal",
+      "title": "Rhino Royal",
+      "type": "Slot",
+      "houseEdge": "6.00%",
+      "rtp": "94.00%",
+      "releasedAt": "2026-10-05T18:43:09.000Z",
+      "themes": [
+        "Action",
+        "Animals",
+        "Feature Spins",
+        "Volatility Switch"
+      ],
+      "artHash": "1f6b5357502066f87a6c0d00242610f8125978cce05cc1e5c45974aefd7bff14",
+      "accent": "0.70 0.22 266"
+    },
+    {
+      "slug": "glitched",
+      "stakeSlug": "tinexgames-glitched",
+      "title": "GLITCHED",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-10-01T11:08:05.000Z",
+      "themes": [],
+      "artHash": "b9fbd30cd349a0cef5a6750276dd49e210f39fe60ce7e56fcc51fe3e498384cb",
+      "accent": "0.84 0.17 89"
+    },
+    {
+      "slug": "cursed-rumble",
+      "stakeSlug": "tinexgames-cursed-rumble",
+      "title": "Cursed Rumble",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-09-30T03:52:35.000Z",
+      "themes": [],
+      "artHash": "73c9ee986cbebb9ed65a4ea7de55cef087dbf4a6d5060d8742515445acd289e3",
+      "accent": "0.84 0.15 193"
+    },
+    {
+      "slug": "space-raiders",
+      "stakeSlug": "tinexgames-space-raiders",
+      "title": "Space Raiders",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-09-28T20:33:59.000Z",
+      "themes": [],
+      "artHash": "65d9f80f4b72aef22436d26ebeaee2b1ed661ae596980791c070e7731a42b17e",
+      "accent": "0.70 0.22 29"
+    },
+    {
+      "slug": "brain-bash",
+      "stakeSlug": "tinexgames-brain-bash",
+      "title": "Brain Bash",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-09-27T17:58:11.000Z",
+      "themes": [],
+      "artHash": "c584861b6f2f6cb821e5d0dad8255439d105e854d39f019a9bd8ca5bdbbbd1c2",
+      "accent": "0.84 0.22 143"
+    },
+    {
+      "slug": "nic-sick",
+      "stakeSlug": "tinexgames-nic-sick",
+      "title": "Nic Sick",
+      "type": "Slot",
+      "houseEdge": "5.00%",
+      "rtp": "95.00%",
+      "releasedAt": "2026-09-21T10:59:08.000Z",
+      "themes": [],
+      "artHash": "14a6c3fbbf0f695fda3151e30695b4b8474ff8ce5a927f9cc3d3f277010514ff",
+      "accent": "0.73 0.17 55"
+    },
+    {
+      "slug": "royal-hog",
+      "stakeSlug": "tinexgames-royal-hog",
+      "title": "Royal Hog",
+      "type": "Slot",
+      "houseEdge": "3.30%",
+      "rtp": "96.70%",
+      "releasedAt": "2026-09-20T20:06:13.000Z",
+      "themes": [
+        "Feature Spins",
+        "Volatility Switch"
+      ],
+      "artHash": "34318544a7b95130158566e85c00a79245b28459d264a184671842ee38e45872",
+      "accent": "0.81 0.16 85"
+    },
+    {
+      "slug": "bounty-blast",
+      "stakeSlug": "tinexgames-bounty-blast",
+      "title": "Bounty Blast",
+      "type": "Slot",
+      "houseEdge": "4.70%",
+      "rtp": "95.30%",
+      "releasedAt": "2026-09-20T00:11:07.000Z",
+      "themes": [],
+      "artHash": "ad2b5c1cb12d882947fa88768a97cec160ace6818cfac3ec5c5beb9e9725cfe7",
+      "accent": "0.70 0.14 63"
+    },
+    {
+      "slug": "shell-smash",
+      "stakeSlug": "tinexgames-shell-smash",
+      "title": "Shell Smash",
+      "type": "Slot",
+      "houseEdge": "4.60%",
+      "rtp": "95.40%",
+      "releasedAt": "2026-09-19T16:29:09.000Z",
+      "themes": [],
+      "artHash": "24ea7aed50f50299637ffabbf0c18bd62f2161429ea6ee2a5d8478d3d765cefe",
+      "accent": "0.84 0.16 182"
+    },
+    {
+      "slug": "shady-spells",
+      "stakeSlug": "tinex-games-shady-spells",
+      "title": "Shady Spells",
+      "type": "Slot",
+      "houseEdge": "5.00%",
+      "rtp": "95.00%",
+      "releasedAt": "2026-09-14T16:48:06.000Z",
+      "themes": [],
+      "artHash": "97a6e9d79bc44303659ce808939698bd72b3e652d637542659ffc0b832b0a359",
+      "accent": "0.70 0.18 257"
+    },
+    {
+      "slug": "koban-strike",
+      "stakeSlug": "tinexgames-koban-strike",
+      "title": "Koban Strike",
+      "type": "Slot",
+      "houseEdge": "5.00%",
+      "rtp": "95.00%",
+      "releasedAt": "2026-09-08T22:36:06.000Z",
+      "themes": [],
+      "artHash": "c8e6f1678c93cd92503de5bffc6fffd37d940f7431014fbeee3449cad8711a2d",
+      "accent": "0.78 0.16 68"
+    },
+    {
+      "slug": "order-up",
+      "stakeSlug": "tinexgames-order-up",
+      "title": "Order Up",
+      "type": "Slot",
+      "houseEdge": "4.40%",
+      "rtp": "95.60%",
+      "releasedAt": "2026-08-30T18:26:07.000Z",
+      "themes": [],
+      "artHash": "6a8d7725401f4e2e6d476e08bb437d94a8671978466d27a0cc7fa763ea940a9f",
+      "accent": "0.70 0.22 32"
+    },
+    {
+      "slug": "on-the-run",
+      "stakeSlug": "tinexgames-on-the-run",
+      "title": "On The Run",
+      "type": "Slot",
+      "houseEdge": "4.60%",
+      "rtp": "95.40%",
+      "releasedAt": "2026-08-28T20:37:06.000Z",
+      "themes": [
+        "Action"
+      ],
+      "artHash": "ffc28fddb9dd7d68c74e2ea0e9c0b612b7e3aa56b0f92606932c5b43c0b3848e",
+      "accent": "0.74 0.15 232"
+    },
+    {
+      "slug": "castle-chaos",
+      "stakeSlug": "tinexgames-castle-chaos",
+      "title": "Castle Chaos",
+      "type": "Slot",
+      "houseEdge": "5.00%",
+      "rtp": "95.00%",
+      "releasedAt": "2026-08-27T17:01:07.000Z",
+      "themes": [],
+      "artHash": "0511833122249ef9fe159089c9ad223df7a65f6215ec9f21f67f437a8e9383a8",
+      "accent": "0.79 0.17 72"
+    },
+    {
+      "slug": "greeked-out",
+      "stakeSlug": "tinexgames-greeked-out",
+      "title": "Greeked Out",
+      "type": "Slot",
+      "houseEdge": "4.70%",
+      "rtp": "95.30%",
+      "releasedAt": "2026-08-23T05:57:06.000Z",
+      "themes": [],
+      "artHash": "431893a10ec04484fee4ccd044d7f502966a8befa4c39ff8e40583bac4f5e705",
+      "accent": "0.71 0.16 243"
+    },
+    {
+      "slug": "nine-lives",
+      "stakeSlug": "tinexgames-nine-lives",
+      "title": "Nine Lives",
+      "type": "Slot",
+      "houseEdge": "5.00%",
+      "rtp": "95.00%",
+      "releasedAt": "2026-08-23T03:44:06.000Z",
+      "themes": [],
+      "artHash": "ebdf86e6ac6b122a8d1228f48f4eb29e93ef8fcaedc9a00b4cf520c4c56f3091",
+      "accent": "0.70 0.18 45"
+    },
+    {
+      "slug": "leap-frog",
+      "stakeSlug": "tinexgames-leap-frog",
+      "title": "Leap Frog",
+      "type": "Burst game",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-08-22T16:43:07.000Z",
+      "themes": [],
+      "artHash": "402113e038ced16c706f40cd369e1a85ac92977346b0e198153f1ea13f2e9a7c",
+      "accent": "0.84 0.22 140"
+    },
+    {
+      "slug": "powder-and-plunder",
+      "stakeSlug": "tinexgames-powder-and-plunder",
+      "title": "Powder And Plunder",
+      "type": "Slot",
+      "houseEdge": "4.50%",
+      "rtp": "95.50%",
+      "releasedAt": "2026-08-21T17:49:06.000Z",
+      "themes": [],
+      "artHash": "141e71890ed74bdf55653d8af4233808475b40de4572d65b37cdec4faf28047d",
+      "accent": "0.70 0.22 32"
+    },
+    {
+      "slug": "chalk-days",
+      "stakeSlug": "tinexgames-chalk-days",
+      "title": "Chalk Days",
+      "type": "Slot",
+      "houseEdge": "4.70%",
+      "rtp": "95.30%",
+      "releasedAt": "2026-08-21T16:24:07.000Z",
+      "themes": [],
+      "artHash": "9aff038f82d1b8af5c68189229aaaa07bcc38f5f37941928c50557e2e1d6ec2b",
+      "accent": "0.70 0.18 148"
+    },
+    {
+      "slug": "drafting-days",
+      "stakeSlug": "tinexgames-drafting-days",
+      "title": "Drafting Days",
+      "type": "Slot",
+      "houseEdge": "4.70%",
+      "rtp": "95.30%",
+      "releasedAt": "2026-08-13T20:05:07.000Z",
+      "themes": [],
+      "artHash": "4aa9ff6afe85c21465f7eee33edbe6b9bf2374e69c3c514b44ac3a454423cf43",
+      "accent": "0.84 0.18 98"
+    },
+    {
+      "slug": "crystal-crush",
+      "stakeSlug": "tinexgames-crystal-crush",
+      "title": "Crystal Crush",
+      "type": "Slot",
+      "houseEdge": "4.60%",
+      "rtp": "95.40%",
+      "releasedAt": "2026-08-12T20:30:06.000Z",
+      "themes": [
+        "Cascading"
+      ],
+      "artHash": "ad3e6ebf7404dab2d4794790deab1211fa8ebaccd837d9672448d20ca6adebf3",
+      "accent": "0.82 0.14 211"
+    },
+    {
+      "slug": "sugar-spirits",
+      "stakeSlug": "tinexgames-sugar-spirits",
+      "title": "Sugar Spirits",
+      "type": "Slot",
+      "houseEdge": "5.00%",
+      "rtp": "95.00%",
+      "releasedAt": "2026-08-12T19:45:06.000Z",
+      "themes": [
+        "Candy",
+        "Cascading"
+      ],
+      "artHash": "e99ebce114f39e35e60453104de34c3650064c24b2f389d76f1d95d8e1f673ca",
+      "accent": "0.70 0.22 344"
+    },
+    {
+      "slug": "doodle-days",
+      "stakeSlug": "tinexgames-doodle-days",
+      "title": "Doodle Days",
+      "type": "Slot",
+      "houseEdge": "4.70%",
+      "rtp": "95.30%",
+      "releasedAt": "2026-08-09T15:36:06.000Z",
+      "themes": [],
+      "artHash": "03ec6917605eaa11fdf10bd899489b47cf2288b579e9b788ab4f914af927ce76",
+      "accent": "0.73 0.07 47"
+    },
+    {
+      "slug": "rift-rush",
+      "stakeSlug": "tinexgames-rift-rush",
+      "title": "Rift Rush",
+      "type": "Slot",
+      "houseEdge": "5.00%",
+      "rtp": "95.00%",
+      "releasedAt": "2026-08-07T21:52:06.000Z",
+      "themes": [],
+      "artHash": "8827afd4ba44ee1ca0fff82f5d4c420aac39cbe216f5ff72de3c83fd54436ba0",
+      "accent": "0.70 0.22 309"
+    },
+    {
+      "slug": "bubble-rise",
+      "stakeSlug": "tinexgames-bubble-rise",
+      "title": "Bubble Rise",
+      "type": "Slot",
+      "houseEdge": "3.50%",
+      "rtp": "96.50%",
+      "releasedAt": "2026-08-06T13:14:05.000Z",
+      "themes": [],
+      "artHash": "dae6f34731f53f450689a9f319cfd6a34986d8629f5d35527b6af01269bfce68",
+      "accent": "0.71 0.16 241"
+    },
+    {
+      "slug": "floor-is-lava",
+      "stakeSlug": "tinexgames-floor-is-lava",
+      "title": "Floor Is Lava",
+      "type": "Slot",
+      "houseEdge": "3.50%",
+      "rtp": "96.50%",
+      "releasedAt": "2026-08-04T14:00:03.000Z",
+      "themes": [
+        "Cascading"
+      ],
+      "artHash": "b5e31598fef8e21bb6392f16ec4d7d8b9f61362ae53f60b08d92d7226d4e7921",
+      "accent": "0.70 0.22 33"
+    },
+    {
+      "slug": "larp-city",
+      "stakeSlug": "tinexgames-larp-city",
+      "title": "Larp City",
+      "type": "Slot",
+      "houseEdge": "3.50%",
+      "rtp": "96.50%",
+      "releasedAt": "2026-08-01T03:52:05.000Z",
+      "themes": [
+        "Animals",
+        "Cascading"
+      ],
+      "artHash": "70f5a8490b2132418624570cb47b35acc3f89e7fad9deffe2f640929fcdbb03f",
+      "accent": "0.73 0.16 236"
+    },
+    {
+      "slug": "sugar-wheel",
+      "stakeSlug": "tinexgames-sugar-wheel",
+      "title": "Sugar Wheel",
+      "type": "Slot",
+      "houseEdge": "5.00%",
+      "rtp": "95.00%",
+      "releasedAt": "2026-07-30T18:35:14.000Z",
+      "themes": [
+        "Candy",
+        "Feature Spins"
+      ],
+      "artHash": "889063edb7108c3a6a288a1f12464b6849a1b1cb1d8728992c8be1fd7e302d8d",
+      "accent": "0.81 0.17 77"
+    }
+  ]
+}

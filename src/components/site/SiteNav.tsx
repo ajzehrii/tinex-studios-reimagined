@@ -2,7 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { EXCLUSIVE_URL } from "@/data/games";
+import { EXCLUSIVE_URL, EXCLUSIVE_URL_COM } from "@/data/games";
+import { PlayLinks } from "@/components/site/PlayLinks";
 import logoMark from "@/assets/logo-mark.png";
 
 const links = [
@@ -67,14 +68,13 @@ export function SiteNav() {
         </nav>
 
         <div className="flex items-center justify-end gap-3">
-          <a
-            href={EXCLUSIVE_URL}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="hidden bg-foreground px-5 py-2.5 font-mono text-[0.66rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85 md:inline-flex"
-          >
-            Play on Stake
-          </a>
+          <PlayLinks
+            us={EXCLUSIVE_URL}
+            com={EXCLUSIVE_URL_COM}
+            size="sm"
+            prefix={false}
+            className="hidden md:flex"
+          />
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -107,15 +107,12 @@ export function SiteNav() {
             {l.label}
           </Link>
         ))}
-        <a
-          href={EXCLUSIVE_URL}
-          target="_blank"
-          rel="noreferrer noopener"
+        <PlayLinks
+          us={EXCLUSIVE_URL}
+          com={EXCLUSIVE_URL_COM}
+          className="mt-8 flex-col"
           onClick={() => setOpen(false)}
-          className="mt-8 bg-foreground px-8 py-4 text-center font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink"
-        >
-          Play on Stake
-        </a>
+        />
       </div>
     </header>
   );

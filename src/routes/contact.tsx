@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { Reveal } from "@/components/site/Reveal";
-import { CONTACT_EMAIL, EXCLUSIVE_URL } from "@/data/games";
+import { CONTACT_EMAIL, EXCLUSIVE_URL, EXCLUSIVE_URL_COM, games } from "@/data/games";
 import { seo } from "@/data/site";
 
 export const Route = createFileRoute("/contact")({
@@ -117,9 +117,11 @@ function Contact() {
           <Block title="Email" lines={[CONTACT_EMAIL, "Partnerships, press and everything else."]} />
           <Block
             title="Play the games"
-            lines={["All four titles are live on Stake."]}
-            href={EXCLUSIVE_URL}
-            hrefLabel="Tinex Games on Stake"
+            lines={[`All ${games.length} titles are live on Stake.us and Stake.com.`]}
+            links={[
+              { href: EXCLUSIVE_URL, label: "Tinex Games on Stake.us" },
+              { href: EXCLUSIVE_URL_COM, label: "Tinex Games on Stake.com" },
+            ]}
           />
           <div className="border border-border bg-surface p-7">
             <h3 className="font-mono text-sm uppercase tracking-[0.08em] text-foreground">18+ only</h3>
@@ -137,13 +139,11 @@ function Contact() {
 function Block({
   title,
   lines,
-  href,
-  hrefLabel,
+  links = [],
 }: {
   title: string;
   lines: string[];
-  href?: string;
-  hrefLabel?: string;
+  links?: { href: string; label: string }[];
 }) {
   return (
     <div className="border-t border-border pt-6">
@@ -153,15 +153,20 @@ function Block({
           <li key={l}>{l}</li>
         ))}
       </ul>
-      {href && (
-        <a
-          href={href}
-          target="_blank"
-          rel="noreferrer noopener"
-          className="underline-sweep mt-4 inline-flex font-mono text-[0.66rem] uppercase tracking-[0.08em] text-foreground"
-        >
-          {hrefLabel}
-        </a>
+      {links.length > 0 && (
+        <div className="mt-4 flex flex-col gap-3">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="underline-sweep inline-flex w-fit font-mono text-[0.66rem] uppercase tracking-[0.08em] text-foreground"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
       )}
     </div>
   );

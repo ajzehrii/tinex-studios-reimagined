@@ -1,10 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Play } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { GameCard, StatusBadge } from "@/components/site/GameCard";
 import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { JsonLd } from "@/components/site/JsonLd";
-import { PLATFORM, formatReleaseDate, gameSpecs, games, getGame } from "@/data/games";
+import { PlayLinks } from "@/components/site/PlayLinks";
+import { PLATFORM, describe, formatReleaseDate, gameSpecs, games, getGame } from "@/data/games";
 import { seo } from "@/data/site";
 import { breadcrumbSchema, gameSchema } from "@/data/schema";
 
@@ -31,8 +32,17 @@ export const Route = createFileRoute("/games/$slug")({
       path: `/games/${game.slug}`,
       type: "article",
       image: game.ogImage,
-      title: `${game.title} Slot — Play on Stake | Tinex Games`,
-      description: `${game.title} is a Stake exclusive slot by Tinex Games, built on Stake Engine. ${facts}. ${game.tagline}`,
+      // "Rift Rush Slot — …", but never call a burst game a slot.
+      title: `${game.title}${game.type === "Slot" ? " Slot" : ""} — Play on Stake | Tinex Games`,
+      // Built from parts so an absent tagline or date is simply left out —
+      // interpolating it directly printed the word "undefined".
+      description: [
+        `${game.title} is a Stake exclusive ${game.type.toLowerCase()} by Tinex Games, built on Stake Engine`,
+        game.releaseDate && `released ${formatReleaseDate(game.releaseDate)}`,
+      ]
+        .filter(Boolean)
+        .join(", ")
+        .concat(`. ${facts}.`, game.tagline ? ` ${game.tagline}` : ""),
     });
   },
   notFoundComponent: GameNotFound,
@@ -58,7 +68,13 @@ function GameNotFound() {
 
 function GameDetail() {
   const { game } = Route.useLoaderData();
-  const related = games.filter((g) => g.slug !== game.slug).slice(0, 3);
+  // Chronological neighbours rather than always the newest three, so every
+  // game page links into a different part of the catalogue.
+  const i = games.findIndex((g) => g.slug === game.slug);
+  const related = [i + 1, i - 1, i + 2, i - 2, i + 3, i - 3]
+    .filter((j) => j >= 0 && j < games.length)
+    .slice(0, 3)
+    .map((j) => games[j]!);
   const specs = gameSpecs(game);
 
   return (
@@ -95,7 +111,11 @@ function GameDetail() {
             <h1 className="display mt-6 text-[clamp(2.8rem,10vw,9rem)] text-foreground">
               {game.title}
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-[var(--game-accent)] sm:text-2xl">{game.tagline}</p>
+            {game.tagline && (
+              <p className="mt-5 max-w-xl text-lg text-[var(--game-accent)] sm:text-2xl">
+                {game.tagline}
+              </p>
+            )}
 
             {game.themes.length > 0 && (
               <ul className="mt-7 flex flex-wrap gap-2">
@@ -110,16 +130,12 @@ function GameDetail() {
               </ul>
             )}
 
-            {game.playUrl && (
-              <a
-                href={game.playUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="mt-10 inline-flex items-center gap-3 bg-[var(--game-accent)] px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
-              >
-                <Play className="h-4 w-4" /> Play on Stake
-              </a>
-            )}
+            <PlayLinks
+              us={game.playUrl}
+              com={game.stakeComUrl}
+              variant="accent"
+              className="mt-10 max-w-xl flex-col sm:flex-row"
+            />
           </Reveal>
 
           <Reveal delay={140} className="order-first lg:order-none">
@@ -153,7 +169,7 @@ function GameDetail() {
         <Reveal>
           <p className="eyebrow">About the game</p>
           <p className="mt-6 text-xl leading-relaxed text-foreground sm:text-2xl">
-            {game.description}
+            {describe(game)}
           </p>
         </Reveal>
         <Reveal delay={100}>
@@ -179,16 +195,6 @@ function GameDetail() {
                 {game.title} is built and certified on {PLATFORM} and runs as a single HTML5 build —
                 the same game on desktop and mobile, launched straight from the Stake lobby.
               </p>
-              {game.playUrl && (
-                <a
-                  href={game.playUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="underline-sweep mt-6 inline-flex font-mono text-[0.66rem] uppercase tracking-[0.08em] text-[var(--game-accent)]"
-                >
-                  View on Stake
-                </a>
-              )}
             </div>
           )}
         </Reveal>

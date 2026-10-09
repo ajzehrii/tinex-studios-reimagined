@@ -1,5 +1,16 @@
 import { SITE_NAME, SITE_URL, absoluteUrl } from "@/data/site";
-import { EXCLUSIVE_URL, PLATFORM, type Game, games } from "@/data/games";
+import {
+  EXCLUSIVE_URL,
+  EXCLUSIVE_URL_COM,
+  PLATFORM,
+  type Game,
+  cadence,
+  describe,
+  formatReleaseDate,
+  games,
+  latestTitleList,
+  rtpRange,
+} from "@/data/games";
 
 const ORG_ID = `${SITE_URL}/#organization`;
 
@@ -17,8 +28,8 @@ export const organizationSchema = {
   alternateName: "Tinex",
   url: SITE_URL,
   description: `${SITE_NAME} is an independent slot studio building on ${PLATFORM}. Its slots are playable only on Stake.`,
-  // The Stake publisher page is the studio's other verifiable presence.
-  sameAs: [EXCLUSIVE_URL],
+  // The Stake publisher pages are the studio's other public presence.
+  sameAs: [EXCLUSIVE_URL, EXCLUSIVE_URL_COM],
 };
 
 export const websiteSchema = {
@@ -36,11 +47,12 @@ export const gameSchema = (game: Game) => ({
   "@type": "VideoGame",
   "@id": `${SITE_URL}/games/${game.slug}#game`,
   name: game.title,
-  alternateName: `${game.title} slot`,
+  alternateName: `${game.title} ${game.type.toLowerCase()}`,
   url: absoluteUrl(`/games/${game.slug}`),
   image: absoluteUrl(game.art),
-  description: game.description,
-  genre: ["Slot", ...game.themes],
+  description: describe(game),
+  genre: [game.type, ...game.themes],
+  ...(game.releaseDate ? { datePublished: game.releaseDate } : {}),
   gamePlatform: "HTML5 Web",
   playMode: "SinglePlayer",
   applicationCategory: "GameApplication",
@@ -48,7 +60,7 @@ export const gameSchema = (game: Game) => ({
   inLanguage: "en",
   publisher: { "@id": ORG_ID },
   author: { "@id": ORG_ID },
-  ...(game.playUrl ? { sameAs: game.playUrl } : {}),
+  sameAs: [game.playUrl, game.stakeComUrl],
 });
 
 export const breadcrumbSchema = (trail: { name: string; path: string }[]) => ({
@@ -92,22 +104,20 @@ export const faqs = [
   },
   {
     q: `Are ${SITE_NAME} slots only on Stake?`,
-    a: `Yes. All ${games.length} Tinex slots are Stake exclusives — Stake tags every one of them "Only on Stake". They are not available at any other casino.`,
+    a: `Yes. All ${games.length} Tinex titles are Stake exclusives — Stake tags every one of them "Only on Stake". You can play them on Stake.us and Stake.com, and at no other casino.`,
   },
   {
     q: `What Stake slots does ${SITE_NAME} make?`,
-    a: `${games.map((g) => g.title).join(", ")}. Every title is a single HTML5 build that runs the same on desktop and mobile.`,
+    // Lists the newest few rather than every title, which outgrew a sentence.
+    a: `${games.length} so far, starting with ${games[games.length - 1]?.title} on ${formatReleaseDate(cadence.firstRelease)} — a new release roughly every ${cadence.daysPerRelease} days since. The newest are ${latestTitleList(3)}. Every title is a single HTML5 build that runs the same on desktop and mobile, and the full list is on the games page.`,
   },
   {
     q: "What is the RTP of Tinex slots?",
-    a: games
-      .map((g) => `${g.title} ${g.rtp ?? "n/a"}`)
-      .join(", ")
-      .concat(". RTP figures are as published by Stake."),
+    a: `Between ${rtpRange.min.toFixed(2)}% and ${rtpRange.max.toFixed(2)}% depending on the title, as published by Stake. Every game page on this site lists that title's own RTP and house edge.`,
   },
   {
     q: "How do I play Tinex slots on Stake?",
-    a: "Open any game page on this site and follow the Play on Stake link, which goes straight to that title in the Stake lobby. Tinex is the studio that makes the games — play happens on Stake, not here.",
+    a: "Open any game page on this site and choose Stake.us or Stake.com — each link goes straight to that title in the Stake lobby. Tinex is the studio that makes the games; play happens on Stake, not here.",
   },
 ];
 

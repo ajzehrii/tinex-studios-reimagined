@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Play } from "lucide-react";
-import { formatReleaseDate, gameSpecs, type Game } from "@/data/games";
+import { catalogueNo, formatReleaseDate, gameSpecs, type Game } from "@/data/games";
+import { PlayLinks } from "@/components/site/PlayLinks";
 import { cn } from "@/lib/utils";
 
 export function StatusBadge({ status }: { status: Game["status"] }) {
@@ -20,17 +20,18 @@ export function StatusBadge({ status }: { status: Game["status"] }) {
 
 /**
  * Cards are tinted by the title's own art colour and lift onto a flat offset
- * shadow rather than a coloured blur. `index` prints the catalogue number,
- * which is the main structural device on the games pages.
+ * shadow rather than a coloured blur. `numbered` prints the game's stable
+ * catalogue number on the art.
  */
 export function GameCard({
   game,
   priority = false,
-  index,
+  numbered = false,
 }: {
   game: Game;
   priority?: boolean;
-  index?: number;
+  /** Print the game's catalogue number on the art. */
+  numbered?: boolean;
 }) {
   const specs = gameSpecs(game).slice(0, 2);
   const meta = [game.type, game.releaseDate && formatReleaseDate(game.releaseDate)]
@@ -62,9 +63,9 @@ export function GameCard({
           />
           <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
             <StatusBadge status={game.status} />
-            {index !== undefined && (
+            {numbered && (
               <span className="numeral bg-ink/80 px-2 py-1 text-[0.65rem] text-foreground backdrop-blur-sm">
-                {String(index + 1).padStart(2, "0")}
+                {catalogueNo(game)}
               </span>
             )}
           </div>
@@ -78,7 +79,9 @@ export function GameCard({
           </h3>
         </Link>
         <p className="eyebrow mt-2">{meta}</p>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{game.tagline}</p>
+        {game.tagline && (
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{game.tagline}</p>
+        )}
 
         {specs.length > 0 && (
           <dl className="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-4">
@@ -91,25 +94,15 @@ export function GameCard({
           </dl>
         )}
 
-        <div className="mt-auto flex gap-2 pt-5">
-          <Link
-            to="/games/$slug"
-            params={{ slug: game.slug }}
-            className="flex flex-1 items-center justify-center gap-2 border border-border px-4 py-3 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-foreground transition-colors hover:border-[var(--game-accent)] hover:text-[var(--game-accent)]"
-          >
-            Details <ArrowUpRight className="h-3.5 w-3.5" />
-          </Link>
-          {game.playUrl && (
-            <a
-              href={game.playUrl}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="flex flex-1 items-center justify-center gap-2 bg-[var(--game-accent)] px-4 py-3 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink transition-opacity hover:opacity-85"
-            >
-              <Play className="h-3.5 w-3.5" /> Play
-            </a>
-          )}
-        </div>
+        {/* The art and title already link to the details page. */}
+        <PlayLinks
+          us={game.playUrl}
+          com={game.stakeComUrl}
+          variant="accent"
+          size="sm"
+          prefix={false}
+          className="mt-auto pt-5"
+        />
       </div>
     </article>
   );
