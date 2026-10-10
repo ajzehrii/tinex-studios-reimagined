@@ -1,6 +1,18 @@
 {
-  "syncedAt": "2026-10-09T20:04:03.234Z",
+  "syncedAt": "2026-10-10T07:19:52.028Z",
   "games": [
+    {
+      "slug": "brain-rot",
+      "stakeSlug": "tinexgames-brain-rot",
+      "title": "Brain Rot",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-10-10T01:58:06.000Z",
+      "themes": [],
+      "artHash": "96c0a1083c86ce36b4997c63e29ccab968bacb38a00ddfa985d2bf71695c3c57",
+      "accent": "0.70 0.22 292"
+    },
     {
       "slug": "cosmic-crush-100k",
       "stakeSlug": "tinexgames-cosmic-crush-100k",
