@@ -1,6 +1,30 @@
 {
-  "syncedAt": "2026-10-10T07:19:52.028Z",
+  "syncedAt": "2026-10-16T18:01:02.680Z",
   "games": [
+    {
+      "slug": "hell-of-a-show",
+      "stakeSlug": "tinexgames-hell-of-a-show",
+      "title": "Hell Of A Show",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-10-15T05:56:50.000Z",
+      "themes": [],
+      "artHash": "eb894ea16cf8e8515ffdd68bce4e186b99219ed7eae623e38fe8260b5dcd0693",
+      "accent": "0.70 0.22 32"
+    },
+    {
+      "slug": "void-dominion",
+      "stakeSlug": "tinexgames-void-dominion",
+      "title": "Void Dominion",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-10-13T07:09:09.000Z",
+      "themes": [],
+      "artHash": "70fd0e65fe40a5fa18e31104fd02a35e4069a6dd984f1698530597c5041731e3",
+      "accent": "0.70 0.22 294"
+    },
     {
       "slug": "brain-rot",
       "stakeSlug": "tinexgames-brain-rot",
