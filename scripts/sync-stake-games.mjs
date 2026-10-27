@@ -43,6 +43,8 @@ const PLATFORM_GROUPS = new Set([
   "Only on Stake",
   "Slot Games",
   "Stake Engine",
+  // Added by Stake to every title in Oct 2026; a platform shelf, not a theme.
+  "Engine",
   "Tinex Games",
   "New Releases",
   "Recommended Slots",
