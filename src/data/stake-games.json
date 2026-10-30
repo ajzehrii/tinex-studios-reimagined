@@ -1,6 +1,21 @@
 {
-  "syncedAt": "2026-10-27T20:20:24.409Z",
+  "syncedAt": "2026-10-30T00:50:26.865Z",
   "games": [
+    {
+      "slug": "holy-vs-hell",
+      "stakeSlug": "tinexgames-holy-vs-hell",
+      "title": "Holy VS Hell",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-10-28T20:21:03.000Z",
+      "themes": [
+        "Feature Spins",
+        "Volatility Switch"
+      ],
+      "artHash": "ba88e703b91b59bd7ac3df8ffd0fcd79cca8712589eaa44341cb3db177d89ee3",
+      "accent": "0.81 0.14 217"
+    },
     {
       "slug": "grim-getaway",
       "stakeSlug": "tinexgames-grim-getaway",
@@ -9,7 +24,10 @@
       "houseEdge": "4.00%",
       "rtp": "96.00%",
       "releasedAt": "2026-10-27T18:51:06.000Z",
-      "themes": [],
+      "themes": [
+        "Feature Spins",
+        "Volatility Switch"
+      ],
       "artHash": "57c0b9d0c7acaa0c2ec203e02c7f8dc4f7fcbaefcf26acdd31a9ed07d06afff8",
       "accent": "0.84 0.17 90"
     },
