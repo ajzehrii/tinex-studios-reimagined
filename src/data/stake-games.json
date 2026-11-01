@@ -1,6 +1,30 @@
 {
-  "syncedAt": "2026-10-30T00:50:26.865Z",
+  "syncedAt": "2026-11-01T00:13:24.430Z",
   "games": [
+    {
+      "slug": "peps-panic",
+      "stakeSlug": "tinexgames-peps-panic",
+      "title": "Peps Panic",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-10-31T22:51:06.000Z",
+      "themes": [],
+      "artHash": "d6151dad82cf34e31bd99bc30cb84a1dbd673bfa98f43e91a3394276aaaaac95",
+      "accent": "0.70 0.22 262"
+    },
+    {
+      "slug": "deep-trouble",
+      "stakeSlug": "tinexgames-deep-trouble",
+      "title": "Deep Trouble",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-10-31T02:47:28.000Z",
+      "themes": [],
+      "artHash": "d0dceb34621aaa71b2ff2c01db94d69a5aeb796488e2c2e284f3cb61f7dcffc9",
+      "accent": "0.79 0.14 216"
+    },
     {
       "slug": "holy-vs-hell",
       "stakeSlug": "tinexgames-holy-vs-hell",
