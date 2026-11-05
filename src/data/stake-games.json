@@ -1,6 +1,37 @@
 {
-  "syncedAt": "2026-11-01T00:13:24.430Z",
+  "syncedAt": "2026-11-05T05:31:24.082Z",
   "games": [
+    {
+      "slug": "crack-the-pig",
+      "stakeSlug": "tinexgames-crack-the-pig",
+      "title": "Crack the Pig",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-11-05T02:16:28.000Z",
+      "themes": [
+        "Cascading",
+        "Feature Spins",
+        "Volatility Switch"
+      ],
+      "artHash": "e1f93e955f118c52c4ec3c086efd03f727de555c112e2f78291e50fe12646103",
+      "accent": "0.70 0.22 7"
+    },
+    {
+      "slug": "after-hours",
+      "stakeSlug": "tinexgames-after-hours",
+      "title": "After Hours",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-11-03T20:20:07.000Z",
+      "themes": [
+        "Feature Spins",
+        "Volatility Switch"
+      ],
+      "artHash": "6d1ca92afa5d242ef6887f07ee916d7568553a677decd1a677062700df171331",
+      "accent": "0.70 0.22 293"
+    },
     {
       "slug": "peps-panic",
       "stakeSlug": "tinexgames-peps-panic",
@@ -9,7 +40,10 @@
       "houseEdge": "4.00%",
       "rtp": "96.00%",
       "releasedAt": "2026-10-31T22:51:06.000Z",
-      "themes": [],
+      "themes": [
+        "Feature Spins",
+        "Volatility Switch"
+      ],
       "artHash": "d6151dad82cf34e31bd99bc30cb84a1dbd673bfa98f43e91a3394276aaaaac95",
       "accent": "0.70 0.22 262"
     },
@@ -21,7 +55,12 @@
       "houseEdge": "4.00%",
       "rtp": "96.00%",
       "releasedAt": "2026-10-31T02:47:28.000Z",
-      "themes": [],
+      "themes": [
+        "Animals",
+        "Feature Spins",
+        "Sea",
+        "Volatility Switch"
+      ],
       "artHash": "d0dceb34621aaa71b2ff2c01db94d69a5aeb796488e2c2e284f3cb61f7dcffc9",
       "accent": "0.79 0.14 216"
     },
