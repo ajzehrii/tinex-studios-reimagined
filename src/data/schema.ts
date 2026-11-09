@@ -1,4 +1,5 @@
 import { SITE_NAME, SITE_URL, absoluteUrl } from "@/data/site";
+import { CLIP_CHANNEL, DISCORD_URL } from "@/data/community";
 import {
   EXCLUSIVE_URL,
   EXCLUSIVE_URL_COM,
@@ -28,8 +29,8 @@ export const organizationSchema = {
   alternateName: "Tinex",
   url: SITE_URL,
   description: `${SITE_NAME} is an independent slot studio building on ${PLATFORM}. Its slots are playable only on Stake.`,
-  // The Stake publisher pages are the studio's other public presence.
-  sameAs: [EXCLUSIVE_URL, EXCLUSIVE_URL_COM],
+  // The Stake publisher pages and Discord are the studio's other public presence.
+  sameAs: [EXCLUSIVE_URL, EXCLUSIVE_URL_COM, DISCORD_URL],
 };
 
 export const websiteSchema = {
@@ -114,6 +115,10 @@ export const faqs = [
   {
     q: "What is the RTP of Tinex slots?",
     a: `Between ${rtpRange.min.toFixed(2)}% and ${rtpRange.max.toFixed(2)}% depending on the title, as published by Stake. Every game page on this site lists that title's own RTP and house edge.`,
+  },
+  {
+    q: "Can I make money clipping Tinex games?",
+    a: `Yes. Tinex runs a clipping programme through its Discord: clip a Tinex game, post it, and submit the link in ${CLIP_CHANNEL}. Current rates and payout rules are pinned in that channel.`,
   },
   {
     q: "How do I play Tinex slots on Stake?",

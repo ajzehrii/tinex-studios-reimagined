@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { EXCLUSIVE_URL, EXCLUSIVE_URL_COM } from "@/data/games";
 import { PlayLinks } from "@/components/site/PlayLinks";
+import { CLIPPING_HREF, DISCORD_URL } from "@/data/community";
 import logoMark from "@/assets/logo-mark.png";
 
 const links = [
@@ -65,6 +66,18 @@ export function SiteNav() {
               {l.label}
             </Link>
           ))}
+          {/* Only from lg up: at md the bar can't fit six links plus the play pair. */}
+          <a href={CLIPPING_HREF} className="hidden underline-sweep font-mono text-[0.7rem] uppercase tracking-[0.08em] text-muted-foreground transition-colors hover:text-foreground lg:inline">
+            Clip &amp; earn
+          </a>
+          <a
+            href={DISCORD_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="hidden underline-sweep font-mono text-[0.7rem] uppercase tracking-[0.08em] text-muted-foreground transition-colors hover:text-foreground lg:inline"
+          >
+            Discord
+          </a>
         </nav>
 
         <div className="flex items-center justify-end gap-3">
@@ -106,6 +119,24 @@ export function SiteNav() {
           >
             {l.label}
           </Link>
+        ))}
+        {[
+          { href: CLIPPING_HREF, label: "Clip & earn", external: false },
+          { href: DISCORD_URL, label: "Discord", external: true },
+        ].map((l, i) => (
+          <a
+            key={l.href}
+            href={l.href}
+            {...(l.external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
+            onClick={() => setOpen(false)}
+            style={{ transitionDelay: `${open ? 80 + (links.length + i) * 60 : 0}ms` }}
+            className={cn(
+              "display py-3 text-5xl text-foreground transition-all duration-500 [transition-timing-function:var(--ease-out-expo)]",
+              open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
+            )}
+          >
+            {l.label}
+          </a>
         ))}
         <PlayLinks
           us={EXCLUSIVE_URL}

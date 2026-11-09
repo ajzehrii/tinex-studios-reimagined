@@ -1,6 +1,38 @@
 {
-  "syncedAt": "2026-11-05T05:31:24.082Z",
+  "syncedAt": "2026-11-09T22:02:18.880Z",
   "games": [
+    {
+      "slug": "vape-nation",
+      "stakeSlug": "tinexgames-vape-nation",
+      "title": "Vape Nation",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-11-08T23:16:51.000Z",
+      "themes": [
+        "Feature Spins",
+        "Volatility Switch"
+      ],
+      "artHash": "b4f124276c3b23293ecbb5d1c22d8838da8e27412fe2cef609b433690a02becf",
+      "accent": "0.70 0.22 349"
+    },
+    {
+      "slug": "shrimpin-aint-easy",
+      "stakeSlug": "tinexgames-shrimpin-aint-easy",
+      "title": "Shrimpin Aint Easy",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-11-07T01:02:59.000Z",
+      "themes": [
+        "Cascading",
+        "Feature Spins",
+        "Sea",
+        "Volatility Switch"
+      ],
+      "artHash": "a0f7987ee4575b19755d664f960c34dce93faceb342b6836b06c188a3a69edee",
+      "accent": "0.84 0.15 189"
+    },
     {
       "slug": "crack-the-pig",
       "stakeSlug": "tinexgames-crack-the-pig",

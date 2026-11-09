@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { EXCLUSIVE_URL, EXCLUSIVE_URL_COM, PLATFORM, games } from "@/data/games";
 import logoLockup from "@/assets/logo-lockup.png";
+import { CLIPPING_HREF, DISCORD_URL } from "@/data/community";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 
 export function SiteFooter() {
@@ -60,7 +61,7 @@ export function SiteFooter() {
           {/* Licence and certification claims removed — nothing goes here until
               we have the real registration details to put in. */}
           <div>
-            <h3 className="eyebrow">Play</h3>
+            <h3 className="eyebrow">Play &amp; community</h3>
             <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
               <li>18+ only. Play responsibly.</li>
               <li>
@@ -81,6 +82,21 @@ export function SiteFooter() {
                   className="underline-sweep text-accent"
                 >
                   Tinex Games on Stake.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href={DISCORD_URL}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="underline-sweep text-accent"
+                >
+                  Tinex Discord
+                </a>
+              </li>
+              <li>
+                <a href={CLIPPING_HREF} className="underline-sweep text-accent">
+                  Clip &amp; earn
                 </a>
               </li>
             </ul>

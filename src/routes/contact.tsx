@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { Reveal } from "@/components/site/Reveal";
 import { CONTACT_EMAIL, EXCLUSIVE_URL, EXCLUSIVE_URL_COM, games } from "@/data/games";
 import { seo } from "@/data/site";
+import { DISCORD_URL } from "@/data/community";
 
 export const Route = createFileRoute("/contact")({
   head: () =>
@@ -122,6 +123,11 @@ function Contact() {
               { href: EXCLUSIVE_URL, label: "Tinex Games on Stake.us" },
               { href: EXCLUSIVE_URL_COM, label: "Tinex Games on Stake.com" },
             ]}
+          />
+          <Block
+            title="Discord"
+            lines={["Clips, questions about a game, or a word with the studio."]}
+            links={[{ href: DISCORD_URL, label: "Join the Tinex Discord" }]}
           />
           <div className="border border-border bg-surface p-7">
             <h3 className="font-mono text-sm uppercase tracking-[0.08em] text-foreground">18+ only</h3>

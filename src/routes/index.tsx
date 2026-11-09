@@ -6,6 +6,8 @@ import { Reveal } from "@/components/site/Reveal";
 import { ExclusiveBadge } from "@/components/site/ExclusiveBadge";
 import { JsonLd } from "@/components/site/JsonLd";
 import { PlayLinks } from "@/components/site/PlayLinks";
+import { ClippingSection } from "@/components/site/ClippingSection";
+import { DiscordSection } from "@/components/site/DiscordSection";
 import { seo } from "@/data/site";
 import { faqSchema, faqs } from "@/data/schema";
 import {
@@ -259,6 +261,9 @@ function Home() {
         </div>
       </section>
 
+      {/* CLIPPING — creators get paid to clip the games; runs through Discord. */}
+      <ClippingSection />
+
       {/* BAND 6 — WHAT WE BUILD */}
       <section className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8 sm:py-32">
         <Reveal>
@@ -348,6 +353,9 @@ function Home() {
           </ul>
         </section>
       )}
+
+      {/* COMMUNITY — the Tinex Discord. */}
+      <DiscordSection />
 
       {/* BAND 9 — FAQ. Copy here is mirrored verbatim into FAQPage schema in
           data/schema.ts; change one and change the other. */}
