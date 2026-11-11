@@ -1,6 +1,20 @@
 {
-  "syncedAt": "2026-11-09T22:02:18.880Z",
+  "syncedAt": "2026-11-11T00:34:15.159Z",
   "games": [
+    {
+      "slug": "wrecking-wilds",
+      "stakeSlug": "tinexgames-wrecking-wilds",
+      "title": "Wrecking Wilds",
+      "type": "Slot",
+      "houseEdge": "4.00%",
+      "rtp": "96.00%",
+      "releasedAt": "2026-11-11T00:12:24.000Z",
+      "themes": [
+        "Animals"
+      ],
+      "artHash": "c0937d3741f75e8c47a588465490daa2ad4c6288ae140912a5e08eab7c84ab02",
+      "accent": "0.77 0.16 77"
+    },
     {
       "slug": "vape-nation",
       "stakeSlug": "tinexgames-vape-nation",
